@@ -3,6 +3,7 @@ import './index.css';
 import { ThemeProvider } from "./ThemeContext";
 import Header from './component/Header';
 import ImBryan from './component/ImBryan';
+import Services from './component/Services';
 import About from './component/About';
 import Projects from './component/Projects';
 import Footer from './component/Footer';
@@ -152,6 +153,24 @@ function App() {
                   Get in Touch
                 </a>
               </div>
+
+              {/* Stats strip */}
+              <div
+                className="flex flex-wrap gap-8 mt-14 pt-10 border-t border-gray-100 dark:border-white/[0.06]"
+                style={{ animation: 'fade-up 0.6s 0.42s cubic-bezier(0.23,1,0.32,1) both' }}
+              >
+                {[
+                  { n: "3+",    label: "Projects" },
+                  { n: "2+",    label: "Tahun belajar" },
+                  { n: "D1",    label: "IT — Taiwan" },
+                  { n: "Open",  label: "For freelance" },
+                ].map(s => (
+                  <div key={s.label}>
+                    <p className="text-2xl md:text-3xl font-light text-gray-900 dark:text-white">{s.n}</p>
+                    <p className="text-[10px] font-mono text-gray-400 dark:text-gray-600 tracking-widest uppercase mt-1">{s.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Scroll cue */}
@@ -170,8 +189,48 @@ function App() {
           </section>
 
           <section id="bio"><ImBryan /></section>
+          <section id="services"><Services /></section>
           <section id="education"><About /></section>
           <section id="projects"><Projects /></section>
+
+          {/* CTA block */}
+          <section className="py-24 px-6 md:px-16 lg:px-24">
+            <div className="max-w-6xl mx-auto">
+              <div className="scroll-reveal rounded-3xl bg-gray-900 dark:bg-white/[0.04] border border-gray-800 dark:border-white/[0.08]
+                p-10 md:p-16 flex flex-col md:flex-row justify-between items-center gap-10">
+                <div>
+                  <p className="text-xs font-mono text-violet-400 tracking-[0.2em] uppercase mb-4">Let's collaborate</p>
+                  <h2 className="text-3xl md:text-4xl font-light text-white leading-tight mb-3">
+                    Punya project<br />di pikiran?
+                  </h2>
+                  <p className="text-gray-400 text-sm md:text-base max-w-sm leading-relaxed">
+                    Aku siap bantu dari konsep sampai live. Ceritain kebutuhanmu dan kita mulai bareng.
+                  </p>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                  <a
+                    href="https://wa.me/+6281351958200"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-7 py-3.5 rounded-full bg-white text-gray-900 text-sm font-medium text-center
+                      hover:-translate-y-0.5 hover:shadow-xl active:scale-[0.97]
+                      transition-all duration-150 ease-out"
+                  >
+                    Start a Project →
+                  </a>
+                  <a
+                    href="#projects"
+                    className="px-7 py-3.5 rounded-full border border-white/20 text-white text-sm font-medium text-center
+                      hover:bg-white/10 active:scale-[0.97]
+                      transition-all duration-150 ease-out"
+                  >
+                    View Work
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <Footer />
         </div>
       </div>

@@ -35,30 +35,23 @@ const ImBryan = () => {
           <div className="flex flex-col gap-8">
             <div className="scroll-reveal" data-delay="120ms">
               <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-6 leading-tight">
-                Hi, I'm Bryan—<br />
+                Hi, I'm Bryan —<br />
                 <span className="text-violet-600 dark:text-violet-400">web developer</span> & designer.
               </h2>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg">
-                Saat ini aku masih kuliah di jurusan IT dan aktif banget di dunia desain dan development website.
-                Aku buka jasa bikin website secara freelance — mulai dari desain yang estetik dan user-friendly,
-                sampai fungsionalitas yang sesuai kebutuhanmu. Entah itu untuk personal branding, portofolio,
-                bisnis, atau toko online.
+                Aku freelance web developer berbasis di Yogyakarta, spesialis membangun website yang
+                tidak cuma kelihatan keren — tapi juga cepat, responsif, dan beneran bekerja buat
+                bisnis kamu. Dari personal branding, portofolio, sampai toko online, aku handle
+                semuanya dari awal sampai live.
               </p>
             </div>
 
             <div className="scroll-reveal" data-delay="180ms">
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg">
-                Aku pakai React + Tailwind CSS sebagai stack utama karena kombinasi keduanya ngasih kebebasan
-                penuh buat ngatur logika, komponen, dan styling sekaligus — hasilnya website yang responsif,
-                cepat, dan kelihatan keren di semua device.
-              </p>
-            </div>
-
-            <div className="scroll-reveal" data-delay="230ms">
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg">
-                Sebelumnya aku juga pernah menyelesaikan program D1 IT di Taiwan, di mana aku belajar
-                fundamental teknologi sambil mengembangkan kemampuan adaptasi dan kolaborasi lintas budaya.
-                Pengalaman itu yang bikin aku makin semangat ngembangin skill di dunia web development.
+                Stack utamaku adalah React + Tailwind CSS — kombinasi yang ngasih kontrol penuh
+                atas performa dan tampilan sekaligus. Ditambah pengalaman D1 IT di Taiwan yang
+                melatih fondasi teknis dan cara berpikir terstruktur, setiap project yang aku
+                kerjain punya standar yang jelas: clean, efisien, dan tepat sasaran.
               </p>
             </div>
 
