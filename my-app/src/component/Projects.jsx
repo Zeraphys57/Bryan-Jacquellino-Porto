@@ -126,7 +126,7 @@ const Projects = () => {
           <div
             ref={cardRef}
             className="relative z-10 will-change-transform rounded-2xl overflow-hidden
-              bg-white dark:bg-white/[0.03]
+              bg-white dark:bg-[#111114]
               border border-gray-100 dark:border-white/[0.07]
               shadow-xl"
           >
