@@ -15,6 +15,7 @@ function App() {
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [ctaPos, setCtaPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     if (isDarkMode) {
@@ -195,39 +196,74 @@ function App() {
           <section id="process" aria-label="My Process"><Process /></section>
 
           {/* CTA block */}
-          <section className="min-h-screen flex items-center px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48" aria-label="Call to Action">
-            <div className="max-w-[1500px] mx-auto w-full">
-              <div className="scroll-reveal rounded-3xl bg-gray-900 dark:bg-white/[0.04] border border-gray-800 dark:border-white/[0.08]
-                p-10 md:p-16 flex flex-col md:flex-row justify-between items-center gap-10">
-                <div>
-                  <p className="text-xs font-mono text-violet-400 tracking-[0.2em] uppercase mb-4">Let&apos;s collaborate</p>
-                  <h2 className="text-3xl md:text-4xl font-light text-white leading-tight mb-3">
-                    Punya project<br />di pikiran?
-                  </h2>
-                  <p className="text-gray-400 text-sm md:text-base max-w-sm leading-relaxed">
-                    Aku siap bantu dari konsep sampai live. Ceritain kebutuhanmu dan kita mulai bareng.
-                  </p>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-                  <a
-                    href="https://wa.me/+6281351958200"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-7 py-3.5 rounded-full bg-white text-gray-900 text-sm font-medium text-center
-                      hover:-translate-y-0.5 hover:shadow-xl active:scale-[0.97]
-                      transition-all duration-150 ease-out"
-                  >
-                    Start a Project →
-                  </a>
-                  <a
-                    href="#projects"
-                    className="px-7 py-3.5 rounded-full border border-white/20 text-white text-sm font-medium text-center
-                      hover:bg-white/10 active:scale-[0.97]
-                      transition-all duration-150 ease-out"
-                  >
-                    View Work
-                  </a>
-                </div>
+          <section
+            className="min-h-screen relative flex items-center overflow-hidden bg-[#030712]
+                       px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48"
+            aria-label="Call to Action"
+            onMouseMove={e => {
+              const r = e.currentTarget.getBoundingClientRect();
+              setCtaPos({ x: e.clientX - r.left, y: e.clientY - r.top });
+            }}
+          >
+            {/* Cursor spotlight */}
+            <div className="pointer-events-none absolute inset-0 z-0"
+                 style={{ background: `radial-gradient(520px circle at ${ctaPos.x}px ${ctaPos.y}px, rgba(124,58,237,0.11), transparent 65%)` }} />
+
+            {/* Ambient orbs */}
+            <div className="absolute pointer-events-none rounded-full"
+                 style={{ width: 700, height: 700, top: -220, right: -180,
+                   background: 'radial-gradient(circle, #7c3aed 0%, transparent 70%)',
+                   filter: 'blur(100px)', opacity: 0.14, animation: 'orb-a 20s ease-in-out infinite' }} />
+            <div className="absolute pointer-events-none rounded-full"
+                 style={{ width: 600, height: 600, bottom: -160, left: -140,
+                   background: 'radial-gradient(circle, #0d9488 0%, transparent 70%)',
+                   filter: 'blur(100px)', opacity: 0.10, animation: 'orb-b 26s ease-in-out infinite' }} />
+
+            {/* Faded background word */}
+            <span aria-hidden="true"
+                  className="absolute -bottom-6 right-0 text-[22vw] font-black leading-none
+                             select-none tracking-tight text-white/[0.025] pointer-events-none">
+              BUILD.
+            </span>
+
+            {/* Content */}
+            <div className="relative z-10 max-w-[1500px] mx-auto w-full">
+              <p className="scroll-reveal text-xs font-mono text-violet-400 tracking-[0.2em] uppercase mb-8">
+                Let&apos;s collaborate
+              </p>
+
+              <h2 className="scroll-reveal text-[clamp(3rem,7vw,8.5rem)] font-light
+                             leading-[0.92] tracking-tight text-white mb-10"
+                  data-delay="60ms">
+                Punya project<br />
+                <em className="not-italic text-violet-400">di pikiran?</em>
+              </h2>
+
+              <p className="scroll-reveal text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mb-14"
+                 data-delay="120ms">
+                Aku siap bantu dari konsep sampai live. Ceritain kebutuhanmu dan kita mulai bareng.
+              </p>
+
+              <div className="scroll-reveal flex flex-wrap gap-4" data-delay="180ms">
+                <a
+                  href="https://wa.me/+6281351958200"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-4 rounded-full bg-violet-600 text-white text-sm font-medium
+                             hover:-translate-y-0.5 hover:bg-violet-500
+                             hover:shadow-[0_8px_30px_rgba(124,58,237,0.45)]
+                             active:scale-[0.97] transition-all duration-150 ease-out"
+                >
+                  Start a Project →
+                </a>
+                <a
+                  href="#projects"
+                  className="px-8 py-4 rounded-full border border-white/15 text-white text-sm font-medium
+                             hover:bg-white/[0.07] hover:border-white/25 active:scale-[0.97]
+                             transition-all duration-150 ease-out"
+                >
+                  View Work
+                </a>
               </div>
             </div>
           </section>
