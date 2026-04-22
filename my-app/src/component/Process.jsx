@@ -77,10 +77,21 @@ const Process = () => {
               if (!dot) return;
               const active = Math.round(passed) === i;
               const done   = i <= Math.floor(passed + 0.1);
-              dot.style.backgroundColor = done   ? '#14b8a6' : 'transparent';
-              dot.style.borderColor     = done   ? '#14b8a6' : '';
-              dot.style.transform       = active ? 'scale(1.55)' : 'scale(1)';
-              dot.style.boxShadow       = active ? '0 0 0 3px rgba(20,184,166,0.25)' : 'none';
+              dot.style.backgroundColor = done ? '#14b8a6' : 'transparent';
+              dot.style.borderColor     = done ? '#14b8a6' : '#d1d5db';
+              if (active) {
+                dot.style.width        = '11px';
+                dot.style.height       = '16px';
+                dot.style.borderRadius = '50% 50% 50% 50% / 30% 30% 70% 70%';
+                dot.style.transform    = 'translateY(-3px)';
+                dot.style.boxShadow    = '0 4px 10px rgba(20,184,166,0.45), 0 0 0 3px rgba(20,184,166,0.18)';
+              } else {
+                dot.style.width        = '10px';
+                dot.style.height       = '10px';
+                dot.style.borderRadius = '50%';
+                dot.style.transform    = '';
+                dot.style.boxShadow    = 'none';
+              }
             });
             // Counter
             if (counterRef.current) {
@@ -146,7 +157,7 @@ const Process = () => {
       {/* Vertical timeline — right side, centered vertically */}
       <div className="absolute right-6 md:right-10 xl:right-16 2xl:right-24
                       top-1/2 -translate-y-1/2 z-20 flex flex-col items-center"
-           style={{ height: 220 }}>
+           style={{ height: 'min(480px, 58vh)' }}>
 
         {/* Background line */}
         <div className="absolute inset-x-1/2 -translate-x-px inset-y-0 w-px
