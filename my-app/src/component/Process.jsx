@@ -38,11 +38,12 @@ const processData = [
 const n = processData.length;
 
 const Process = () => {
-  const sectionRef  = useRef(null);
-  const stepRefs    = useRef([]);
-  const wordRefs    = useRef([]);
-  const progressRef = useRef(null);
-  const counterRef  = useRef(null);
+  const sectionRef    = useRef(null);
+  const stepRefs      = useRef([]);
+  const wordRefs      = useRef([]);
+  const timelineRef   = useRef(null);
+  const dotRefs       = useRef([]);
+  const counterRef    = useRef(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -66,9 +67,22 @@ const Process = () => {
           scrub: 0.8,
           invalidateOnRefresh: true,
           onUpdate(self) {
-            if (progressRef.current) {
-              progressRef.current.style.transform = `scaleX(${self.progress})`;
+            // Grow the teal line downward
+            if (timelineRef.current) {
+              timelineRef.current.style.transform = `scaleY(${self.progress})`;
             }
+            // Light up dots as each step is reached
+            const passed = self.progress * (n - 1);
+            dotRefs.current.forEach((dot, i) => {
+              if (!dot) return;
+              const active = Math.round(passed) === i;
+              const done   = i <= Math.floor(passed + 0.1);
+              dot.style.backgroundColor = done   ? '#14b8a6' : 'transparent';
+              dot.style.borderColor     = done   ? '#14b8a6' : '';
+              dot.style.transform       = active ? 'scale(1.55)' : 'scale(1)';
+              dot.style.boxShadow       = active ? '0 0 0 3px rgba(20,184,166,0.25)' : 'none';
+            });
+            // Counter
             if (counterRef.current) {
               const idx = Math.min(Math.floor(self.progress * n) + 1, n);
               counterRef.current.textContent = `0${idx}  /  0${n}`;
@@ -107,35 +121,61 @@ const Process = () => {
       ref={sectionRef}
       className="relative h-screen overflow-hidden bg-white dark:bg-gray-950"
     >
-      {/* Header — stays fixed while pinned */}
+      {/* Header */}
       <div className="absolute top-0 left-0 right-0 z-20
                       px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48 pt-24">
-        <div className="max-w-[1500px] mx-auto">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <p className="scroll-reveal text-xs font-mono text-teal-600 dark:text-teal-400
-                            tracking-[0.2em] uppercase mb-3">
-                How I Work
-              </p>
-              <h2 className="scroll-reveal text-3xl md:text-4xl xl:text-5xl font-light
-                             text-gray-900 dark:text-white"
-                  data-delay="60ms">
-                My Process
-              </h2>
-            </div>
-            <span ref={counterRef}
-                  className="text-xs font-mono text-gray-300 dark:text-gray-700 tracking-widest pb-1 tabular-nums">
-              01  /  04
-            </span>
+        <div className="max-w-[1500px] mx-auto flex items-end justify-between">
+          <div>
+            <p className="scroll-reveal text-xs font-mono text-teal-600 dark:text-teal-400
+                          tracking-[0.2em] uppercase mb-3">
+              How I Work
+            </p>
+            <h2 className="scroll-reveal text-3xl md:text-4xl xl:text-5xl font-light
+                           text-gray-900 dark:text-white"
+                data-delay="60ms">
+              My Process
+            </h2>
           </div>
-
-          {/* Teal progress bar */}
-          <div className="h-px bg-gray-100 dark:bg-white/[0.06] overflow-hidden">
-            <div ref={progressRef}
-                 className="h-full bg-teal-500 origin-left will-change-transform"
-                 style={{ transform: "scaleX(0)" }} />
-          </div>
+          <span ref={counterRef}
+                className="text-xs font-mono text-gray-300 dark:text-gray-700 tracking-widest pb-1 tabular-nums">
+            01  /  04
+          </span>
         </div>
+      </div>
+
+      {/* Vertical timeline — right side, centered vertically */}
+      <div className="absolute right-6 md:right-10 xl:right-16 2xl:right-24
+                      top-1/2 -translate-y-1/2 z-20 flex flex-col items-center"
+           style={{ height: 220 }}>
+
+        {/* Background line */}
+        <div className="absolute inset-x-1/2 -translate-x-px inset-y-0 w-px
+                        bg-gray-200 dark:bg-white/[0.08]" />
+
+        {/* Teal progress line — grows downward */}
+        <div ref={timelineRef}
+             className="absolute left-1/2 -translate-x-px top-0 w-px
+                        bg-teal-500 origin-top will-change-transform"
+             style={{ height: '100%', transform: 'scaleY(0)' }} />
+
+        {/* Dots + step labels */}
+        {processData.map((item, i) => (
+          <div key={i}
+               className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2.5"
+               style={{ top: `${(i / (n - 1)) * 100}%`, transform: 'translate(-50%, -50%)' }}>
+            {/* Step label */}
+            <span className="text-[9px] font-mono tracking-widest
+                             text-gray-400 dark:text-gray-600 select-none
+                             hidden md:block"
+                  style={{ marginRight: 2 }}>
+              {item.step}
+            </span>
+            {/* Dot */}
+            <div ref={el => { dotRefs.current[i] = el; }}
+                 className="w-2.5 h-2.5 rounded-full border-2 transition-all duration-300"
+                 style={{ borderColor: '#d1d5db', backgroundColor: 'transparent' }} />
+          </div>
+        ))}
       </div>
 
       {/* Stacked steps — all occupy the same space, GSAP shows one at a time */}
