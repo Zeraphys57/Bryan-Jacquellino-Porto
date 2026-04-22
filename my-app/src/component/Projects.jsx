@@ -1,79 +1,103 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 const projects = [
   {
     id: 1,
     title: "Bashion Fashion",
-    description: "A brief description of Project One.",
-    imageUrl: "https://via.placeholder.com/300",
+    description: "E-commerce fashion platform with modern UI, product filtering, and smooth checkout experience.",
+    tags: ["React", "Tailwind", "Node.js"],
+    gradient: "from-violet-500 to-fuchsia-500",
     link: "#",
   },
   {
     id: 2,
     title: "Dentist Workshop",
-    description: "A brief description of Project Two.",
-    imageUrl: "https://via.placeholder.com/300",
+    description: "Clinic booking system with appointment scheduling, patient management, and responsive design.",
+    tags: ["React", "GSAP", "REST API"],
+    gradient: "from-teal-500 to-cyan-500",
     link: "#",
   },
   {
     id: 3,
     title: "Lawcorps",
-    description: "A brief description of Project Three.",
-    imageUrl: "https://via.placeholder.com/300",
+    description: "Legal services landing page with consultation booking and secure document submission flow.",
+    tags: ["React", "Tailwind", "Vite"],
+    gradient: "from-amber-500 to-orange-500",
     link: "#",
   },
 ];
 
-const PortfolioDisplay = () => {
+const ArrowIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+    <path d="M2.5 11.5l9-9M5 2.5h6.5V9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const Projects = () => {
   return (
-    <section className="py-12 bg-transparent">
-      <div className="container mx-auto px-6 text-center">
-        <h2 className="text-4xl font-bold mb-8 text-gray-800 dark:text-gray-200">
-          What I Do?
+    <div className="py-24 px-6 md:px-16 lg:px-24">
+      <div className="max-w-6xl mx-auto">
+
+        {/* Header */}
+        <p className="scroll-reveal text-xs font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-4">
+          Selected Work
+        </p>
+        <h2 className="scroll-reveal text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-16" data-delay="60ms">
+          What I've Built
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-24">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.4, delay: i * 0.08, ease: [0.23, 1, 0.32, 1] }}
-              whileTap={{ scale: 0.97 }}
-              className="bg-transparent dark:bg-gray-800 rounded-lg shadow-md overflow-hidden
-                transition-[transform,box-shadow] duration-200
-                [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.03]
-                [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-xl"
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {projects.map((p, i) => (
+            <a
+              key={p.id}
+              href={p.link}
+              className="scroll-reveal group flex flex-col rounded-2xl overflow-hidden
+                bg-white dark:bg-white/[0.03]
+                border border-gray-100 dark:border-white/[0.07]
+                shadow-sm
+                hover:-translate-y-1 hover:shadow-xl hover:border-gray-200 dark:hover:border-white/12
+                active:scale-[0.98]
+                transition-all duration-200 ease-out"
+              data-delay={`${i * 80}ms`}
             >
-              <img
-                src={project.imageUrl}
-                alt={project.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  {project.description}
+              {/* Gradient header */}
+              <div className={`h-40 bg-gradient-to-br ${p.gradient} opacity-80 dark:opacity-60`} />
+
+              {/* Body */}
+              <div className="flex flex-col flex-1 p-5 gap-3">
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="text-base font-semibold text-gray-900 dark:text-white leading-tight">
+                    {p.title}
+                  </h3>
+                  <span className="shrink-0 text-gray-400 dark:text-gray-600 group-hover:text-violet-500 dark:group-hover:text-violet-400 transition-colors duration-150 mt-0.5">
+                    <ArrowIcon />
+                  </span>
+                </div>
+
+                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1">
+                  {p.description}
                 </p>
-                <motion.a
-                  href={project.link}
-                  whileTap={{ scale: 0.96 }}
-                  className="inline-block mt-4 px-4 py-2 bg-gray-700 text-white rounded-md
-                    transition-colors duration-150
-                    [@media(hover:hover)_and_(pointer:fine)]:hover:bg-gray-500"
-                >
-                  View Project
-                </motion.a>
+
+                <div className="flex flex-wrap gap-1.5 mt-1">
+                  {p.tags.map(tag => (
+                    <span
+                      key={tag}
+                      className="px-2 py-0.5 text-[10px] font-mono rounded-full
+                        bg-gray-100 dark:bg-white/5
+                        text-gray-500 dark:text-gray-500
+                        border border-gray-200 dark:border-white/8"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </motion.div>
+            </a>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default PortfolioDisplay;
+export default Projects;
