@@ -156,11 +156,11 @@ const Process = () => {
 
       {/* Vertical timeline — right side, centered vertically */}
       <div className="absolute right-6 md:right-10 xl:right-16 2xl:right-24
-                      top-1/2 -translate-y-1/2 z-20 flex flex-col items-center"
-           style={{ height: 'min(480px, 58vh)' }}>
+                      top-1/2 -translate-y-1/2 z-20"
+           style={{ height: 'min(640px, 68vh)', width: 20 }}>
 
         {/* Background line */}
-        <div className="absolute inset-x-1/2 -translate-x-px inset-y-0 w-px
+        <div className="absolute left-1/2 -translate-x-px inset-y-0 w-px
                         bg-gray-200 dark:bg-white/[0.08]" />
 
         {/* Teal progress line — grows downward */}
@@ -172,16 +172,15 @@ const Process = () => {
         {/* Dots + step labels */}
         {processData.map((item, i) => (
           <div key={i}
-               className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2.5"
+               className="absolute left-1/2"
                style={{ top: `${(i / (n - 1)) * 100}%`, transform: 'translate(-50%, -50%)' }}>
-            {/* Step label */}
-            <span className="text-[9px] font-mono tracking-widest
-                             text-gray-400 dark:text-gray-600 select-none
-                             hidden md:block"
-                  style={{ marginRight: 2 }}>
+            {/* Step label — floats left, never shifts the dot */}
+            <span className="absolute right-[calc(100%+7px)] top-1/2 -translate-y-1/2
+                             text-[9px] font-mono tracking-widest whitespace-nowrap
+                             text-gray-400 dark:text-gray-600 select-none hidden md:block">
               {item.step}
             </span>
-            {/* Dot */}
+            {/* Dot — always exactly on the line */}
             <div ref={el => { dotRefs.current[i] = el; }}
                  className="w-2.5 h-2.5 rounded-full border-2 transition-all duration-300"
                  style={{ borderColor: '#d1d5db', backgroundColor: 'transparent' }} />
