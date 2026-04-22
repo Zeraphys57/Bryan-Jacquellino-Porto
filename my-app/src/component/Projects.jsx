@@ -100,24 +100,24 @@ const Projects = () => {
         {/* Carousel stage */}
         <div className="relative max-w-[860px] mx-auto">
 
-          {/* Silhouette — prev project peeks behind-left */}
+          {/* Silhouette — prev project peeks behind-left (gradient area only) */}
           <div
             aria-hidden="true"
-            className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${prev.gradient} pointer-events-none select-none`}
+            className={`absolute top-0 left-0 right-0 h-52 md:h-64 xl:h-80 rounded-2xl bg-gradient-to-br ${prev.gradient} pointer-events-none select-none`}
             style={{
               transform: "translateX(-28px) rotate(-3.5deg) scale(0.9)",
-              opacity: 0.38,
+              opacity: 0.45,
               zIndex: 1,
             }}
           />
 
-          {/* Silhouette — next project peeks behind-right */}
+          {/* Silhouette — next project peeks behind-right (gradient area only) */}
           <div
             aria-hidden="true"
-            className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${next.gradient} pointer-events-none select-none`}
+            className={`absolute top-0 left-0 right-0 h-52 md:h-64 xl:h-80 rounded-2xl bg-gradient-to-br ${next.gradient} pointer-events-none select-none`}
             style={{
               transform: "translateX(28px) rotate(3.5deg) scale(0.9)",
-              opacity: 0.38,
+              opacity: 0.45,
               zIndex: 2,
             }}
           />
