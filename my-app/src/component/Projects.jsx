@@ -5,7 +5,7 @@ const projects = [
     id: 1,
     title: "Bashion Fashion",
     description: "E-commerce fashion platform with modern UI, product filtering, and smooth checkout experience.",
-    tags: ["React", "Tailwind", "Node.js"],
+    tags: ["React", "Tailwind", "AOS"],
     gradient: "from-violet-500 to-fuchsia-500",
     link: "https://zeraphys57.github.io/Bashion/",
   },
@@ -13,7 +13,7 @@ const projects = [
     id: 2,
     title: "Dentist Workshop",
     description: "Clinic booking system with appointment scheduling, patient management, and responsive design.",
-    tags: ["React", "GSAP", "REST API"],
+    tags: ["HTML", "CSS", "JS", "BootStrap", "PHP"],
     gradient: "from-teal-500 to-cyan-500",
     link: "https://zeraphys57.github.io/Klinik-Gigi-UI/",
   },
@@ -21,7 +21,7 @@ const projects = [
     id: 3,
     title: "Lawcorps",
     description: "Legal services landing page with consultation booking and secure document submission flow.",
-    tags: ["React", "Tailwind", "Vite"],
+    tags: ["React", "Tailwind", "Vite", "PostgreSQL"],
     gradient: "from-amber-500 to-orange-500",
     link: "#",
   },
@@ -29,7 +29,7 @@ const projects = [
     id: 4,
     title: "Tumbuh AI",
     description: "AI-powered business automation platform for Indonesian SMEs — converts WhatsApp & Instagram conversations into automated sales pipelines with RAG-based intelligence.",
-    tags: ["AI / RAG", "WhatsApp API", "React"],
+    tags: ["AI / RAG", "Meta API", "React", "Node.js", "PostgreSQL", "ChatBot"],
     gradient: "from-blue-500 to-indigo-500",
     link: "https://www.tumbuh.tech/",
   },
@@ -51,7 +51,7 @@ const Projects = () => {
           Selected Work
         </p>
         <h2 className="scroll-reveal text-3xl md:text-4xl xl:text-5xl font-light text-gray-900 dark:text-white mb-16" data-delay="60ms">
-          What I've Built
+          What I&apos;ve Built
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-[300px]">
