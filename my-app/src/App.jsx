@@ -222,13 +222,19 @@ function App() {
                    filter: 'blur(100px)', opacity: isDarkMode ? 0.10 : 0.06,
                    animation: 'orb-b 26s ease-in-out infinite' }} />
 
-            {/* Faded background word */}
-            <span aria-hidden="true"
-                  className="absolute -bottom-6 right-0 text-[22vw] font-black leading-none select-none
-                             tracking-tight pointer-events-none
-                             text-gray-900/[0.04] dark:text-white/[0.025]">
-              BUILD.
-            </span>
+            {/* Background word — cursor acts as flashlight */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden"
+                 style={{
+                   maskImage: `radial-gradient(circle 340px at ${ctaPos.x}px ${ctaPos.y}px, black 0%, rgba(0,0,0,0.13) 75%)`,
+                   WebkitMaskImage: `radial-gradient(circle 340px at ${ctaPos.x}px ${ctaPos.y}px, black 0%, rgba(0,0,0,0.13) 75%)`,
+                 }}>
+              <span aria-hidden="true"
+                    className="absolute -bottom-6 right-0 text-[22vw] font-black leading-none select-none
+                               tracking-tight pointer-events-none
+                               text-gray-900/[0.22] dark:text-white/[0.14]">
+                BUILD.
+              </span>
+            </div>
 
             {/* Content */}
             <div className="relative z-10 max-w-[1500px] mx-auto w-full">
