@@ -117,6 +117,7 @@ function App() {
             Bryan Jacquellino
           </h1>
 
+
           {/* Scroll down indicator */}
           <motion.div
             className="absolute bottom-10 flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 cursor-pointer select-none"
