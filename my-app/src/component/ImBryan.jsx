@@ -67,13 +67,10 @@ const About = () => {
      
 
       {/* teks 2*/}
-      <div className="flex flex-col items-center gap-16 md:pl-180 px-4 py-2">
-
-          {/* <div className="flex-1 max-w-2xl text-justify" data-aos="fade-up-right"></div> */}
-
-        <div className="flex-1 max-w-6xl text-justify" data-aos="fade-left">
-          <div className="bg-transparent p-4 rounded-xl shadow-md inline-block">
-            <p className="text-xl text-gray-900 dark:text-gray-100 text-justify ">
+      <div className="w-full max-w-4xl mx-auto px-4 py-2 md:ml-auto md:mr-16 lg:mr-32">
+        <div data-aos="fade-left">
+          <div className="bg-transparent p-4 rounded-xl shadow-md">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-900 dark:text-gray-100 text-justify">
             Untuk bikin website, aku lebih suka pakai framework React karena dia ngasih kebebasan dan
             fleksibilitas tinggi buat ngatur komponen-komponen UI. Jadi kodenya bisa lebih rapi dan gampang
             di-maintain. Nah, biar tampilannya kelihatan lebih clean dan modern, aku gabungin sama Tailwind CSS.
@@ -94,13 +91,13 @@ const About = () => {
       </div>
 
       {/* Teks 3 */}
-      <div className="flex justify-center items-center w-full md:pl-150 px-4 py-12">
-          <div 
-              className="max-w-5xl text-justify z-10" 
+      <div className="w-full max-w-4xl mx-auto px-4 py-8">
+          <div
+              className="z-10"
               data-aos="fade-up"
           >
-              <div className="bg-transparent p-4 rounded-xl shadow-md inline-block">
-                  <p className="text-xl text-gray-900 dark:text-gray-100">
+              <div className="bg-transparent p-4 rounded-xl shadow-md">
+                  <p className="text-base sm:text-lg lg:text-xl text-gray-900 dark:text-gray-100 text-justify">
                       Sebelumnya aku sempat menyelesaikan program D1 di bidang IT di Taiwan.
                       Selama di sana, aku belajar banyak hal fundamental seputar teknologi—mulai dari basic
                       programming, jaringan, sampai pengenalan sistem komputer. Tapi bukan cuma soal teknis,
@@ -112,9 +109,6 @@ const About = () => {
               </div>
           </div>
       </div>
-
-      
-      
     </div>
   );
 };

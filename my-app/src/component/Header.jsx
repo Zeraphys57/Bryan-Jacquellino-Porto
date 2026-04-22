@@ -1,18 +1,23 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { ThemeContext } from "../ThemeContext";
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { FaSun, FaMoon } from "react-icons/fa";
-import ASCIIText from './ASCIIText';
+
+const GREETINGS = ["Hello!", "Halo!", "你好!", "こんにちは!", "Bonjour!"];
 
 const Header = ({isDarkMode, toggleDarkMode}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
- 
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [greetIdx, setGreetIdx] = useState(0);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setGreetIdx(i => (i + 1) % GREETINGS.length);
+    }, 2800);
+    return () => clearInterval(id);
+  }, []);
 
   
   useEffect(() => {
@@ -37,18 +42,24 @@ const Header = ({isDarkMode, toggleDarkMode}) => {
 
   return (
     <header
-    className={`fixed top-0 left-0 w-full h-[12vh] z-50 bg-transparent py-4 px-12 space-x-8 flex
+    className={`fixed top-0 left-0 w-full h-[12vh] z-50 bg-transparent py-4 px-6 md:px-12 space-x-8 flex
       justify-between items-center transform transition-transform duration-300 ease-out ${
         isVisible ? "translate-y-0" : "-translate-y-full"} `}
         >
-      <h1 className="text-gray-900 dark:text-gray-100 font-bold sm:text-4xl z-50">Hello!</h1>
-      {/* <div>
-        <ASCIIText
-          text='Hello!'
-          enableWaves={true}
-          asciiFontSize={2}
-        />
-      </div> */}
+      <div className="overflow-hidden h-10 flex items-center z-50">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.h1
+            key={greetIdx}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -20, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            className="text-gray-900 dark:text-gray-100 font-bold sm:text-4xl whitespace-nowrap"
+          >
+            {GREETINGS[greetIdx]}
+          </motion.h1>
+        </AnimatePresence>
+      </div>
       
 
       <nav className="space-x-4 sm:text-3xl hidden">

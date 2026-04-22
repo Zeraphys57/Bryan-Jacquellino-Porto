@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import "aos/dist/aos.css";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
 import "../index.css";
 
 
@@ -18,7 +19,7 @@ const educationData = [
 const About = () => {
   const lineRef = useRef(null);
   const descRefs = useRef([]);
-  // Mengosongkan ref untuk menghindari duplikasi saat re-render
+  const [visibleDots, setVisibleDots] = useState([]);
   descRefs.current = [];
 
   useEffect(() => {
@@ -64,7 +65,22 @@ const About = () => {
         }
       );
     });
-    
+
+
+    const observers = descRefs.current.map((el, i) => {
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setVisibleDots(v => v.includes(i) ? v : [...v, i]);
+          }
+        },
+        { threshold: 0.4 }
+      );
+      if (el) obs.observe(el);
+      return obs;
+    });
+
+    return () => observers.forEach(obs => obs.disconnect());
   }, []);
 
   const addToRefs = (el) => {
@@ -106,17 +122,37 @@ const About = () => {
             key={i}
             ref={(el) => addToRefs(el)}
             className={`relative flex items-center ${
-              // Layout zigzag untuk desktop, di tengah untuk mobile
               i % 2 === 0 ? "justify-start sm:justify-start" : "justify-end sm:justify-end"
             }`}
           >
+            {/* Pulsing dot on the timeline line */}
+            <div className="absolute left-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                animate={visibleDots.includes(i) ? { scale: 1, opacity: 1 } : {}}
+                transition={{ type: "spring", stiffness: 300, damping: 18, delay: 0.1 }}
+                className="w-4 h-4 rounded-full bg-teal-500 dark:bg-teal-400 shadow-md z-20"
+              />
+              {visibleDots.includes(i) && (
+                <motion.div
+                  className="absolute w-8 h-8 rounded-full bg-teal-400 dark:bg-teal-500 opacity-30"
+                  animate={{ scale: [1, 2.2, 1], opacity: [0.4, 0, 0.4] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                />
+              )}
+            </div>
+
             <div
               className={`
-                 bg-gray-100 dark:bg-gray-800 shadow-md p-6 rounded-lg w-[240px] sm:w-[20%]
+                 bg-gray-100 dark:bg-gray-800 shadow-md p-6 rounded-lg
+                 w-[200px] sm:w-[180px] md:w-[200px]
                  transition-[transform,box-shadow] duration-200
                  [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.03]
                  [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-xl
-                 ${i % 2 === 0 ? "ml-auto sm:ml-128" : "mr-auto sm:mr-128"}
+                 ${i % 2 === 0
+                   ? "ml-auto mr-[52%]"
+                   : "mr-auto ml-[52%]"
+                 }
                `}
             >
               <h3 className="text-lg sm:text-xl text-center font-bold font-mono dark:text-gray-100">{edu.status}</h3>
