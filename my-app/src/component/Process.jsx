@@ -11,6 +11,8 @@ const processData = [
     title: "Discovery",
     desc: "Kita ngobrol dulu soal bisnis, tujuan, dan target audiensmu. Dari sini aku petakan apa yang benar-benar dibutuhkan — bukan cuma fitur, tapi solusinya.",
     note: "Brief · Goals",
+    gradLight: "from-violet-100 to-purple-100",
+    gradDark:  "dark:from-violet-400/[0.09] dark:to-purple-300/[0.05]",
   },
   {
     step: "02",
@@ -18,6 +20,8 @@ const processData = [
     title: "Design",
     desc: "Wireframe dan mockup UI dibuat di Figma. Kamu bisa lihat, kasih feedback, dan revisi sebelum satu baris kode pun ditulis.",
     note: "Figma · Mockup",
+    gradLight: "from-teal-100 to-cyan-100",
+    gradDark:  "dark:from-teal-400/[0.09] dark:to-cyan-300/[0.05]",
   },
   {
     step: "03",
@@ -25,6 +29,8 @@ const processData = [
     title: "Build",
     desc: "Development dimulai dengan React + Tailwind sebagai fondasi — clean, cepat, dan scalable. Setiap komponen dibangun dengan standar yang jelas.",
     note: "React · Tailwind",
+    gradLight: "from-amber-100 to-orange-100",
+    gradDark:  "dark:from-amber-400/[0.09] dark:to-orange-300/[0.05]",
   },
   {
     step: "04",
@@ -32,6 +38,8 @@ const processData = [
     title: "Launch",
     desc: "Deploy ke Vercel atau hosting pilihanmu. Domain setup, performance check, dan pastiin semuanya jalan sempurna sebelum go-live.",
     note: "Vercel · Domain",
+    gradLight: "from-blue-100 to-indigo-100",
+    gradDark:  "dark:from-blue-400/[0.09] dark:to-indigo-300/[0.05]",
   },
 ];
 
@@ -200,12 +208,11 @@ const Process = () => {
           <span
             ref={el => { wordRefs.current[i] = el; }}
             aria-hidden="true"
-            className="absolute inset-0 flex items-center justify-center
+            className={`absolute inset-0 flex items-center justify-center
                        text-[26vw] font-black leading-none select-none pointer-events-none
-                       bg-gradient-to-br from-teal-100 to-cyan-100
-                       dark:from-teal-400/[0.09] dark:to-cyan-300/[0.05]
+                       bg-gradient-to-br ${item.gradLight} ${item.gradDark}
                        bg-clip-text text-transparent
-                       tracking-tight will-change-transform"
+                       tracking-tight will-change-transform`}
           >
             {item.word}
           </span>
