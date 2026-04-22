@@ -25,6 +25,14 @@ const projects = [
     gradient: "from-amber-500 to-orange-500",
     link: "#",
   },
+  {
+    id: 4,
+    title: "Tumbuh AI",
+    description: "AI-powered business automation platform for Indonesian SMEs — converts WhatsApp & Instagram conversations into automated sales pipelines with RAG-based intelligence.",
+    tags: ["AI / RAG", "WhatsApp API", "React"],
+    gradient: "from-blue-500 to-indigo-500",
+    link: "https://www.tumbuh.tech/",
+  },
 ];
 
 const ArrowIcon = () => (
