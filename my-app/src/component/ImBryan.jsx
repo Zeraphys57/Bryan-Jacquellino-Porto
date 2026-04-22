@@ -58,10 +58,9 @@ const ImBryan = () => {
             <div className="scroll-reveal" data-delay="240ms">
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl">
                 Belakangan ini aku juga aktif mengintegrasikan AI ke dalam product web — mulai dari
-                chatbot berbasis RAG yang beneran paham konteks bisnis, otomatisasi percakapan via
-                WhatsApp & Instagram, sampai pipeline cerdas yang langsung nyambung ke workflow kamu.
-                AI bukan sekedar tren; kalau dipasang dengan benar, itu jadi leverage nyata buat
-                bisnis kamu tumbuh.
+                sistem AI berbasis RAG yang beneran paham konteks bisnis, otomatisasi alur kerja,
+                sampai pipeline cerdas yang langsung nyambung ke operasional kamu. AI bukan sekedar
+                tren, kalau dipasang dengan benar, itu jadi leverage nyata buat bisnis kamu tumbuh.
               </p>
             </div>
 

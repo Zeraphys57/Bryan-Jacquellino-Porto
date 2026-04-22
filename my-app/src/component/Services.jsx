@@ -42,8 +42,8 @@ const SERVICES = [
   {
     num: "04",
     title: "AI Integration",
-    desc: "Chatbot cerdas berbasis RAG yang paham konteks bisnismu, otomatisasi percakapan WhatsApp & Instagram, sampai pipeline AI yang langsung nyambung ke workflow kamu.",
-    tags: ["OpenAI", "RAG", "Chatbot", "Automation"],
+    desc: "Sistem AI berbasis RAG yang paham konteks bisnismu, otomatisasi alur kerja via API, sampai pipeline cerdas yang langsung nyambung ke operasional kamu.",
+    tags: ["OpenAI", "RAG", "Automation", "API"],
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
         <circle cx="11" cy="11" r="2.5" stroke="currentColor" strokeWidth="1.5"/>
