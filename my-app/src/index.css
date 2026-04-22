@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
+body, #root, .App {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: theme('fontFamily.mono');
+}
+
+@layer utilities {
+  @keyframes auroraMove {
+    from {
+      background-position: 0% 50%;
+    }
+    to {
+      background-position: 100% 50%;
+    }
+  }
+
+  .aurora-bg {
+    will-change: background-position;
+    background: linear-gradient(80deg, #e0c3fc, #8ec5fc, #e0c3fc);
+    background-size: 400% 200%; /* Ubah ukuran agar bisa bergerak */
+    animation: auroraMove 7s infinite linear; /* Ubah animasi */
+    filter: blur(0.5px) contrast(1.2);
+  }
+
+  .dark .aurora-bg {
+    will-change: background-position;
+    background: linear-gradient(80deg, #4f3446, #18636e, #4f3446);
+    background-size: 400% 200%; /* Ubah ukuran agar bisa bergerak */
+    animation: auroraMove 15s infinite linear; /* Ubah animasi */
+    filter: blur(0.3px) contrast(1.4);
+  }
+}
