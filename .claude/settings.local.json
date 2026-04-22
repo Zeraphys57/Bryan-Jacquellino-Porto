@@ -6,7 +6,10 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(git push *)",
-      "WebFetch(domain:www.tumbuh.tech)"
+      "WebFetch(domain:www.tumbuh.tech)",
+      "Bash(gh pr *)",
+      "Bash(gh api *)",
+      "Bash(git commit *)"
     ]
   }
 }

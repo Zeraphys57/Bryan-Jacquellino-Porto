@@ -17,10 +17,10 @@ const Footer = () => {
         {/* Left */}
         <div className="text-center md:text-left">
           <p className="text-sm font-semibold text-gray-900 dark:text-white">Bryan Jacquellino</p>
-          <p className="text-xs text-gray-400 dark:text-gray-600 mt-1">Freelance Web Developer · 2025</p>
+          <p className="text-xs text-gray-400 dark:text-gray-600 mt-1">Freelance Web Developer · 2022</p>
         </div>
 
-        {/* CTA */}
+        {/* CTA
         <a
           href="https://wa.me/+6281351958200"
           target="_blank"
@@ -31,7 +31,7 @@ const Footer = () => {
             transition-all duration-150 ease-out"
         >
           Let's work together →
-        </a>
+        </a> */}
 
         {/* Socials */}
         <div className="flex items-center gap-4 text-gray-400 dark:text-gray-600">

@@ -232,7 +232,7 @@ function App() {
                     className="absolute -bottom-6 right-0 text-[22vw] font-black leading-none select-none
                                tracking-tight pointer-events-none
                                text-gray-900/[0.22] dark:text-white/[0.14]">
-                BUILD.
+                START.
               </span>
             </div>
 
@@ -251,7 +251,7 @@ function App() {
 
               <p className="scroll-reveal text-gray-500 dark:text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mb-14"
                  data-delay="120ms">
-                Aku siap bantu dari konsep sampai live. Ceritain kebutuhanmu dan kita mulai bareng.
+                Siap bantu dari konsep sampai live. Ceritain kebutuhanmu dan kita mulai bareng.
               </p>
 
               <div className="scroll-reveal flex flex-wrap gap-4" data-delay="180ms">
