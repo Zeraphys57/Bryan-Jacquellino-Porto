@@ -197,7 +197,8 @@ function App() {
 
           {/* CTA block */}
           <section
-            className="min-h-screen relative flex items-center overflow-hidden bg-[#030712]
+            className="min-h-screen relative flex items-center overflow-hidden
+                       bg-[#fafafa] dark:bg-[#030712]
                        px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48"
             aria-label="Call to Action"
             onMouseMove={e => {
@@ -207,39 +208,42 @@ function App() {
           >
             {/* Cursor spotlight */}
             <div className="pointer-events-none absolute inset-0 z-0"
-                 style={{ background: `radial-gradient(520px circle at ${ctaPos.x}px ${ctaPos.y}px, rgba(124,58,237,0.11), transparent 65%)` }} />
+                 style={{ background: `radial-gradient(520px circle at ${ctaPos.x}px ${ctaPos.y}px, rgba(124,58,237,${isDarkMode ? '0.11' : '0.06'}), transparent 65%)` }} />
 
             {/* Ambient orbs */}
             <div className="absolute pointer-events-none rounded-full"
                  style={{ width: 700, height: 700, top: -220, right: -180,
                    background: 'radial-gradient(circle, #7c3aed 0%, transparent 70%)',
-                   filter: 'blur(100px)', opacity: 0.14, animation: 'orb-a 20s ease-in-out infinite' }} />
+                   filter: 'blur(100px)', opacity: isDarkMode ? 0.14 : 0.07,
+                   animation: 'orb-a 20s ease-in-out infinite' }} />
             <div className="absolute pointer-events-none rounded-full"
                  style={{ width: 600, height: 600, bottom: -160, left: -140,
                    background: 'radial-gradient(circle, #0d9488 0%, transparent 70%)',
-                   filter: 'blur(100px)', opacity: 0.10, animation: 'orb-b 26s ease-in-out infinite' }} />
+                   filter: 'blur(100px)', opacity: isDarkMode ? 0.10 : 0.06,
+                   animation: 'orb-b 26s ease-in-out infinite' }} />
 
             {/* Faded background word */}
             <span aria-hidden="true"
-                  className="absolute -bottom-6 right-0 text-[22vw] font-black leading-none
-                             select-none tracking-tight text-white/[0.025] pointer-events-none">
+                  className="absolute -bottom-6 right-0 text-[22vw] font-black leading-none select-none
+                             tracking-tight pointer-events-none
+                             text-gray-900/[0.04] dark:text-white/[0.025]">
               BUILD.
             </span>
 
             {/* Content */}
             <div className="relative z-10 max-w-[1500px] mx-auto w-full">
-              <p className="scroll-reveal text-xs font-mono text-violet-400 tracking-[0.2em] uppercase mb-8">
+              <p className="scroll-reveal text-xs font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-8">
                 Let&apos;s collaborate
               </p>
 
               <h2 className="scroll-reveal text-[clamp(3rem,7vw,8.5rem)] font-light
-                             leading-[0.92] tracking-tight text-white mb-10"
+                             leading-[0.92] tracking-tight text-gray-900 dark:text-white mb-10"
                   data-delay="60ms">
                 Punya project<br />
-                <em className="not-italic text-violet-400">di pikiran?</em>
+                <em className="not-italic text-violet-600 dark:text-violet-400">di pikiran?</em>
               </h2>
 
-              <p className="scroll-reveal text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mb-14"
+              <p className="scroll-reveal text-gray-500 dark:text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mb-14"
                  data-delay="120ms">
                 Aku siap bantu dari konsep sampai live. Ceritain kebutuhanmu dan kita mulai bareng.
               </p>
@@ -249,18 +253,23 @@ function App() {
                   href="https://wa.me/+6281351958200"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-4 rounded-full bg-violet-600 text-white text-sm font-medium
-                             hover:-translate-y-0.5 hover:bg-violet-500
-                             hover:shadow-[0_8px_30px_rgba(124,58,237,0.45)]
+                  className="px-8 py-4 rounded-full text-white text-sm font-medium
+                             bg-gray-900 dark:bg-violet-600
+                             hover:-translate-y-0.5
+                             hover:bg-gray-700 dark:hover:bg-violet-500
+                             hover:shadow-lg dark:hover:shadow-[0_8px_30px_rgba(124,58,237,0.45)]
                              active:scale-[0.97] transition-all duration-150 ease-out"
                 >
                   Start a Project →
                 </a>
                 <a
                   href="#projects"
-                  className="px-8 py-4 rounded-full border border-white/15 text-white text-sm font-medium
-                             hover:bg-white/[0.07] hover:border-white/25 active:scale-[0.97]
-                             transition-all duration-150 ease-out"
+                  className="px-8 py-4 rounded-full text-sm font-medium
+                             border border-gray-200 dark:border-white/15
+                             text-gray-700 dark:text-white
+                             hover:bg-gray-100 dark:hover:bg-white/[0.07]
+                             hover:border-gray-300 dark:hover:border-white/25
+                             active:scale-[0.97] transition-all duration-150 ease-out"
                 >
                   View Work
                 </a>
