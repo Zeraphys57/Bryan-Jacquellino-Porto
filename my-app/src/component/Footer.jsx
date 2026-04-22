@@ -3,10 +3,10 @@ import { FaGithub, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { FiFigma } from "react-icons/fi";
 
 const socials = [
-  { href: "https://github.com",            Icon: FaGithub,    label: "GitHub",    color: "hover:text-gray-900 dark:hover:text-white" },
-  { href: "https://figma.com",             Icon: FiFigma,     label: "Figma",     color: "hover:text-violet-600 dark:hover:text-violet-400" },
-  { href: "https://instagram.com",         Icon: FaInstagram, label: "Instagram", color: "hover:text-pink-500" },
-  { href: "https://wa.me/+6281351958200",  Icon: FaWhatsapp,  label: "WhatsApp",  color: "hover:text-green-500" },
+  { href: "https://github.com",            icon: FaGithub,    label: "GitHub",    color: "hover:text-gray-900 dark:hover:text-white" },
+  { href: "https://figma.com",             icon: FiFigma,     label: "Figma",     color: "hover:text-violet-600 dark:hover:text-violet-400" },
+  { href: "https://instagram.com",         icon: FaInstagram, label: "Instagram", color: "hover:text-pink-500" },
+  { href: "https://wa.me/+6281351958200",  icon: FaWhatsapp,  label: "WhatsApp",  color: "hover:text-green-500" },
 ];
 
 const Footer = () => {
@@ -30,12 +30,12 @@ const Footer = () => {
             hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.97]
             transition-all duration-150 ease-out"
         >
-          Let's work together →
+          Let&apos;s work together →
         </a>
 
         {/* Socials */}
         <div className="flex items-center gap-4 text-gray-400 dark:text-gray-600">
-          {socials.map(({ href, Icon, label, color }) => (
+          {socials.map(({ href, icon: Icon, label, color }) => (
             <a
               key={label}
               href={href}

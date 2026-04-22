@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './index.css';
-import { ThemeProvider } from "./ThemeContext";
+import { useTheme } from "./useTheme";
 import Header from './component/Header';
 import ImBryan from './component/ImBryan';
 import Services from './component/Services';
@@ -9,22 +9,8 @@ import Projects from './component/Projects';
 import Footer from './component/Footer';
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const stored = localStorage.getItem("theme");
-    if (stored) return stored === "dark";
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  });
+  const { isDarkMode, setIsDarkMode } = useTheme();
   const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [isDarkMode]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -66,7 +52,7 @@ function App() {
   }, []);
 
   return (
-    <ThemeProvider>
+    <>
       <div className="relative min-h-screen bg-[#fafafa] dark:bg-[#09090b] text-gray-900 dark:text-gray-100 overflow-x-hidden">
 
         {/* Scroll progress */}
@@ -105,7 +91,7 @@ function App() {
           <Header toggleDarkMode={() => setIsDarkMode(d => !d)} isDarkMode={isDarkMode} />
 
           {/* ── Hero ── */}
-          <section className="relative flex flex-col justify-center min-h-screen px-6 md:px-16 lg:px-24">
+          <main className="relative flex flex-col justify-center min-h-screen px-6 md:px-16 lg:px-24" aria-label="Hero Section">
             <div className="max-w-5xl w-full mx-auto pt-28 pb-20">
 
               <p
@@ -186,20 +172,20 @@ function App() {
                 <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
-          </section>
+          </main>
 
-          <section id="bio"><ImBryan /></section>
-          <section id="services"><Services /></section>
-          <section id="education"><About /></section>
-          <section id="projects"><Projects /></section>
+          <section id="bio" aria-label="Biography"><ImBryan /></section>
+          <section id="services" aria-label="Services"><Services /></section>
+          <section id="education" aria-label="Education Timeline"><About /></section>
+          <section id="projects" aria-label="Selected Projects"><Projects /></section>
 
           {/* CTA block */}
-          <section className="py-24 px-6 md:px-16 lg:px-24">
+          <section className="py-24 px-6 md:px-16 lg:px-24" aria-label="Call to Action">
             <div className="max-w-6xl mx-auto">
               <div className="scroll-reveal rounded-3xl bg-gray-900 dark:bg-white/[0.04] border border-gray-800 dark:border-white/[0.08]
                 p-10 md:p-16 flex flex-col md:flex-row justify-between items-center gap-10">
                 <div>
-                  <p className="text-xs font-mono text-violet-400 tracking-[0.2em] uppercase mb-4">Let's collaborate</p>
+                  <p className="text-xs font-mono text-violet-400 tracking-[0.2em] uppercase mb-4">Let&apos;s collaborate</p>
                   <h2 className="text-3xl md:text-4xl font-light text-white leading-tight mb-3">
                     Punya project<br />di pikiran?
                   </h2>
@@ -234,7 +220,7 @@ function App() {
           <Footer />
         </div>
       </div>
-    </ThemeProvider>
+    </>
   );
 }
 

@@ -35,7 +35,7 @@ const ImBryan = () => {
           <div className="flex flex-col gap-8">
             <div className="scroll-reveal" data-delay="120ms">
               <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-6 leading-tight">
-                Hi, I'm Bryan —<br />
+                Hi, I&apos;m Bryan —<br />
                 <span className="text-violet-600 dark:text-violet-400">web developer</span> & designer.
               </h2>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg">
