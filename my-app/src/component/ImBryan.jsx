@@ -1,5 +1,4 @@
 import React from "react";
-import bryanImg from "../assets/Bryan.jpg";
 // import Lanyard from './Lanyard'; // commented out — heavy 3D physics
 
 const TECH = ["React", "Tailwind CSS", "Three.js", "GSAP", "Vite", "Figma", "Node.js"];
@@ -19,16 +18,16 @@ const ImBryan = () => {
         {/* Main grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start">
 
-          {/* Photo */}
+          {/* Photo placeholder */}
           <div className="scroll-reveal flex justify-center md:justify-start" data-delay="60ms">
-            <div className="relative group">
-              {/* Glow */}
+            <div className="relative group w-64 sm:w-72 md:w-80 lg:w-96 aspect-[3/4]">
               <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-violet-500/20 to-teal-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <img
-                src={bryanImg}
-                alt="Bryan Jacquellino"
-                className="relative w-64 sm:w-72 md:w-80 lg:w-96 aspect-[3/4] rounded-2xl object-cover shadow-lg"
-              />
+              <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-violet-100 to-teal-100 dark:from-violet-950/40 dark:to-teal-950/40 border border-gray-100 dark:border-white/8 flex items-center justify-center shadow-sm">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" className="text-violet-300 dark:text-violet-800" aria-hidden="true">
+                  <circle cx="32" cy="24" r="12" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
             </div>
           </div>
 
