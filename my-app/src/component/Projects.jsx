@@ -37,23 +37,23 @@ const projects = [
 ];
 
 const Projects = () => {
-  const [current, setCurrent]     = useState(0);
+  const [current, setCurrent]         = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const cardRef  = useRef(null);
   const dirRef   = useRef(1);
   const firstRun = useRef(true);
   const n = projects.length;
 
-  // Runs synchronously after React commits new content — before browser paints
+  // Fires synchronously after React commits — card has new content, browser hasn't painted yet
   useLayoutEffect(() => {
     if (firstRun.current) { firstRun.current = false; return; }
     gsap.fromTo(
       cardRef.current,
-      { x: dirRef.current * 90, opacity: 0, scale: 0.96 },
+      { x: dirRef.current * 110, opacity: 0, scale: 0.88, rotation: dirRef.current * 6 },
       {
-        x: 0, opacity: 1, scale: 1,
-        duration: 0.6,
-        ease: "back.out(1.8)",       // overshoots then settles — the "water bounce"
+        x: 0, opacity: 1, scale: 1, rotation: 0,
+        duration: 0.9,
+        ease: "elastic.out(1, 0.38)",   // oscillates 3× — the water-bounce feel
         onComplete: () => setIsAnimating(false),
       }
     );
@@ -64,8 +64,8 @@ const Projects = () => {
     setIsAnimating(true);
     dirRef.current = dir;
     gsap.to(cardRef.current, {
-      x: dir * -55, opacity: 0, scale: 0.97,
-      duration: 0.16, ease: "power2.in",
+      x: dir * -80, opacity: 0, scale: 0.9, rotation: dir * -5,
+      duration: 0.15, ease: "power3.in",
       onComplete: () => setCurrent(c => (c + dir + n) % n),
     });
   };
@@ -75,13 +75,15 @@ const Projects = () => {
     dirRef.current = idx > current ? 1 : -1;
     setIsAnimating(true);
     gsap.to(cardRef.current, {
-      x: dirRef.current * -55, opacity: 0, scale: 0.97,
-      duration: 0.16, ease: "power2.in",
+      x: dirRef.current * -80, opacity: 0, scale: 0.9, rotation: dirRef.current * -5,
+      duration: 0.15, ease: "power3.in",
       onComplete: () => setCurrent(idx),
     });
   };
 
-  const p = projects[current];
+  const p    = projects[current];
+  const prev = projects[(current - 1 + n) % n];
+  const next = projects[(current + 1) % n];
 
   return (
     <div className="py-24 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48">
@@ -95,16 +97,38 @@ const Projects = () => {
           What I&apos;ve Built
         </h2>
 
-        {/* Carousel */}
-        <div className="max-w-[860px] mx-auto">
+        {/* Carousel stage */}
+        <div className="relative max-w-[860px] mx-auto">
 
-          {/* Card */}
+          {/* Silhouette — prev project peeks behind-left */}
+          <div
+            aria-hidden="true"
+            className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${prev.gradient} pointer-events-none select-none`}
+            style={{
+              transform: "translateX(-28px) rotate(-3.5deg) scale(0.9)",
+              opacity: 0.38,
+              zIndex: 1,
+            }}
+          />
+
+          {/* Silhouette — next project peeks behind-right */}
+          <div
+            aria-hidden="true"
+            className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${next.gradient} pointer-events-none select-none`}
+            style={{
+              transform: "translateX(28px) rotate(3.5deg) scale(0.9)",
+              opacity: 0.38,
+              zIndex: 2,
+            }}
+          />
+
+          {/* Current card */}
           <div
             ref={cardRef}
-            className="rounded-2xl overflow-hidden will-change-transform
+            className="relative z-10 will-change-transform rounded-2xl overflow-hidden
               bg-white dark:bg-white/[0.03]
               border border-gray-100 dark:border-white/[0.07]
-              shadow-sm"
+              shadow-xl"
           >
             {/* Gradient visual + nav arrows */}
             <div className={`relative h-52 md:h-64 xl:h-80 bg-gradient-to-br ${p.gradient} opacity-80 dark:opacity-60`}>
@@ -119,8 +143,8 @@ const Projects = () => {
                 onClick={() => go(-1)}
                 disabled={isAnimating}
                 aria-label="Previous project"
-                className="absolute left-4 top-1/2 -translate-y-1/2
-                  w-9 h-9 rounded-full bg-black/20 backdrop-blur-sm text-white
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full
+                  bg-black/20 backdrop-blur-sm text-white
                   flex items-center justify-center
                   hover:bg-black/35 active:scale-90
                   transition-all duration-150 disabled:opacity-30"
@@ -135,8 +159,8 @@ const Projects = () => {
                 onClick={() => go(1)}
                 disabled={isAnimating}
                 aria-label="Next project"
-                className="absolute right-4 top-1/2 -translate-y-1/2
-                  w-9 h-9 rounded-full bg-black/20 backdrop-blur-sm text-white
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full
+                  bg-black/20 backdrop-blur-sm text-white
                   flex items-center justify-center
                   hover:bg-black/35 active:scale-90
                   transition-all duration-150 disabled:opacity-30"
@@ -160,8 +184,7 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     aria-label={`View ${p.title}`}
                     className="shrink-0 mt-1 text-gray-400 dark:text-gray-600
-                      hover:text-violet-500 dark:hover:text-violet-400
-                      transition-colors duration-150"
+                      hover:text-violet-500 dark:hover:text-violet-400 transition-colors duration-150"
                   >
                     <svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                       <path d="M2.5 11.5l9-9M5 2.5h6.5V9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
@@ -190,7 +213,7 @@ const Projects = () => {
           </div>
 
           {/* Dot indicators */}
-          <div className="flex items-center justify-center gap-2 mt-6">
+          <div className="flex items-center justify-center gap-2 mt-8">
             {projects.map((_, i) => (
               <button
                 key={i}
