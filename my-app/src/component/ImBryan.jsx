@@ -1,7 +1,7 @@
 import React from "react";
 // import Lanyard from './Lanyard'; // commented out — heavy 3D physics
 
-const TECH = ["React", "Tailwind CSS", "Three.js", "GSAP", "Vite", "Figma", "Node.js"];
+const TECH = ["React", "Tailwind CSS", "GSAP", "Vite", "Figma", "Node.js", "PostgreSQL", "OpenAI API", "RAG", "Three.js"];
 
 const ImBryan = () => {
   return (
@@ -36,13 +36,13 @@ const ImBryan = () => {
             <div className="scroll-reveal" data-delay="120ms">
               <h2 className="text-3xl md:text-4xl xl:text-5xl font-light text-gray-900 dark:text-white mb-6 leading-tight">
                 Hi, I'm Bryan —<br />
-                <span className="text-violet-600 dark:text-violet-400">web developer</span> & designer.
+                <span className="text-violet-600 dark:text-violet-400">web developer</span> & AI integrator.
               </h2>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl">
                 Aku freelance web developer berbasis di Yogyakarta, spesialis membangun website yang
                 tidak cuma kelihatan keren — tapi juga cepat, responsif, dan beneran bekerja buat
-                bisnis kamu. Dari personal branding, portofolio, sampai toko online, aku handle
-                semuanya dari awal sampai live.
+                bisnis kamu. Dari personal branding, portofolio, toko online, sampai integrasi AI,
+                aku handle semuanya dari awal sampai live.
               </p>
             </div>
 
@@ -52,6 +52,16 @@ const ImBryan = () => {
                 atas performa dan tampilan sekaligus. Ditambah pengalaman D3 IT di Taiwan yang
                 melatih fondasi teknis dan cara berpikir terstruktur, setiap project yang aku
                 kerjain punya standar yang jelas: clean, efisien, dan tepat sasaran.
+              </p>
+            </div>
+
+            <div className="scroll-reveal" data-delay="240ms">
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl">
+                Belakangan ini aku juga aktif mengintegrasikan AI ke dalam product web — mulai dari
+                chatbot berbasis RAG yang beneran paham konteks bisnis, otomatisasi percakapan via
+                WhatsApp & Instagram, sampai pipeline cerdas yang langsung nyambung ke workflow kamu.
+                AI bukan sekedar tren; kalau dipasang dengan benar, itu jadi leverage nyata buat
+                bisnis kamu tumbuh.
               </p>
             </div>
 

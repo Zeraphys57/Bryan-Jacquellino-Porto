@@ -39,6 +39,25 @@ const SERVICES = [
       </svg>
     ),
   },
+  {
+    num: "04",
+    title: "AI Integration",
+    desc: "Chatbot cerdas berbasis RAG yang paham konteks bisnismu, otomatisasi percakapan WhatsApp & Instagram, sampai pipeline AI yang langsung nyambung ke workflow kamu.",
+    tags: ["OpenAI", "RAG", "Chatbot", "Automation"],
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+        <circle cx="11" cy="11" r="2.5" stroke="currentColor" strokeWidth="1.5"/>
+        <circle cx="4"  cy="4"  r="1.5" stroke="currentColor" strokeWidth="1.5"/>
+        <circle cx="18" cy="4"  r="1.5" stroke="currentColor" strokeWidth="1.5"/>
+        <circle cx="4"  cy="18" r="1.5" stroke="currentColor" strokeWidth="1.5"/>
+        <circle cx="18" cy="18" r="1.5" stroke="currentColor" strokeWidth="1.5"/>
+        <line x1="5.1"  y1="5.1"  x2="9.2"  y2="9.2"  stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+        <line x1="16.9" y1="5.1"  x2="12.8" y2="9.2"  stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+        <line x1="5.1"  y1="16.9" x2="9.2"  y2="12.8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+        <line x1="16.9" y1="16.9" x2="12.8" y2="12.8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
 ];
 
 const Services = () => {
@@ -53,7 +72,7 @@ const Services = () => {
           What I Offer
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
           {SERVICES.map((s, i) => (
             <div
               key={s.num}
