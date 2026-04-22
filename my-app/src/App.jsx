@@ -5,6 +5,7 @@ import ImBryan from './component/ImBryan';
 import Services from './component/Services';
 import About from './component/About';
 import Projects from './component/Projects';
+import Process from './component/Process';
 import Footer from './component/Footer';
 
 function App() {
@@ -191,6 +192,7 @@ function App() {
           <section id="services" aria-label="Services"><Services /></section>
           <section id="education" aria-label="Education Timeline"><About /></section>
           <section id="projects" aria-label="Selected Projects"><Projects /></section>
+          <section id="process" aria-label="My Process"><Process /></section>
 
           {/* CTA block */}
           <section className="py-24 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48" aria-label="Call to Action">
