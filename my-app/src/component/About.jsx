@@ -63,14 +63,14 @@ const About = () => {
   };
 
   return (
-    <div className="py-24 px-6 md:px-16 lg:px-24 overflow-x-hidden">
-      <div className="max-w-6xl mx-auto">
+    <div className="py-24 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48 overflow-x-hidden">
+      <div className="max-w-[1500px] mx-auto">
 
         {/* Header */}
         <p className="scroll-reveal text-xs font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-4">
           Background
         </p>
-        <h2 className="scroll-reveal text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-20" data-delay="60ms">
+        <h2 className="scroll-reveal text-3xl md:text-4xl xl:text-5xl font-light text-gray-900 dark:text-white mb-20" data-delay="60ms">
           Education Timeline
         </h2>
 
@@ -111,7 +111,7 @@ const About = () => {
 
                   {/* Card */}
                   <div
-                    className="w-44 sm:w-52 md:w-56 p-5 rounded-2xl
+                    className="w-44 sm:w-52 md:w-56 xl:w-64 p-5 xl:p-6 rounded-2xl
                       bg-white dark:bg-white/[0.03]
                       border border-gray-100 dark:border-white/[0.07]
                       shadow-sm
@@ -121,9 +121,9 @@ const About = () => {
                     <p className="text-[10px] font-mono text-violet-600 dark:text-violet-400 tracking-widest uppercase mb-1">
                       {edu.year}
                     </p>
-                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">{edu.status}</h3>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{edu.desc}</p>
-                    <p className="text-xs text-teal-600 dark:text-teal-400 mt-2 font-mono">{edu.location}</p>
+                    <h3 className="text-sm xl:text-base font-semibold text-gray-900 dark:text-white mb-1">{edu.status}</h3>
+                    <p className="text-xs xl:text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{edu.desc}</p>
+                    <p className="text-xs xl:text-sm text-teal-600 dark:text-teal-400 mt-2 font-mono">{edu.location}</p>
                   </div>
                 </div>
               );

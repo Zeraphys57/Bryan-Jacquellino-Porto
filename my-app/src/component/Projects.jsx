@@ -35,14 +35,14 @@ const ArrowIcon = () => (
 
 const Projects = () => {
   return (
-    <div className="py-24 px-6 md:px-16 lg:px-24">
-      <div className="max-w-6xl mx-auto">
+    <div className="py-24 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48">
+      <div className="max-w-[1500px] mx-auto">
 
         {/* Header */}
         <p className="scroll-reveal text-xs font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-4">
           Selected Work
         </p>
-        <h2 className="scroll-reveal text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-16" data-delay="60ms">
+        <h2 className="scroll-reveal text-3xl md:text-4xl xl:text-5xl font-light text-gray-900 dark:text-white mb-16" data-delay="60ms">
           What I've Built
         </h2>
 
@@ -61,12 +61,12 @@ const Projects = () => {
               data-delay={`${i * 80}ms`}
             >
               {/* Gradient header */}
-              <div className={`h-40 bg-gradient-to-br ${p.gradient} opacity-80 dark:opacity-60`} />
+              <div className={`h-40 xl:h-52 bg-gradient-to-br ${p.gradient} opacity-80 dark:opacity-60`} />
 
               {/* Body */}
               <div className="flex flex-col flex-1 p-5 gap-3">
                 <div className="flex items-start justify-between gap-2">
-                  <h3 className="text-base font-semibold text-gray-900 dark:text-white leading-tight">
+                  <h3 className="text-base xl:text-lg font-semibold text-gray-900 dark:text-white leading-tight">
                     {p.title}
                   </h3>
                   <span className="shrink-0 text-gray-400 dark:text-gray-600 group-hover:text-violet-500 dark:group-hover:text-violet-400 transition-colors duration-150 mt-0.5">
@@ -74,7 +74,7 @@ const Projects = () => {
                   </span>
                 </div>
 
-                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1">
+                <p className="text-sm xl:text-base text-gray-500 dark:text-gray-400 leading-relaxed flex-1">
                   {p.description}
                 </p>
 

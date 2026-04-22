@@ -5,8 +5,8 @@ const TECH = ["React", "Tailwind CSS", "Three.js", "GSAP", "Vite", "Figma", "Nod
 
 const ImBryan = () => {
   return (
-    <div className="py-24 px-6 md:px-16 lg:px-24">
-      <div className="max-w-6xl mx-auto">
+    <div className="py-24 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48">
+      <div className="max-w-[1500px] mx-auto">
 
         {/* Section label */}
         <p
@@ -16,11 +16,11 @@ const ImBryan = () => {
         </p>
 
         {/* Main grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 xl:gap-28 items-start">
 
           {/* Photo placeholder */}
           <div className="scroll-reveal flex justify-center md:justify-start" data-delay="60ms">
-            <div className="relative group w-64 sm:w-72 md:w-80 lg:w-96 aspect-[3/4]">
+            <div className="relative group w-64 sm:w-72 md:w-80 lg:w-96 xl:w-[28rem] aspect-[3/4]">
               <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-violet-500/20 to-teal-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-violet-100 to-teal-100 dark:from-violet-950/40 dark:to-teal-950/40 border border-gray-100 dark:border-white/8 flex items-center justify-center shadow-sm">
                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" className="text-violet-300 dark:text-violet-800" aria-hidden="true">
@@ -34,11 +34,11 @@ const ImBryan = () => {
           {/* Text */}
           <div className="flex flex-col gap-8">
             <div className="scroll-reveal" data-delay="120ms">
-              <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl xl:text-5xl font-light text-gray-900 dark:text-white mb-6 leading-tight">
                 Hi, I'm Bryan —<br />
                 <span className="text-violet-600 dark:text-violet-400">web developer</span> & designer.
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg">
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl">
                 Aku freelance web developer berbasis di Yogyakarta, spesialis membangun website yang
                 tidak cuma kelihatan keren — tapi juga cepat, responsif, dan beneran bekerja buat
                 bisnis kamu. Dari personal branding, portofolio, sampai toko online, aku handle
@@ -47,7 +47,7 @@ const ImBryan = () => {
             </div>
 
             <div className="scroll-reveal" data-delay="180ms">
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg">
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl">
                 Stack utamaku adalah React + Tailwind CSS — kombinasi yang ngasih kontrol penuh
                 atas performa dan tampilan sekaligus. Ditambah pengalaman D1 IT di Taiwan yang
                 melatih fondasi teknis dan cara berpikir terstruktur, setiap project yang aku

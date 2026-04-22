@@ -105,8 +105,8 @@ function App() {
           <Header toggleDarkMode={() => setIsDarkMode(d => !d)} isDarkMode={isDarkMode} />
 
           {/* ── Hero ── */}
-          <section className="relative flex flex-col justify-center min-h-screen px-6 md:px-16 lg:px-24">
-            <div className="max-w-5xl w-full mx-auto pt-28 pb-20">
+          <section className="relative flex flex-col justify-center min-h-screen px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48">
+            <div className="max-w-[1500px] w-full mx-auto pt-28 pb-20">
 
               <p
                 className="text-xs font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-6"
@@ -116,14 +116,14 @@ function App() {
               </p>
 
               <h1
-                className="font-light text-[clamp(3.2rem,10vw,9rem)] leading-[0.9] tracking-tight text-gray-900 dark:text-white mb-8"
+                className="font-light text-[clamp(3.2rem,8vw,13rem)] leading-[0.9] tracking-tight text-gray-900 dark:text-white mb-8"
                 style={{ animation: 'fade-up 0.6s 0.12s cubic-bezier(0.23,1,0.32,1) both' }}
               >
                 Bryan<br />Jacquellino
               </h1>
 
               <p
-                className="text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-md leading-relaxed mb-12"
+                className="text-lg md:text-xl xl:text-2xl text-gray-500 dark:text-gray-400 max-w-xl leading-relaxed mb-12"
                 style={{ animation: 'fade-up 0.6s 0.22s cubic-bezier(0.23,1,0.32,1) both' }}
               >
                 Freelance web developer crafting fast, beautiful websites — from design to deployment.
@@ -156,7 +156,7 @@ function App() {
 
               {/* Stats strip */}
               <div
-                className="flex flex-wrap gap-8 mt-14 pt-10 border-t border-gray-100 dark:border-white/[0.06]"
+                className="flex flex-wrap gap-8 xl:gap-16 mt-14 pt-10 border-t border-gray-100 dark:border-white/[0.06]"
                 style={{ animation: 'fade-up 0.6s 0.42s cubic-bezier(0.23,1,0.32,1) both' }}
               >
                 {[
@@ -166,8 +166,8 @@ function App() {
                   { n: "Open",  label: "For freelance" },
                 ].map(s => (
                   <div key={s.label}>
-                    <p className="text-2xl md:text-3xl font-light text-gray-900 dark:text-white">{s.n}</p>
-                    <p className="text-[10px] font-mono text-gray-400 dark:text-gray-600 tracking-widest uppercase mt-1">{s.label}</p>
+                    <p className="text-2xl md:text-3xl xl:text-4xl font-light text-gray-900 dark:text-white">{s.n}</p>
+                    <p className="text-[10px] xl:text-xs font-mono text-gray-400 dark:text-gray-600 tracking-widest uppercase mt-1">{s.label}</p>
                   </div>
                 ))}
               </div>
@@ -194,8 +194,8 @@ function App() {
           <section id="projects"><Projects /></section>
 
           {/* CTA block */}
-          <section className="py-24 px-6 md:px-16 lg:px-24">
-            <div className="max-w-6xl mx-auto">
+          <section className="py-24 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48">
+            <div className="max-w-[1500px] mx-auto">
               <div className="scroll-reveal rounded-3xl bg-gray-900 dark:bg-white/[0.04] border border-gray-800 dark:border-white/[0.08]
                 p-10 md:p-16 flex flex-col md:flex-row justify-between items-center gap-10">
                 <div>

@@ -11,8 +11,8 @@ const socials = [
 
 const Footer = () => {
   return (
-    <footer className="border-t border-gray-100 dark:border-white/[0.06] py-12 px-6 md:px-16 lg:px-24">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+    <footer className="border-t border-gray-100 dark:border-white/[0.06] py-12 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48">
+      <div className="max-w-[1500px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
 
         {/* Left */}
         <div className="text-center md:text-left">
@@ -51,7 +51,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom line */}
-      <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-gray-100 dark:border-white/[0.04]">
+      <div className="max-w-[1500px] mx-auto mt-10 pt-6 border-t border-gray-100 dark:border-white/[0.04]">
         <p className="text-center text-[11px] font-mono text-gray-300 dark:text-gray-700 tracking-widest uppercase">
           Designed & built by Bryan Jacquellino — React · Tailwind · Three.js
         </p>

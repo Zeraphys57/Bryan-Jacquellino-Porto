@@ -43,13 +43,13 @@ const SERVICES = [
 
 const Services = () => {
   return (
-    <div className="py-24 px-6 md:px-16 lg:px-24">
-      <div className="max-w-6xl mx-auto">
+    <div className="py-24 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48">
+      <div className="max-w-[1500px] mx-auto">
 
         <p className="scroll-reveal text-xs font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-4">
           Services
         </p>
-        <h2 className="scroll-reveal text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-16" data-delay="60ms">
+        <h2 className="scroll-reveal text-3xl md:text-4xl xl:text-5xl font-light text-gray-900 dark:text-white mb-16" data-delay="60ms">
           What I Offer
         </h2>
 
@@ -57,7 +57,7 @@ const Services = () => {
           {SERVICES.map((s, i) => (
             <div
               key={s.num}
-              className="scroll-reveal group flex flex-col gap-5 p-7 rounded-2xl
+              className="scroll-reveal group flex flex-col gap-5 p-7 xl:p-9 rounded-2xl
                 bg-white dark:bg-white/[0.03]
                 border border-gray-100 dark:border-white/[0.07]
                 hover:-translate-y-1 hover:shadow-lg hover:border-gray-200 dark:hover:border-white/12
@@ -78,8 +78,8 @@ const Services = () => {
 
               {/* Title + desc */}
               <div className="flex flex-col gap-2 flex-1">
-                <h3 className="text-base font-semibold text-gray-900 dark:text-white">{s.title}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{s.desc}</p>
+                <h3 className="text-base xl:text-lg font-semibold text-gray-900 dark:text-white">{s.title}</h3>
+                <p className="text-sm xl:text-base text-gray-500 dark:text-gray-400 leading-relaxed">{s.desc}</p>
               </div>
 
               {/* Tags */}
