@@ -195,8 +195,8 @@ function App() {
           <section id="process" aria-label="My Process"><Process /></section>
 
           {/* CTA block */}
-          <section className="py-24 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48" aria-label="Call to Action">
-            <div className="max-w-[1500px] mx-auto">
+          <section className="min-h-screen flex items-center px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48" aria-label="Call to Action">
+            <div className="max-w-[1500px] mx-auto w-full">
               <div className="scroll-reveal rounded-3xl bg-gray-900 dark:bg-white/[0.04] border border-gray-800 dark:border-white/[0.08]
                 p-10 md:p-16 flex flex-col md:flex-row justify-between items-center gap-10">
                 <div>
