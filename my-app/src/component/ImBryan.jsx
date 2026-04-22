@@ -1,7 +1,8 @@
 import React from "react";
+import fotoBryan from '../assets/bryan.jpeg';
 // import Lanyard from './Lanyard'; // commented out — heavy 3D physics
 
-const TECH = ["React", "Tailwind CSS", "GSAP", "Vite", "Figma", "Node.js", "PostgreSQL", "OpenAI API", "RAG", "Three.js"];
+const TECH = ["React", "Tailwind CSS", "GSAP", "Vite", "Figma", "Node.js", "PostgreSQL", "LLM API", "RAG", "Three.js", "Python", "Java", "C"];
 
 const ImBryan = () => {
   return (
@@ -18,18 +19,25 @@ const ImBryan = () => {
         {/* Main grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 xl:gap-28 items-start">
 
-          {/* Photo placeholder */}
-          <div className="scroll-reveal flex justify-center md:justify-start" data-delay="60ms">
-            <div className="relative group w-64 sm:w-72 md:w-80 lg:w-96 xl:w-[28rem] aspect-[3/4]">
-              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-violet-500/20 to-teal-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-violet-100 to-teal-100 dark:from-violet-950/40 dark:to-teal-950/40 border border-gray-100 dark:border-white/8 flex items-center justify-center shadow-sm">
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" className="text-violet-300 dark:text-violet-800" aria-hidden="true">
-                  <circle cx="32" cy="24" r="12" stroke="currentColor" strokeWidth="2"/>
-                  <path d="M8 56c0-13.255 10.745-24 24-24s24 10.745 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
+          {/* Photo placeholder diubah jadi Real Photo */}
+            <div className="scroll-reveal flex justify-center md:justify-start" data-delay="60ms">
+              <div className="relative group w-64 sm:w-72 md:w-80 lg:w-96 xl:w-[28rem] aspect-[3/4]">
+                {/* Efek Glow di belakang foto (biarkan saja, ini udah keren) */}
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-violet-500/20 to-teal-500/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Container Foto */}
+                <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gray-100 dark:bg-zinc-900 border border-gray-100 dark:border-white/8 flex items-center justify-center shadow-sm">
+                  
+                  {/* 2. SVG Dihapus, diganti dengan tag img ini */}
+                  <img 
+                    src={fotoBryan} 
+                    alt="Bryan Jacquellino" 
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700 ease-out"
+                  />
+                  
+                </div>
               </div>
             </div>
-          </div>
 
           {/* Text */}
           <div className="flex flex-col gap-8">

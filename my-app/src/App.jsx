@@ -162,8 +162,8 @@ function App() {
               >
                 {[
                   { n: "100+",    label: "Projects" },
-                  { n: "7+",    label: "Tahun belajar" },
-                  { n: "D3",    label: "IT — Taiwan" },
+                  { n: "7 >",    label: "Experience" },
+                  { n: "Education",    label: "IT — Taiwan" },
                   { n: "Open",  label: "For freelance" },
                 ].map(s => (
                   <div key={s.label}>
@@ -251,7 +251,7 @@ function App() {
 
               <p className="scroll-reveal text-gray-500 dark:text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mb-14"
                  data-delay="120ms">
-                Siap bantu dari konsep sampai live. Ceritain kebutuhanmu dan kita mulai bareng.
+                Siap bantu dari konsep sampai live. Ceritain kebutuhanmu dan kita mulai wujudkan.
               </p>
 
               <div className="scroll-reveal flex flex-wrap gap-4" data-delay="180ms">
