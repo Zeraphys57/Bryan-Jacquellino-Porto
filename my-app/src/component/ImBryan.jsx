@@ -49,7 +49,7 @@ const ImBryan = () => {
             <div className="scroll-reveal" data-delay="180ms">
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl">
                 Stack utamaku adalah React + Tailwind CSS — kombinasi yang ngasih kontrol penuh
-                atas performa dan tampilan sekaligus. Ditambah pengalaman D1 IT di Taiwan yang
+                atas performa dan tampilan sekaligus. Ditambah pengalaman D3 IT di Taiwan yang
                 melatih fondasi teknis dan cara berpikir terstruktur, setiap project yang aku
                 kerjain punya standar yang jelas: clean, efisien, dan tepat sasaran.
               </p>

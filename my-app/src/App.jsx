@@ -162,7 +162,7 @@ function App() {
                 {[
                   { n: "3+",    label: "Projects" },
                   { n: "2+",    label: "Tahun belajar" },
-                  { n: "D1",    label: "IT — Taiwan" },
+                  { n: "D3",    label: "IT — Taiwan" },
                   { n: "Open",  label: "For freelance" },
                 ].map(s => (
                   <div key={s.label}>
