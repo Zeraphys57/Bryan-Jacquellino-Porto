@@ -7,7 +7,7 @@ const projects = [
     description: "E-commerce fashion platform with modern UI, product filtering, and smooth checkout experience.",
     tags: ["React", "Tailwind", "Node.js"],
     gradient: "from-violet-500 to-fuchsia-500",
-    link: "#",
+    link: "https://zeraphys57.github.io/Bashion/",
   },
   {
     id: 2,
@@ -54,19 +54,19 @@ const Projects = () => {
           What I've Built
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-[300px]">
           {projects.map((p, i) => (
             <a
               key={p.id}
               href={p.link}
-              className="scroll-reveal group flex flex-col rounded-2xl overflow-hidden
+              className={`scroll-reveal group flex flex-col rounded-2xl overflow-hidden
                 bg-white dark:bg-white/[0.03]
                 border border-gray-100 dark:border-white/[0.07]
-                shadow-sm
-                hover:-translate-y-1 hover:shadow-xl hover:border-gray-200 dark:hover:border-white/12
-                active:scale-[0.98]
-                transition-all duration-200 ease-out"
-              data-delay={`${i * 80}ms`}
+                shadow-sm hover:-translate-y-1 hover:shadow-xl hover:border-gray-200 dark:hover:border-white/12
+                active:scale-[0.98] transition-all duration-200 ease-out
+                /* Logic Bento Grid di sini */
+                ${i === 0 || i === 3 ? 'md:col-span-2 lg:col-span-2' : 'col-span-1'}
+              `}
             >
               {/* Gradient header */}
               <div className={`h-40 xl:h-52 bg-gradient-to-br ${p.gradient} opacity-80 dark:opacity-60`} />

@@ -3,10 +3,10 @@ import { FaGithub, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { FiFigma } from "react-icons/fi";
 
 const socials = [
-  { href: "https://github.com",            Icon: FaGithub,    label: "GitHub",    color: "hover:text-gray-900 dark:hover:text-white" },
-  { href: "https://figma.com",             Icon: FiFigma,     label: "Figma",     color: "hover:text-violet-600 dark:hover:text-violet-400" },
-  { href: "https://instagram.com",         Icon: FaInstagram, label: "Instagram", color: "hover:text-pink-500" },
-  { href: "https://wa.me/+6281351958200",  Icon: FaWhatsapp,  label: "WhatsApp",  color: "hover:text-green-500" },
+  { href: "https://github.com/Zeraphys57",                        Icon: FaGithub,    label: "GitHub",    color: "hover:text-gray-900 dark:hover:text-white" },
+  { href: "https://figma.com",                                    Icon: FiFigma,     label: "Figma",     color: "hover:text-violet-600 dark:hover:text-violet-400" },
+  { href: "https://www.instagram.com/bryanjacquellino/",          Icon: FaInstagram, label: "Instagram", color: "hover:text-pink-500" },
+  { href: "https://wa.me/+6281351958200",                         Icon: FaWhatsapp,  label: "WhatsApp",  color: "hover:text-green-500" },
 ];
 
 const Footer = () => {

@@ -160,8 +160,8 @@ function App() {
                 style={{ animation: 'fade-up 0.6s 0.42s cubic-bezier(0.23,1,0.32,1) both' }}
               >
                 {[
-                  { n: "3+",    label: "Projects" },
-                  { n: "2+",    label: "Tahun belajar" },
+                  { n: "25+",    label: "Projects" },
+                  { n: "5+",    label: "Tahun belajar" },
                   { n: "D3",    label: "IT — Taiwan" },
                   { n: "Open",  label: "For freelance" },
                 ].map(s => (
