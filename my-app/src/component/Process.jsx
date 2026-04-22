@@ -202,7 +202,10 @@ const Process = () => {
             aria-hidden="true"
             className="absolute inset-0 flex items-center justify-center
                        text-[26vw] font-black leading-none select-none pointer-events-none
-                       text-gray-100 dark:text-white/[0.03] tracking-tight will-change-transform"
+                       bg-gradient-to-br from-teal-100 to-cyan-100
+                       dark:from-teal-400/[0.09] dark:to-cyan-300/[0.05]
+                       bg-clip-text text-transparent
+                       tracking-tight will-change-transform"
           >
             {item.word}
           </span>
