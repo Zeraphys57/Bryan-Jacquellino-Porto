@@ -15,7 +15,7 @@ const projects = [
     description: "Clinic booking system with appointment scheduling, patient management, and responsive design.",
     tags: ["React", "GSAP", "REST API"],
     gradient: "from-teal-500 to-cyan-500",
-    link: "#",
+    link: "https://zeraphys57.github.io/Klinik-Gigi-UI/",
   },
   {
     id: 3,
