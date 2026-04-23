@@ -31,14 +31,14 @@ const PRINT_STYLE = `
 `;
 
 /* ───────── Invoice Preview ───────── */
-const InvoicePreview = ({ form }) => {
+const InvoicePreview = ({ form, id }) => {
   const total     = form.services.reduce((s, r) => s + (parseFloat(r.price) || 0), 0);
   const dp1       = total * (form.pct1 / 100);
   const dp2       = total * (form.pct2 / 100);
   const pelunasan = total * (form.pct3 / 100);
 
   return (
-    <div id="invoice-preview" style={{ position: "relative", fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", color: "#1e293b", background: "white", minHeight: "297mm" }}>
+    <div id={id} style={{ position: "relative", fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", color: "#1e293b", background: "white", minHeight: "297mm" }}>
 
       {/* LUNAS stamp */}
       {form.lunas && (
@@ -178,6 +178,7 @@ export default function InvoiceApp() {
   const [auth, setAuth]   = useState(() => sessionStorage.getItem("inv_auth") === "1");
   const [pwd, setPwd]     = useState("");
   const [pwdErr, setPwdErr] = useState(false);
+  const [tab, setTab]     = useState("form");
 
   const [form, setForm] = useState({
     invNum:       autoInvNum(),
@@ -282,6 +283,11 @@ export default function InvoiceApp() {
     <div className="min-h-screen bg-[#09090b] text-white">
       <style>{PRINT_STYLE}</style>
 
+      {/* PDF capture target — always in DOM, off-screen */}
+      <div style={{ position: "fixed", left: "-9999px", top: 0, width: "794px", pointerEvents: "none", zIndex: -1 }}>
+        <InvoicePreview form={form} id="invoice-preview" />
+      </div>
+
       {/* Top bar */}
       <div className="no-print sticky top-0 z-50 border-b border-white/[0.06] bg-[#09090b]/90 backdrop-blur-md px-4 md:px-6 py-3 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2 md:gap-3 min-w-0">
@@ -302,10 +308,21 @@ export default function InvoiceApp() {
         </div>
       </div>
 
-      <div className="no-print flex flex-col md:flex-row min-h-[calc(100vh-53px)]">
+      {/* Mobile tab switcher */}
+      <div className="no-print flex md:hidden border-b border-white/[0.06]">
+        {["form", "preview"].map(t => (
+          <button key={t} onClick={() => setTab(t)}
+            className={`flex-1 py-2.5 text-xs font-mono uppercase tracking-widest transition-colors
+              ${tab === t ? "text-violet-400 border-b-2 border-violet-500" : "text-gray-600"}`}>
+            {t === "form" ? "Isi Data" : "Preview"}
+          </button>
+        ))}
+      </div>
+
+      <div className="no-print flex flex-col md:flex-row min-h-[calc(100vh-94px)] md:min-h-[calc(100vh-53px)]">
 
         {/* ── Form panel ── */}
-        <div className="w-full md:w-[420px] md:shrink-0 border-b md:border-b-0 md:border-r border-white/[0.06] overflow-y-auto p-4 md:p-6 space-y-6">
+        <div className={`w-full md:w-[420px] md:shrink-0 md:border-r border-white/[0.06] overflow-y-auto p-4 md:p-6 space-y-6 ${tab === "preview" ? "hidden md:block" : ""}`}>
 
           {/* Invoice meta */}
           <section>
@@ -485,8 +502,8 @@ export default function InvoiceApp() {
         </div>
 
         {/* ── Preview panel ── */}
-        <div className="flex-1 bg-[#111] overflow-y-auto p-3 md:p-8">
-          <div className="max-w-[794px] mx-auto shadow-2xl rounded-xl overflow-hidden">
+        <div className={`flex-1 bg-[#111] overflow-auto p-3 md:p-8 ${tab === "form" ? "hidden md:block" : ""}`}>
+          <div className="min-w-[360px] md:max-w-[794px] md:mx-auto shadow-2xl rounded-xl overflow-hidden">
             <InvoicePreview form={form} />
           </div>
         </div>
