@@ -9,7 +9,9 @@
       "WebFetch(domain:www.tumbuh.tech)",
       "Bash(gh pr *)",
       "Bash(gh api *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(node -e \"require\\('html2pdf.js'\\); console.log\\('ok'\\)\")",
+      "Bash(npm uninstall *)"
     ]
   }
 }

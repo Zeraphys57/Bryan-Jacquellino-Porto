@@ -33,7 +33,13 @@ const About = () => {
           anticipatePin: 1,
           start: "top top",
           end: () => `+=${(n - 1) * section.offsetWidth}`,
-          scrub: 1.2,
+          scrub: 1,
+          snap: {
+            snapTo: 1 / (n - 1),
+            duration: { min: 0.3, max: 0.6 },
+            delay: 0.05,
+            ease: "power2.inOut",
+          },
           invalidateOnRefresh: true,
           onUpdate(self) {
             if (progressRef.current) {

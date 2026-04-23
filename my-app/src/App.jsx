@@ -84,7 +84,7 @@ function App() {
       "font-size:18px;font-weight:bold;color:#7c3aed"
     );
     console.log(
-      "%cBuilt with React + Tailwind + Three.js. Want to collaborate?\n→ bryanjacquellino5757@gmail.com",
+      "%cBuilt with React + Tailwind + Three.js. Want to collaborate?\n→ jacquellinobryan@gmail.com",
       "font-size:13px;color:#6b7280"
     );
   }, []);

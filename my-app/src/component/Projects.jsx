@@ -1,139 +1,234 @@
 import React, { useState, useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 
-/* ── Abstract SVG visual per project ── */
+/* ── Browser chrome — shared across all mockups ── */
+const Chrome = () => (
+  <>
+    <rect x="16" y="8" width="448" height="264" rx="12" fill="white" fillOpacity="0.10"/>
+    <rect x="16" y="8" width="448" height="34" rx="12" fill="white" fillOpacity="0.18"/>
+    <rect x="16" y="32" width="448" height="10" fill="white" fillOpacity="0.18"/>
+    <circle cx="38" cy="25" r="5" fill="white" fillOpacity="0.62"/>
+    <circle cx="54" cy="25" r="5" fill="white" fillOpacity="0.42"/>
+    <circle cx="70" cy="25" r="5" fill="white" fillOpacity="0.26"/>
+    <rect x="94"  y="16" width="214" height="18" rx="9" fill="white" fillOpacity="0.15"/>
+    <rect x="106" y="23" width="72"  height="4"  rx="2" fill="white" fillOpacity="0.38"/>
+  </>
+);
+
+/* ── Fashion — E-Commerce ── */
 const PatternFashion = () => (
-  <svg viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full">
-    {/* Product cards grid */}
-    <rect x="32"  y="28"  width="118" height="158" rx="10" fill="white" fillOpacity="0.13"/>
-    <rect x="168" y="16"  width="118" height="168" rx="10" fill="white" fillOpacity="0.10"/>
-    <rect x="304" y="24"  width="118" height="160" rx="10" fill="white" fillOpacity="0.08"/>
-    {/* Image placeholders inside cards */}
-    <rect x="44"  y="40"  width="94"  height="88"  rx="6"  fill="white" fillOpacity="0.15"/>
-    <rect x="180" y="28"  width="94"  height="94"  rx="6"  fill="white" fillOpacity="0.13"/>
-    <rect x="316" y="36"  width="94"  height="86"  rx="6"  fill="white" fillOpacity="0.10"/>
-    {/* Price tags */}
-    <rect x="44"  y="142" width="52"  height="10"  rx="4"  fill="white" fillOpacity="0.25"/>
-    <rect x="180" y="140" width="44"  height="10"  rx="4"  fill="white" fillOpacity="0.22"/>
-    <rect x="316" y="141" width="48"  height="10"  rx="4"  fill="white" fillOpacity="0.18"/>
-    <rect x="44"  y="158" width="36"  height="8"   rx="4"  fill="white" fillOpacity="0.15"/>
-    <rect x="180" y="156" width="40"  height="8"   rx="4"  fill="white" fillOpacity="0.12"/>
-    <rect x="316" y="157" width="34"  height="8"   rx="4"  fill="white" fillOpacity="0.10"/>
-    {/* Filter / nav bar */}
-    <rect x="32"  y="204" width="416" height="30"  rx="8"  fill="white" fillOpacity="0.09"/>
-    <rect x="44"  y="211" width="48"  height="10"  rx="5"  fill="white" fillOpacity="0.2"/>
-    <rect x="104" y="211" width="40"  height="10"  rx="5"  fill="white" fillOpacity="0.12"/>
-    <rect x="156" y="211" width="52"  height="10"  rx="5"  fill="white" fillOpacity="0.12"/>
-    {/* Cart badge */}
-    <circle cx="432" cy="50" r="28"   fill="white" fillOpacity="0.08"/>
-    <circle cx="432" cy="50" r="14"   fill="white" fillOpacity="0.10"/>
-    {/* Decorative circle bg */}
-    <circle cx="460" cy="260" r="70"  fill="white" fillOpacity="0.05"/>
+  <svg viewBox="0 0 480 280" preserveAspectRatio="xMidYMid slice" fill="none"
+    xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full">
+    <Chrome />
+
+    {/* Site nav */}
+    <rect x="16" y="42" width="448" height="26" fill="white" fillOpacity="0.07"/>
+    <rect x="28"  y="49" width="48" height="8" rx="3" fill="white" fillOpacity="0.5"/>
+    <rect x="178" y="51" width="26" height="6" rx="2" fill="white" fillOpacity="0.2"/>
+    <rect x="214" y="51" width="26" height="6" rx="2" fill="white" fillOpacity="0.2"/>
+    <rect x="250" y="51" width="26" height="6" rx="2" fill="white" fillOpacity="0.2"/>
+    <rect x="286" y="51" width="26" height="6" rx="2" fill="white" fillOpacity="0.2"/>
+    <rect x="396" y="48" width="54" height="12" rx="6" fill="white" fillOpacity="0.28"/>
+
+    {/* Hero — left text */}
+    <rect x="28" y="80"  width="192" height="13" rx="3" fill="white" fillOpacity="0.55"/>
+    <rect x="28" y="100" width="154" height="8"  rx="2" fill="white" fillOpacity="0.28"/>
+    <rect x="28" y="113" width="164" height="8"  rx="2" fill="white" fillOpacity="0.22"/>
+    <rect x="28" y="132" width="78"  height="22" rx="11" fill="white" fillOpacity="0.3"/>
+    <rect x="116" y="132" width="78" height="22" rx="11" fill="white" fillOpacity="0.14"/>
+
+    {/* Hero — right product image */}
+    <rect x="268" y="70"  width="176" height="112" rx="10" fill="white" fillOpacity="0.12"/>
+    <rect x="280" y="80"  width="152" height="94"  rx="7"  fill="white" fillOpacity="0.09"/>
+    <circle cx="356" cy="127" r="28" fill="white" fillOpacity="0.07"/>
+
+    {/* Divider */}
+    <line x1="28" y1="186" x2="452" y2="186" stroke="white" strokeOpacity="0.1" strokeWidth="1"/>
+
+    {/* Product grid — 4 cards */}
+    {[0,1,2,3].map(i => (
+      <g key={i}>
+        <rect x={28 + i*107} y="192" width="96" height="72" rx="7"
+          fill="white" fillOpacity={0.13 - i*0.02}/>
+        <rect x={36 + i*107} y="199" width="80" height="42" rx="5"
+          fill="white" fillOpacity="0.09"/>
+        <rect x={36 + i*107} y="247" width="50" height="6" rx="2"
+          fill="white" fillOpacity={0.32 - i*0.05}/>
+        <rect x={36 + i*107} y="257" width="34" height="5" rx="2"
+          fill="white" fillOpacity={0.2  - i*0.03}/>
+      </g>
+    ))}
   </svg>
 );
 
+/* ── Clinic — Booking System ── */
 const PatternClinic = () => (
-  <svg viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full">
-    {/* Calendar grid */}
-    {[0,1,2,3,4,5].map(col =>
-      [0,1,2,3].map(row => {
-        const active = col === 2 && row === 1;
+  <svg viewBox="0 0 480 280" preserveAspectRatio="xMidYMid slice" fill="none"
+    xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full">
+    <Chrome />
+
+    {/* App nav */}
+    <rect x="16" y="42" width="448" height="26" fill="white" fillOpacity="0.07"/>
+    <rect x="28"  y="49" width="56" height="8"  rx="3" fill="white" fillOpacity="0.45"/>
+    <rect x="376" y="48" width="74" height="12" rx="6" fill="white" fillOpacity="0.26"/>
+
+    {/* Sidebar divider */}
+    <line x1="162" y1="68" x2="162" y2="272" stroke="white" strokeOpacity="0.12" strokeWidth="1"/>
+
+    {/* Sidebar title */}
+    <rect x="24" y="76" width="82" height="7" rx="2" fill="white" fillOpacity="0.38"/>
+
+    {/* Appointment cards */}
+    {[0,1,2].map(i => (
+      <g key={i}>
+        <rect x="20" y={92 + i*54} width="134" height="46" rx="8"
+          fill="white" fillOpacity={i === 0 ? 0.22 : 0.09}/>
+        <rect x="30" y={99  + i*54} width="44" height="6" rx="2"
+          fill="white" fillOpacity={i === 0 ? 0.5  : 0.28}/>
+        <rect x="30" y={111 + i*54} width="86" height="5" rx="2"
+          fill="white" fillOpacity={i === 0 ? 0.32 : 0.16}/>
+        <rect x="30" y={121 + i*54} width="62" height="4" rx="2"
+          fill="white" fillOpacity={i === 0 ? 0.22 : 0.10}/>
+      </g>
+    ))}
+
+    {/* Calendar — month header */}
+    <rect x="178" y="74" width="96" height="8" rx="2" fill="white" fillOpacity="0.38"/>
+    <rect x="424" y="73" width="20" height="10" rx="4" fill="white" fillOpacity="0.15"/>
+    <rect x="448" y="73" width="14" height="10" rx="4" fill="white" fillOpacity="0.15"/>
+
+    {/* Day labels */}
+    {[0,1,2,3,4,5,6].map(i => (
+      <rect key={i} x={178 + i*41} y="92" width="28" height="6" rx="2"
+        fill="white" fillOpacity="0.18"/>
+    ))}
+
+    {/* Calendar cells — 5 rows × 7 cols */}
+    {Array.from({length:5}).map((_,row) =>
+      Array.from({length:7}).map((_,col) => {
+        const active = row===1 && col===2;
+        const today  = row===0 && col===4;
         return (
-          <rect key={`${col}-${row}`}
-            x={28 + col * 58} y={24 + row * 54}
-            width="50" height="46" rx="8"
-            fill="white" fillOpacity={active ? 0.28 : 0.08}
+          <rect key={`${row}-${col}`}
+            x={178 + col*41} y={106 + row*32}
+            width="28" height="24" rx="6"
+            fill="white"
+            fillOpacity={active ? 0.38 : today ? 0.18 : 0.08}
           />
         );
       })
     )}
-    {/* Day labels */}
-    {[0,1,2,3,4,5].map(i => (
-      <rect key={i} x={38 + i * 58} y={12} width="28" height="8" rx="4" fill="white" fillOpacity="0.18"/>
-    ))}
-    {/* Appointment card — right side */}
-    <rect x="384" y="16" width="84" height="248" rx="12" fill="white" fillOpacity="0.14"/>
-    <rect x="394" y="32" width="64" height="10"  rx="4"  fill="white" fillOpacity="0.3"/>
-    <rect x="394" y="50" width="48" height="8"   rx="4"  fill="white" fillOpacity="0.2"/>
-    <rect x="394" y="72" width="64" height="48"  rx="8"  fill="white" fillOpacity="0.12"/>
-    <rect x="394" y="72" width="64" height="48"  rx="8"  fill="white" fillOpacity="0.12"/>
-    {/* Plus / cross icon */}
-    <rect x="418" y="142" width="8"  height="28" rx="4"  fill="white" fillOpacity="0.4"/>
-    <rect x="406" y="152" width="30" height="8"  rx="4"  fill="white" fillOpacity="0.4"/>
-    {/* Decorative circle */}
-    <circle cx="20" cy="280" r="60"  fill="white" fillOpacity="0.05"/>
   </svg>
 );
 
+/* ── Legal — Landing Page ── */
 const PatternLegal = () => (
-  <svg viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full">
-    {/* Document left column */}
-    <rect x="28"  y="16" width="194" height="248" rx="12" fill="white" fillOpacity="0.11"/>
-    {/* Document right column */}
-    <rect x="242" y="16" width="194" height="248" rx="12" fill="white" fillOpacity="0.08"/>
-    {/* Header bar left */}
-    <rect x="44"  y="32" width="160" height="14" rx="5"  fill="white" fillOpacity="0.25"/>
-    {/* Text lines left */}
-    {[0,1,2,3,4,5,6,7,8].map(i => (
-      <rect key={i} x="44" y={58 + i * 22} width={i % 3 === 2 ? 90 : 160} height="8" rx="4" fill="white" fillOpacity="0.16"/>
+  <svg viewBox="0 0 480 280" preserveAspectRatio="xMidYMid slice" fill="none"
+    xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full">
+    <Chrome />
+
+    {/* Nav */}
+    <rect x="16" y="42" width="448" height="26" fill="white" fillOpacity="0.07"/>
+    <rect x="28"  y="49" width="60" height="8"  rx="3" fill="white" fillOpacity="0.45"/>
+    <rect x="200" y="51" width="24" height="6"  rx="2" fill="white" fillOpacity="0.2"/>
+    <rect x="234" y="51" width="24" height="6"  rx="2" fill="white" fillOpacity="0.2"/>
+    <rect x="268" y="51" width="24" height="6"  rx="2" fill="white" fillOpacity="0.2"/>
+    <rect x="302" y="51" width="24" height="6"  rx="2" fill="white" fillOpacity="0.2"/>
+    <rect x="396" y="48" width="54" height="12" rx="6" fill="white" fillOpacity="0.28"/>
+
+    {/* Hero headline — big text blocks */}
+    <rect x="28" y="78"  width="272" height="14" rx="3" fill="white" fillOpacity="0.55"/>
+    <rect x="28" y="98"  width="236" height="14" rx="3" fill="white" fillOpacity="0.44"/>
+    <rect x="28" y="118" width="200" height="14" rx="3" fill="white" fillOpacity="0.34"/>
+
+    {/* Subtext */}
+    <rect x="28" y="142" width="196" height="6" rx="2" fill="white" fillOpacity="0.2"/>
+    <rect x="28" y="153" width="172" height="6" rx="2" fill="white" fillOpacity="0.15"/>
+
+    {/* CTA buttons */}
+    <rect x="28"  y="172" width="92" height="24" rx="12" fill="white" fillOpacity="0.32"/>
+    <rect x="130" y="172" width="92" height="24" rx="12" fill="white" fillOpacity="0.14"/>
+
+    {/* Right — scales of justice illustration */}
+    <circle cx="388" cy="118" r="58" fill="white" fillOpacity="0.04"/>
+    <circle cx="388" cy="118" r="38" fill="white" fillOpacity="0.06"/>
+    <rect x="385" y="88"  width="6" height="34" rx="3" fill="white" fillOpacity="0.28"/>
+    <rect x="374" y="88"  width="28" height="4" rx="2" fill="white" fillOpacity="0.32"/>
+    <circle cx="368" cy="126" r="10" fill="white" fillOpacity="0.18"/>
+    <circle cx="408" cy="122" r="10" fill="white" fillOpacity="0.14"/>
+    <line x1="376" y1="92" x2="368" y2="118" stroke="white" strokeOpacity="0.22" strokeWidth="1.5"/>
+    <line x1="400" y1="92" x2="408" y2="114" stroke="white" strokeOpacity="0.22" strokeWidth="1.5"/>
+
+    {/* Feature columns */}
+    <line x1="28" y1="206" x2="452" y2="206" stroke="white" strokeOpacity="0.1" strokeWidth="1"/>
+    {[0,1,2].map(i => (
+      <g key={i}>
+        <rect x={28 + i*148} y="213" width="136" height="50" rx="8"
+          fill="white" fillOpacity={0.10 - i*0.02}/>
+        <rect x={40 + i*148} y="221" width="58"  height="7" rx="2"
+          fill="white" fillOpacity={0.38 - i*0.06}/>
+        <rect x={40 + i*148} y="233" width="100" height="5" rx="2"
+          fill="white" fillOpacity={0.18 - i*0.03}/>
+        <rect x={40 + i*148} y="242" width="84"  height="5" rx="2"
+          fill="white" fillOpacity={0.14 - i*0.02}/>
+      </g>
     ))}
-    {/* Header bar right */}
-    <rect x="258" y="32" width="160" height="14" rx="5"  fill="white" fillOpacity="0.2"/>
-    {/* Text lines right */}
-    {[0,1,2,3,4,5,6].map(i => (
-      <rect key={i} x="258" y={58 + i * 22} width={i % 4 === 1 ? 80 : 160} height="8" rx="4" fill="white" fillOpacity="0.12"/>
-    ))}
-    {/* Divider */}
-    <line x1="232" y1="16" x2="232" y2="264" stroke="white" strokeOpacity="0.08" strokeWidth="2"/>
-    {/* Scale of justice */}
-    <line x1="50"  y1="232" x2="100" y2="232" stroke="white" strokeOpacity="0.25" strokeWidth="2"/>
-    <line x1="75"  y1="210" x2="75"  y2="248" stroke="white" strokeOpacity="0.25" strokeWidth="2"/>
-    <circle cx="50"  cy="240" r="10"  fill="white" fillOpacity="0.15"/>
-    <circle cx="100" cy="240" r="10"  fill="white" fillOpacity="0.15"/>
-    {/* Decorative circles */}
-    <circle cx="460" cy="260" r="60"  fill="white" fillOpacity="0.05"/>
-    <circle cx="460" cy="10"  r="40"  fill="white" fillOpacity="0.05"/>
   </svg>
 );
 
+/* ── AI — Dashboard ── */
 const PatternAI = () => (
-  <svg viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full">
-    {/* Node positions: center, and ring around */}
+  <svg viewBox="0 0 480 280" preserveAspectRatio="xMidYMid slice" fill="none"
+    xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full">
+    <Chrome />
+
+    {/* Dashboard nav */}
+    <rect x="16" y="42" width="448" height="26" fill="white" fillOpacity="0.07"/>
+    <rect x="28"  y="49" width="52" height="8"  rx="3" fill="white" fillOpacity="0.45"/>
+    <rect x="100" y="51" width="36" height="6"  rx="2" fill="white" fillOpacity="0.18"/>
+    <rect x="146" y="51" width="36" height="6"  rx="2" fill="white" fillOpacity="0.18"/>
+    <rect x="192" y="51" width="36" height="6"  rx="2" fill="white" fillOpacity="0.18"/>
+    <circle cx="440" cy="55" r="10" fill="white" fillOpacity="0.2"/>
+
+    {/* Metric cards row */}
     {[
-      { cx: 240, cy: 140, r: 22, o: 0.28 }, // center
-      { cx: 100, cy: 80,  r: 13, o: 0.18 },
-      { cx: 380, cy: 80,  r: 13, o: 0.18 },
-      { cx: 80,  cy: 200, r: 13, o: 0.18 },
-      { cx: 400, cy: 200, r: 13, o: 0.18 },
-      { cx: 240, cy: 28,  r: 10, o: 0.14 },
-      { cx: 155, cy: 230, r: 10, o: 0.14 },
-      { cx: 325, cy: 230, r: 10, o: 0.14 },
-      { cx: 448, cy: 140, r: 9,  o: 0.10 },
-      { cx: 32,  cy: 140, r: 9,  o: 0.10 },
-    ].map((n, i) => (
-      <circle key={i} cx={n.cx} cy={n.cy} r={n.r} fill="white" fillOpacity={n.o}/>
+      { v: "12.4k", l: "Messages", o: 0.14 },
+      { v: "94%",   l: "Resolved", o: 0.11 },
+      { v: "3.2×",  l: "ROI",      o: 0.09 },
+    ].map((m, i) => (
+      <g key={i}>
+        <rect x={20 + i*150} y="76" width="138" height="54" rx="8"
+          fill="white" fillOpacity={m.o}/>
+        <rect x={32 + i*150} y="84" width="52"  height="6" rx="2"
+          fill="white" fillOpacity="0.24"/>
+        <rect x={32 + i*150} y="96" width="80"  height="13" rx="3"
+          fill="white" fillOpacity={0.48 - i*0.06}/>
+        <rect x={32 + i*150} y="115" width="46" height="5" rx="2"
+          fill="white" fillOpacity="0.16"/>
+      </g>
     ))}
-    {/* Edges */}
-    {[
-      [240,140, 100,80], [240,140, 380,80],
-      [240,140, 80,200], [240,140, 400,200],
-      [100,80,  240,28], [380,80,  240,28],
-      [80,200,  155,230],[400,200, 325,230],
-      [100,80,  32,140], [380,80,  448,140],
-      [240,140, 32,140], [240,140, 448,140],
-    ].map(([x1,y1,x2,y2], i) => (
-      <line key={i} x1={x1} y1={y1} x2={x2} y2={y2}
-        stroke="white" strokeOpacity="0.12" strokeWidth="1.5"/>
+
+    {/* Vertical divider */}
+    <line x1="182" y1="140" x2="182" y2="272" stroke="white" strokeOpacity="0.1" strokeWidth="1"/>
+
+    {/* Chat panel */}
+    <rect x="24" y="142" width="72" height="6" rx="2" fill="white" fillOpacity="0.28"/>
+    {/* Bot bubbles */}
+    <rect x="24" y="156" width="134" height="20" rx="8" fill="white" fillOpacity="0.18"/>
+    <rect x="24" y="182" width="106" height="20" rx="8" fill="white" fillOpacity="0.12"/>
+    {/* User bubbles (right-aligned) */}
+    <rect x="58"  y="208" width="100" height="20" rx="8" fill="white" fillOpacity="0.22"/>
+    <rect x="72"  y="234" width="88"  height="20" rx="8" fill="white" fillOpacity="0.16"/>
+
+    {/* Bar chart */}
+    <rect x="196" y="142" width="58" height="6" rx="2" fill="white" fillOpacity="0.28"/>
+    {[58,88,44,112,70,96,130].map((h, i) => (
+      <rect key={i}
+        x={196 + i*38} y={264-h} width="26" height={h} rx="4"
+        fill="white" fillOpacity={0.18 + i*0.04}/>
     ))}
-    {/* Moving data dots */}
-    <circle cx="170" cy="110" r="4" fill="white" fillOpacity="0.55"/>
-    <circle cx="310" cy="110" r="4" fill="white" fillOpacity="0.45"/>
-    <circle cx="160" cy="170" r="4" fill="white" fillOpacity="0.50"/>
-    <circle cx="320" cy="170" r="3" fill="white" fillOpacity="0.38"/>
-    <circle cx="240" cy="84"  r="3" fill="white" fillOpacity="0.42"/>
-    {/* Outer pulse ring */}
-    <circle cx="240" cy="140" r="38"  fill="none" stroke="white" strokeOpacity="0.08" strokeWidth="1"/>
-    <circle cx="240" cy="140" r="60"  fill="none" stroke="white" strokeOpacity="0.05" strokeWidth="1"/>
+    <line x1="192" y1="264" x2="462" y2="264"
+      stroke="white" strokeOpacity="0.14" strokeWidth="1"/>
   </svg>
 );
 
@@ -271,24 +366,10 @@ const Projects = () => {
             {/* Visual area */}
             <div className={`relative h-52 md:h-64 xl:h-80 bg-gradient-to-br ${p.gradient} overflow-hidden`}>
 
-              {/* Abstract pattern */}
               {PATTERNS[p.pattern]}
 
-              {/* Large faint project title watermark */}
-              <span aria-hidden="true"
-                className="absolute -bottom-4 -right-4 text-[11vw] font-black leading-none
-                  select-none pointer-events-none text-white/[0.07] tracking-tight whitespace-nowrap">
-                {p.title.split(" ")[0]}
-              </span>
-
-              {/* Category badge */}
-              <span className="absolute top-5 left-5 px-3 py-1 rounded-full text-[10px] font-mono
-                tracking-widest uppercase bg-black/20 backdrop-blur-sm text-white/80">
-                {p.category}
-              </span>
-
               {/* Counter */}
-              <span className="absolute top-5 right-5 text-white/60 text-xs font-mono tracking-widest tabular-nums pointer-events-none select-none">
+              <span className="absolute bottom-14 right-5 text-white/60 text-xs font-mono tracking-widest tabular-nums pointer-events-none select-none">
                 {String(current + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
               </span>
 
