@@ -156,7 +156,7 @@ const SecretPitch = () => {
                     whiteSpace: 'nowrap',
                     fontFamily: 'monospace',
                   }}>
-                    {item.price}
+                    ~{item.price}
                   </div>
                 </div>
               );
