@@ -9,6 +9,10 @@
 
 html { scroll-behavior: smooth; }
 
+@media (pointer: fine) {
+  * { cursor: none !important; }
+}
+
 body, #root {
   margin: 0;
   padding: 0;
@@ -16,12 +20,22 @@ body, #root {
 
 /* ─── Background orb drift ─── */
 @keyframes orb-a {
-  0%, 100% { transform: translate(0px, 0px); }
-  50%       { transform: translate(60px, -50px); }
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(60px, -50px) scale(1.08); }
+  66%       { transform: translate(30px, 30px) scale(0.95); }
 }
 @keyframes orb-b {
-  0%, 100% { transform: translate(0px, 0px); }
-  50%       { transform: translate(-70px, 55px); }
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(-70px, 55px) scale(1.06); }
+  66%       { transform: translate(20px, -30px) scale(0.97); }
+}
+@keyframes orb-c {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50%       { transform: translate(50px, -70px) scale(1.1); }
+}
+@keyframes orb-d {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50%       { transform: translate(-40px, 60px) scale(0.92); }
 }
 
 /* ─── Scroll cue bounce ─── */

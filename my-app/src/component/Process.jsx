@@ -58,10 +58,10 @@ const Process = () => {
 
     // Hide steps 2–4 before first paint
     stepRefs.current.forEach((el, i) => {
-      if (i > 0) gsap.set(el, { opacity: 0, y: 80 });
+      if (i > 0) gsap.set(el, { opacity: 0, y: 50 });
     });
     wordRefs.current.forEach((el, i) => {
-      if (i > 0) gsap.set(el, { opacity: 0, scale: 0.75 });
+      if (i > 0) gsap.set(el, { opacity: 0, scale: 0.85 });
     });
 
     const ctx = gsap.context(() => {
@@ -72,7 +72,7 @@ const Process = () => {
           anticipatePin: 1,
           start: "top top",
           end: () => `+=${(n - 1) * section.offsetHeight}`,
-          scrub: 0.8,
+          scrub: 1.4,
           invalidateOnRefresh: true,
           onUpdate(self) {
             // Grow the teal line downward
@@ -114,21 +114,21 @@ const Process = () => {
         // ── Exit current step ──
         tl
           .to(wordRefs.current[i],
-            { opacity: 0, scale: 1.45, duration: 0.45, ease: "power2.in" },
+            { opacity: 0, scale: 1.2, duration: 0.4, ease: "power2.inOut" },
             i)
           .to(stepRefs.current[i],
-            { opacity: 0, y: -90, duration: 0.38, ease: "power3.in" },
+            { opacity: 0, y: -50, duration: 0.35, ease: "power2.inOut" },
             i + 0.02)
 
         // ── Enter next step ──
           .fromTo(wordRefs.current[i + 1],
-            { opacity: 0, scale: 0.75 },
-            { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" },
-            i + 0.35)
+            { opacity: 0, scale: 0.85 },
+            { opacity: 1, scale: 1, duration: 0.45, ease: "power2.out" },
+            i + 0.25)
           .fromTo(stepRefs.current[i + 1],
-            { opacity: 0, y: 90 },
-            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
-            i + 0.37);
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" },
+            i + 0.27);
       }
     }, section);
 
@@ -142,7 +142,7 @@ const Process = () => {
     >
       {/* Header */}
       <div className="absolute top-0 left-0 right-0 z-20
-                      px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48 pt-24">
+                      px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48 pt-20 md:pt-24">
         <div className="max-w-[1500px] mx-auto flex items-end justify-between">
           <div>
             <p className="scroll-reveal text-xs font-mono text-teal-600 dark:text-teal-400
@@ -162,8 +162,8 @@ const Process = () => {
         </div>
       </div>
 
-      {/* Vertical timeline — right side, centered vertically */}
-      <div className="absolute right-6 md:right-10 xl:right-16 2xl:right-24
+      {/* Vertical timeline — right side, hidden on mobile */}
+      <div className="hidden md:block absolute right-6 md:right-10 xl:right-16 2xl:right-24
                       top-1/2 -translate-y-1/2 z-20"
            style={{ height: 'min(640px, 68vh)', width: 20 }}>
 
@@ -230,12 +230,12 @@ const Process = () => {
               </span>
             </div>
 
-            <h3 className="text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl font-light
+            <h3 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl font-light
                            text-gray-900 dark:text-white mb-5 leading-none">
               {item.title}
             </h3>
 
-            <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400
+            <p className="text-base sm:text-xl md:text-2xl text-gray-500 dark:text-gray-400
                           max-w-lg leading-relaxed">
               {item.desc}
             </p>

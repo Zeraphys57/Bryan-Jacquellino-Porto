@@ -62,7 +62,7 @@ const SERVICES = [
 
 const Services = () => {
   return (
-    <div className="py-24 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48">
+    <div className="py-16 md:py-24 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48">
       <div className="max-w-[1500px] mx-auto">
 
         <p className="scroll-reveal text-xs font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-4">

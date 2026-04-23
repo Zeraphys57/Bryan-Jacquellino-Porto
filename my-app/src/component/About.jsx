@@ -6,9 +6,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const educationData = [
   { num: "01", status: "High School", desc: "Science — Gembala Baik", location: "Pontianak",  year: "Foundation" },
-  { num: "02", status: "D3 Degree",   desc: "IT & Engineering",        location: "Taiwan",     year: "2022" },
+  { num: "02", status: "D3 Degree",   desc: "IT & Engineering",        location: "Taiwan",     year: "2020" },
   { num: "03", status: "University",  desc: "IT — Atma Jaya",          location: "Yogyakarta", year: "2023" },
-  { num: "04", status: "Now",         desc: "Building Your Website",   location: "My Room",    year: "2025" },
+  { num: "04", status: "Now",         desc: "Building Your Website",   location: "My Room",    year: "Today" },
 ];
 
 const About = () => {
@@ -60,7 +60,7 @@ const About = () => {
       className="relative h-screen overflow-hidden bg-white dark:bg-gray-950"
     >
       {/* Header — stays fixed while section is pinned */}
-      <div className="absolute top-0 left-0 right-0 z-10 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48 pt-24">
+      <div className="absolute top-0 left-0 right-0 z-10 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48 pt-20 md:pt-24">
         <div className="max-w-[1500px] mx-auto">
           <div className="flex items-end justify-between mb-8">
             <div>
@@ -117,11 +117,11 @@ const About = () => {
               <p className="text-[11px] font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-8">
                 {edu.year}
               </p>
-              <h3 className="text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl font-light
+              <h3 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl font-light
                              text-gray-900 dark:text-white mb-5 leading-none">
                 {edu.status}
               </h3>
-              <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 mb-8 max-w-lg">
+              <p className="text-base sm:text-xl md:text-2xl text-gray-500 dark:text-gray-400 mb-8 max-w-lg">
                 {edu.desc}
               </p>
               <div className="flex items-center gap-2.5">

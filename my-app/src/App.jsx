@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './index.css';
 import Header from './component/Header';
+import Cursor from './component/Cursor';
+import InteractiveDots from './component/InteractiveDots';
 import ImBryan from './component/ImBryan';
 import Services from './component/Services';
 import About from './component/About';
@@ -9,6 +11,7 @@ import Process from './component/Process';
 import Footer from './component/Footer';
 
 function App() {
+  const cursorOrbRef = useRef(null);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const stored = localStorage.getItem("theme");
     if (stored) return stored === "dark";
@@ -55,6 +58,25 @@ function App() {
     return () => obs.disconnect();
   }, []);
 
+  // Cursor-following ambient orb — direct DOM, zero re-render
+  useEffect(() => {
+    const orb = cursorOrbRef.current;
+    if (!orb || !window.matchMedia("(pointer: fine)").matches) return;
+    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+    let lx = mx, ly = my;
+    let raf;
+    const onMove = (e) => { mx = e.clientX; my = e.clientY; };
+    const tick = () => {
+      lx += (mx - lx) * 0.05;
+      ly += (my - ly) * 0.05;
+      orb.style.transform = `translate(${lx - 160}px,${ly - 160}px)`;
+      raf = requestAnimationFrame(tick);
+    };
+    document.addEventListener("mousemove", onMove, { passive: true });
+    raf = requestAnimationFrame(tick);
+    return () => { document.removeEventListener("mousemove", onMove); cancelAnimationFrame(raf); };
+  }, []);
+
   useEffect(() => {
     console.log(
       "%c👋 Hey, you found the console!",
@@ -68,6 +90,7 @@ function App() {
 
   return (
     <>
+      <Cursor />
       <div className="relative min-h-screen bg-[#fafafa] dark:bg-[#09090b] text-gray-900 dark:text-gray-100 overflow-x-hidden">
 
         {/* Scroll progress */}
@@ -76,30 +99,73 @@ function App() {
           style={{ width: `${scrollProgress}%`, background: 'linear-gradient(90deg,#7c3aed,#0d9488)' }}
         />
 
-        {/* CSS gradient orbs — zero JS overhead, GPU-accelerated */}
+        {/* Ambient background layers */}
         <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
-          <div
-            className="absolute rounded-full"
+
+          {/* Orb 1 — violet, top-right */}
+          <div className="absolute rounded-full" style={{
+            width: 750, height: 750,
+            background: 'radial-gradient(circle, #7c3aed 0%, transparent 70%)',
+            top: '-280px', right: '-220px',
+            filter: 'blur(100px)',
+            opacity: isDarkMode ? 0.18 : 0.20,
+            animation: 'orb-a 22s ease-in-out infinite',
+          }} />
+
+          {/* Orb 2 — teal, bottom-left */}
+          <div className="absolute rounded-full" style={{
+            width: 650, height: 650,
+            background: 'radial-gradient(circle, #0d9488 0%, transparent 70%)',
+            bottom: '-200px', left: '-160px',
+            filter: 'blur(100px)',
+            opacity: isDarkMode ? 0.14 : 0.16,
+            animation: 'orb-b 28s ease-in-out infinite',
+          }} />
+
+          {/* Orb 3 — fuchsia, center-left */}
+          <div className="absolute rounded-full" style={{
+            width: 500, height: 500,
+            background: 'radial-gradient(circle, #a855f7 0%, transparent 70%)',
+            top: '38%', left: '-120px',
+            filter: 'blur(110px)',
+            opacity: isDarkMode ? 0.10 : 0.12,
+            animation: 'orb-c 32s ease-in-out infinite',
+          }} />
+
+          {/* Orb 4 — cyan, bottom-right */}
+          <div className="absolute rounded-full" style={{
+            width: 420, height: 420,
+            background: 'radial-gradient(circle, #06b6d4 0%, transparent 70%)',
+            bottom: '20%', right: '-80px',
+            filter: 'blur(100px)',
+            opacity: isDarkMode ? 0.09 : 0.11,
+            animation: 'orb-d 36s ease-in-out infinite',
+          }} />
+
+          {/* Interactive dot grid — reacts to cursor */}
+          <InteractiveDots isDarkMode={isDarkMode} />
+
+          {/* Cursor-following ambient orb */}
+          <div ref={cursorOrbRef}
+            className="absolute rounded-full pointer-events-none"
             style={{
-              width: 700, height: 700,
-              background: 'radial-gradient(circle, #7c3aed 0%, transparent 70%)',
-              top: '-250px', right: '-200px',
-              filter: 'blur(90px)',
-              opacity: isDarkMode ? 0.14 : 0.06,
-              animation: 'orb-a 22s ease-in-out infinite',
+              width: 320, height: 320,
+              background: 'radial-gradient(circle, #7c3aed 0%, #0d9488 60%, transparent 100%)',
+              filter: 'blur(72px)',
+              opacity: isDarkMode ? 0.13 : 0.11,
+              top: 0, left: 0,
             }}
           />
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: 600, height: 600,
-              background: 'radial-gradient(circle, #0d9488 0%, transparent 70%)',
-              bottom: '-180px', left: '-150px',
-              filter: 'blur(90px)',
-              opacity: isDarkMode ? 0.10 : 0.05,
-              animation: 'orb-b 28s ease-in-out infinite',
-            }}
-          />
+
+          {/* Noise grain — static texture */}
+          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <filter id="grain">
+              <feTurbulence type="fractalNoise" baseFrequency="0.62" numOctaves="4" stitchTiles="stitch" />
+              <feColorMatrix type="saturate" values="0" />
+            </filter>
+            <rect width="100%" height="100%" filter="url(#grain)" opacity={isDarkMode ? 0.10 : 0.09} />
+          </svg>
+
         </div>
 
         <div className="relative z-10">
@@ -117,7 +183,8 @@ function App() {
               </p>
 
               <h1
-                className="font-light text-[clamp(3.2rem,8vw,13rem)] leading-[0.9] tracking-tight text-gray-900 dark:text-white mb-8"
+                data-cursor-xl
+                className="font-light text-[clamp(3.2rem,8vw,13rem)] leading-[0.9] tracking-tight text-gray-900 dark:text-white mb-8 w-fit"
                 style={{ animation: 'fade-up 0.6s 0.12s cubic-bezier(0.23,1,0.32,1) both' }}
               >
                 Bryan<br />Jacquellino
@@ -157,12 +224,12 @@ function App() {
 
               {/* Stats strip */}
               <div
-                className="flex flex-wrap gap-8 xl:gap-16 mt-14 pt-10 border-t border-gray-100 dark:border-white/[0.06]"
+                className="grid grid-cols-2 sm:flex sm:flex-wrap gap-6 sm:gap-8 xl:gap-16 mt-14 pt-10 border-t border-gray-100 dark:border-white/[0.06]"
                 style={{ animation: 'fade-up 0.6s 0.42s cubic-bezier(0.23,1,0.32,1) both' }}
               >
                 {[
-                  { n: "100+",    label: "Projects" },
-                  { n: "7 >",    label: "Experience" },
+                  { n: "50+",    label: "Projects" },
+                  { n: "7 Years",    label: "Experience" },
                   { n: "Education",    label: "IT — Taiwan" },
                   { n: "Open",  label: "For freelance" },
                 ].map(s => (
@@ -242,7 +309,7 @@ function App() {
                 Let&apos;s collaborate
               </p>
 
-              <h2 className="scroll-reveal text-[clamp(3rem,7vw,8.5rem)] font-light
+              <h2 className="scroll-reveal text-[clamp(2.2rem,7vw,8.5rem)] font-light
                              leading-[0.92] tracking-tight text-gray-900 dark:text-white mb-10"
                   data-delay="60ms">
                 Punya project<br />
