@@ -2,13 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
-
+import InvoiceApp from './invoice/InvoiceApp.jsx'
 
 if (
   localStorage.getItem('theme') === 'dark' ||
@@ -18,3 +12,11 @@ if (
 } else {
   document.documentElement.classList.remove('dark');
 }
+
+const isInvoice = window.location.pathname.startsWith('/invoice');
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    {isInvoice ? <InvoiceApp /> : <App />}
+  </StrictMode>,
+)
