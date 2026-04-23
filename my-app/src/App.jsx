@@ -10,6 +10,7 @@ import Projects from './component/Projects';
 import Process from './component/Process';
 import Footer from './component/Footer';
 
+import SecretPitch from './component/SecretPitch';
 function App() {
   const cursorOrbRef = useRef(null);
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -351,6 +352,8 @@ function App() {
           </section>
 
           <Footer />
+
+          <SecretPitch />
         </div>
       </div>
     </>
