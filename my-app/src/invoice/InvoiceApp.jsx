@@ -224,7 +224,14 @@ export default function InvoiceApp() {
 
   const downloadPDF = async () => {
     const el = document.getElementById("invoice-preview");
-    const canvas = await html2canvas(el, { scale: 2, useCORS: true, backgroundColor: "#ffffff" });
+    const canvas = await html2canvas(el, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: "#ffffff",
+      onclone: (doc) => {
+        doc.querySelectorAll('link[rel="stylesheet"], style').forEach(s => s.remove());
+      },
+    });
     const imgData = canvas.toDataURL("image/jpeg", 0.98);
     const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
     const pageW = pdf.internal.pageSize.getWidth();
@@ -276,29 +283,29 @@ export default function InvoiceApp() {
       <style>{PRINT_STYLE}</style>
 
       {/* Top bar */}
-      <div className="no-print sticky top-0 z-50 border-b border-white/[0.06] bg-[#09090b]/90 backdrop-blur-md px-6 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="text-xs font-mono text-violet-400 tracking-widest uppercase">Invoice Generator</span>
-          <span className="text-white/20">·</span>
-          <span className="text-xs text-gray-500 font-mono">{form.invNum}</span>
+      <div className="no-print sticky top-0 z-50 border-b border-white/[0.06] bg-[#09090b]/90 backdrop-blur-md px-4 md:px-6 py-3 flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2 md:gap-3 min-w-0">
+          <span className="text-xs font-mono text-violet-400 tracking-widest uppercase whitespace-nowrap">Invoice</span>
+          <span className="text-white/20 hidden sm:inline">·</span>
+          <span className="text-xs text-gray-500 font-mono truncate hidden sm:inline">{form.invNum}</span>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 shrink-0">
           <button onClick={() => { sessionStorage.removeItem("inv_auth"); setAuth(false); }}
             className="px-3 py-1.5 text-xs text-gray-500 hover:text-white transition-colors">
             Keluar
           </button>
           <button onClick={downloadPDF}
             className="px-4 py-1.5 text-xs bg-violet-600 hover:bg-violet-500
-              rounded-lg font-medium transition-colors">
+              rounded-lg font-medium transition-colors whitespace-nowrap">
             ↓ Download PDF
           </button>
         </div>
       </div>
 
-      <div className="no-print flex gap-0 min-h-[calc(100vh-53px)]">
+      <div className="no-print flex flex-col md:flex-row min-h-[calc(100vh-53px)]">
 
         {/* ── Form panel ── */}
-        <div className="w-[420px] shrink-0 border-r border-white/[0.06] overflow-y-auto p-6 space-y-6">
+        <div className="w-full md:w-[420px] md:shrink-0 border-b md:border-b-0 md:border-r border-white/[0.06] overflow-y-auto p-4 md:p-6 space-y-6">
 
           {/* Invoice meta */}
           <section>
@@ -478,7 +485,7 @@ export default function InvoiceApp() {
         </div>
 
         {/* ── Preview panel ── */}
-        <div className="flex-1 bg-[#111] overflow-y-auto p-8">
+        <div className="flex-1 bg-[#111] overflow-y-auto p-3 md:p-8">
           <div className="max-w-[794px] mx-auto shadow-2xl rounded-xl overflow-hidden">
             <InvoicePreview form={form} />
           </div>
