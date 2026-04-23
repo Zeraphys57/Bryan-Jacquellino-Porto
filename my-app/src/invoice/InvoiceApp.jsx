@@ -1,4 +1,6 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 // ── Ganti password di sini ──
 const SECRET = "bydev26";
@@ -14,11 +16,12 @@ const today = () => {
 const autoInvNum = () => {
   const d = new Date();
   const ym = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}`;
-  return `INV-${ym}-001`;
+  return `INV-${ym}-079`;
 };
 
 /* ───────── Print CSS (injected once) ───────── */
 const PRINT_STYLE = `
+* { cursor: auto !important; }
 @media print {
   @page { size: A4; margin: 0; }
   body { margin: 0 !important; }
@@ -29,13 +32,27 @@ const PRINT_STYLE = `
 
 /* ───────── Invoice Preview ───────── */
 const InvoicePreview = ({ form }) => {
-  const total   = form.services.reduce((s, r) => s + (parseFloat(r.price) || 0), 0);
-  const dp1     = total * 0.10;
-  const dp2     = total * 0.40;
-  const pelunasan = total * 0.50;
+  const total     = form.services.reduce((s, r) => s + (parseFloat(r.price) || 0), 0);
+  const dp1       = total * (form.pct1 / 100);
+  const dp2       = total * (form.pct2 / 100);
+  const pelunasan = total * (form.pct3 / 100);
 
   return (
-    <div style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", color: "#1e293b", background: "white", minHeight: "297mm" }}>
+    <div id="invoice-preview" style={{ position: "relative", fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", color: "#1e293b", background: "white", minHeight: "297mm" }}>
+
+      {/* LUNAS stamp */}
+      {form.lunas && (
+        <div style={{
+          position: "absolute", top: "45%", left: "50%",
+          transform: "translate(-50%, -50%) rotate(-28deg)",
+          border: "5px solid rgba(220,38,38,0.6)",
+          borderRadius: 6, padding: "10px 36px",
+          fontSize: 52, fontWeight: 900,
+          color: "rgba(220,38,38,0.6)",
+          letterSpacing: 10, pointerEvents: "none", zIndex: 10,
+          whiteSpace: "nowrap", fontFamily: "serif",
+        }}>LUNAS</div>
+      )}
 
       {/* Header */}
       <div style={{ background: "#0f172a", color: "white", padding: "36px 52px", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
@@ -47,7 +64,7 @@ const InvoicePreview = ({ form }) => {
           <div style={{ color: "white", fontWeight: 600, fontSize: 14 }}>Bryan Jacquellino</div>
           <div>Independent Tech Developer</div>
           <div>Yogyakarta, Indonesia</div>
-          <div>bryanjacquellino5757@gmail.com</div>
+          <div>jacquellinobryan@gmail.com</div>
         </div>
       </div>
 
@@ -113,7 +130,7 @@ const InvoicePreview = ({ form }) => {
           {/* Step 1 */}
           <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", marginTop: 12, background: "#eff6ff", borderRadius: 8, borderLeft: "4px solid #3b82f6" }}>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: "#1d4ed8" }}>Step 1 — Tanda Jadi (10%)</div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: "#1d4ed8" }}>Step 1 — Tanda Jadi ({form.pct1}%)</div>
               <div style={{ fontSize: 10, color: "#3b82f6", marginTop: 2 }}>Dibayar sebelum mulai · Jatuh tempo {form.dueDate}</div>
             </div>
             <div style={{ fontWeight: 700, fontSize: 14, color: "#1d4ed8", alignSelf: "center", whiteSpace: "nowrap" }}>{formatIDR(dp1)}</div>
@@ -122,7 +139,7 @@ const InvoicePreview = ({ form }) => {
           {/* Step 2 */}
           <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", marginTop: 8, background: "#faf5ff", borderRadius: 8, borderLeft: "4px solid #8b5cf6" }}>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: "#6d28d9" }}>Step 2 — Termin (40%)</div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: "#6d28d9" }}>Step 2 — Termin ({form.pct2}%)</div>
               <div style={{ fontSize: 10, color: "#8b5cf6", marginTop: 2 }}>Dibayar setelah mockup / design disetujui</div>
             </div>
             <div style={{ fontWeight: 700, fontSize: 14, color: "#6d28d9", alignSelf: "center", whiteSpace: "nowrap" }}>{formatIDR(dp2)}</div>
@@ -131,7 +148,7 @@ const InvoicePreview = ({ form }) => {
           {/* Step 3 */}
           <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", marginTop: 8, background: "#f0fdf4", borderRadius: 8, borderLeft: "4px solid #22c55e" }}>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: "#15803d" }}>Step 3 — Pelunasan (50%)</div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: "#15803d" }}>Step 3 — Pelunasan ({form.pct3}%)</div>
               <div style={{ fontSize: 10, color: "#22c55e", marginTop: 2 }}>Dibayar setelah website selesai & diserahkan</div>
             </div>
             <div style={{ fontWeight: 700, fontSize: 14, color: "#15803d", alignSelf: "center", whiteSpace: "nowrap" }}>{formatIDR(pelunasan)}</div>
@@ -149,7 +166,7 @@ const InvoicePreview = ({ form }) => {
 
         {/* Footer */}
         <div style={{ marginTop: 40, borderTop: "1px solid #f1f5f9", paddingTop: 16, fontSize: 10, color: "#94a3b8", textAlign: "center" }}>
-          Terima kasih atas kepercayaan Anda · Bryan Jacquellino · bryanjacquellino5757@gmail.com
+          Terima kasih atas kepercayaan Anda · Bryan Jacquellino · jacquellinobryan@gmail.com
         </div>
       </div>
     </div>
@@ -173,6 +190,10 @@ export default function InvoiceApp() {
     bankNumber:   "",
     bankOwner:    "Bryan Jacquellino",
     note:         "*Proyek mulai dikerjakan (H+1) setelah pembayaran tanda jadi diterima.",
+    pct1: 10,
+    pct2: 40,
+    pct3: 50,
+    lunas: false,
     services: [
       { name: "", desc: "", price: "" },
     ],
@@ -201,7 +222,26 @@ export default function InvoiceApp() {
   const addService    = () => setForm(f => ({ ...f, services: [...f.services, { name: "", desc: "", price: "" }] }));
   const removeService = (i) => setForm(f => ({ ...f, services: f.services.filter((_, j) => j !== i) }));
 
-  const print = () => window.print();
+  const downloadPDF = async () => {
+    const el = document.getElementById("invoice-preview");
+    const canvas = await html2canvas(el, { scale: 2, useCORS: true, backgroundColor: "#ffffff" });
+    const imgData = canvas.toDataURL("image/jpeg", 0.98);
+    const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
+    const imgH = (canvas.height * pageW) / canvas.width;
+    if (imgH <= pageH) {
+      pdf.addImage(imgData, "JPEG", 0, 0, pageW, imgH);
+    } else {
+      let y = 0;
+      while (y < imgH) {
+        if (y > 0) pdf.addPage();
+        pdf.addImage(imgData, "JPEG", 0, -y, pageW, imgH);
+        y += pageH;
+      }
+    }
+    pdf.save(`${form.invNum}.pdf`);
+  };
 
   /* ── Password gate ── */
   if (!auth) return (
@@ -247,10 +287,10 @@ export default function InvoiceApp() {
             className="px-3 py-1.5 text-xs text-gray-500 hover:text-white transition-colors">
             Keluar
           </button>
-          <button onClick={print}
+          <button onClick={downloadPDF}
             className="px-4 py-1.5 text-xs bg-violet-600 hover:bg-violet-500
               rounded-lg font-medium transition-colors">
-            ↓ Simpan PDF
+            ↓ Download PDF
           </button>
         </div>
       </div>
@@ -359,6 +399,61 @@ export default function InvoiceApp() {
             </div>
           </section>
 
+          {/* Payment steps */}
+          <section>
+            <h2 className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-3">Pembayaran (%)</h2>
+            <div className="space-y-2">
+              {[
+                { key: "pct1", label: "Step 1 — Tanda Jadi" },
+                { key: "pct2", label: "Step 2 — Termin" },
+                { key: "pct3", label: "Step 3 — Pelunasan" },
+              ].map(f => {
+                const total = form.services.reduce((s, r) => s + (parseFloat(r.price) || 0), 0);
+                const amt   = total * (form[f.key] / 100);
+                return (
+                  <div key={f.key} className="flex items-center gap-2">
+                    <div className="flex-1">
+                      <label className="text-[11px] text-gray-500 mb-1 block">{f.label}</label>
+                      <div className="relative">
+                        <input
+                          type="number" min="0" max="100"
+                          value={form[f.key]}
+                          onChange={e => set(f.key, parseFloat(e.target.value) || 0)}
+                          className="w-full pr-8 pl-3 py-2 text-sm bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:border-violet-500 transition-colors"
+                        />
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">%</span>
+                      </div>
+                    </div>
+                    <div className="shrink-0 pt-5 text-xs text-gray-500 font-mono min-w-[90px] text-right">
+                      {total ? formatIDR(amt) : "—"}
+                    </div>
+                  </div>
+                );
+              })}
+              {(() => {
+                const sum = form.pct1 + form.pct2 + form.pct3;
+                return sum !== 100
+                  ? <p className="text-[11px] text-amber-400">⚠ Total {sum}% — sebaiknya 100%</p>
+                  : <p className="text-[11px] text-green-500">✓ Total 100%</p>;
+              })()}
+            </div>
+          </section>
+
+          {/* LUNAS toggle */}
+          <section>
+            <h2 className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-3">Status</h2>
+            <button
+              onClick={() => set("lunas", !form.lunas)}
+              className={`w-full py-2.5 text-sm font-semibold rounded-xl border transition-all ${
+                form.lunas
+                  ? "bg-red-500/15 border-red-500/40 text-red-400"
+                  : "bg-white/[0.03] border-white/[0.07] text-gray-500 hover:border-white/20 hover:text-gray-400"
+              }`}
+            >
+              {form.lunas ? "LUNAS — Stempel Aktif" : "Tandai LUNAS"}
+            </button>
+          </section>
+
           {/* Note */}
           <section>
             <h2 className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-3">Catatan</h2>
@@ -374,9 +469,9 @@ export default function InvoiceApp() {
               <section className="bg-white/[0.03] border border-white/[0.07] rounded-xl p-4 space-y-2">
                 <p className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">Ringkasan Pembayaran</p>
                 <div className="flex justify-between text-sm"><span className="text-gray-400">Total</span><span>{formatIDR(total)}</span></div>
-                <div className="flex justify-between text-sm text-blue-400"><span>Step 1 · 10% Tanda Jadi</span><span>{formatIDR(total * 0.1)}</span></div>
-                <div className="flex justify-between text-sm text-violet-400"><span>Step 2 · 40% Termin</span><span>{formatIDR(total * 0.4)}</span></div>
-                <div className="flex justify-between text-sm text-green-400"><span>Step 3 · 50% Pelunasan</span><span>{formatIDR(total * 0.5)}</span></div>
+                <div className="flex justify-between text-sm text-blue-400"><span>Step 1 · {form.pct1}% Tanda Jadi</span><span>{formatIDR(total * form.pct1 / 100)}</span></div>
+                <div className="flex justify-between text-sm text-violet-400"><span>Step 2 · {form.pct2}% Termin</span><span>{formatIDR(total * form.pct2 / 100)}</span></div>
+                <div className="flex justify-between text-sm text-green-400"><span>Step 3 · {form.pct3}% Pelunasan</span><span>{formatIDR(total * form.pct3 / 100)}</span></div>
               </section>
             );
           })()}
@@ -390,10 +485,6 @@ export default function InvoiceApp() {
         </div>
       </div>
 
-      {/* Print area — only shown during print */}
-      <div className="print-area hidden">
-        <InvoicePreview form={form} />
-      </div>
     </div>
   );
 }
