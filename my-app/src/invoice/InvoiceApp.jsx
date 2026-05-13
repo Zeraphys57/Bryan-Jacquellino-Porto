@@ -3,7 +3,7 @@ import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 
 // ── Ganti password di sini ──
-const SECRET = "bydev26";
+const SECRET = "Valencia57%&";
 
 const formatIDR = (n) =>
   "Rp " + Math.round(n).toLocaleString("id-ID");
@@ -164,6 +164,16 @@ const InvoicePreview = ({ form, id }) => {
           {form.note && <div style={{ marginTop: 8, color: "#64748b", fontStyle: "italic" }}>{form.note}</div>}
         </div>
 
+        {/* Portfolio reference */}
+        {form.portfolio && form.portfolio.filter(Boolean).length > 0 && (
+          <div style={{ marginTop: 24, background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 10, padding: "16px 24px", fontSize: 11, lineHeight: 2 }}>
+            <div style={{ fontWeight: 700, fontSize: 12, marginBottom: 6, color: "#0f172a" }}>Referensi Karya</div>
+            {form.portfolio.filter(Boolean).map((url, i) => (
+              <div key={i} style={{ color: "#3b82f6" }}>🔗 {url}</div>
+            ))}
+          </div>
+        )}
+
         {/* Footer */}
         <div style={{ marginTop: 40, borderTop: "1px solid #f1f5f9", paddingTop: 16, fontSize: 10, color: "#94a3b8", textAlign: "center" }}>
           Terima kasih atas kepercayaan Anda · Bryan Jacquellino · jacquellinobryan@gmail.com
@@ -198,6 +208,7 @@ export default function InvoiceApp() {
     services: [
       { name: "", desc: "", price: "" },
     ],
+    portfolio: ["sumberanekaplastikdankemasan.com"],
   });
 
   const login = (e) => {
@@ -460,6 +471,32 @@ export default function InvoiceApp() {
                   ? <p className="text-[11px] text-amber-400">⚠ Total {sum}% — sebaiknya 100%</p>
                   : <p className="text-[11px] text-green-500">✓ Total 100%</p>;
               })()}
+            </div>
+          </section>
+
+          {/* Portfolio */}
+          <section>
+            <h2 className="text-xs font-mono text-gray-500 tracking-widest uppercase mb-3">Referensi Karya</h2>
+            <div className="space-y-2">
+              {form.portfolio.map((url, i) => (
+                <div key={i} className="flex gap-2 items-center">
+                  <input
+                    value={url}
+                    onChange={e => setForm(f => { const p = [...f.portfolio]; p[i] = e.target.value; return { ...f, portfolio: p }; })}
+                    placeholder="contoh.com"
+                    className="flex-1 px-3 py-2 text-sm bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-700 focus:outline-none focus:border-violet-500 transition-colors font-mono"
+                  />
+                  <button onClick={() => setForm(f => ({ ...f, portfolio: f.portfolio.filter((_, j) => j !== i) }))}
+                    className="text-[11px] text-red-500/70 hover:text-red-400 transition-colors shrink-0">
+                    Hapus
+                  </button>
+                </div>
+              ))}
+              <button onClick={() => setForm(f => ({ ...f, portfolio: [...f.portfolio, ""] }))}
+                className="w-full py-2 text-xs text-violet-400 border border-dashed border-violet-500/30
+                  rounded-xl hover:border-violet-500/60 hover:bg-violet-500/5 transition-all">
+                + Tambah URL
+              </button>
             </div>
           </section>
 

@@ -176,6 +176,57 @@ const PatternLegal = () => (
   </svg>
 );
 
+/* ── Plastik & Kemasan — Company Profile / Catalog ── */
+const PatternPlastik = () => (
+  <svg viewBox="0 0 480 280" preserveAspectRatio="xMidYMid slice" fill="none"
+    xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 w-full h-full">
+    <Chrome />
+
+    {/* Nav */}
+    <rect x="16" y="42" width="448" height="26" fill="white" fillOpacity="0.07"/>
+    <rect x="28"  y="49" width="64" height="8"  rx="3" fill="white" fillOpacity="0.5"/>
+    <rect x="180" y="51" width="28" height="6"  rx="2" fill="white" fillOpacity="0.2"/>
+    <rect x="218" y="51" width="28" height="6"  rx="2" fill="white" fillOpacity="0.2"/>
+    <rect x="256" y="51" width="28" height="6"  rx="2" fill="white" fillOpacity="0.2"/>
+    <rect x="294" y="51" width="28" height="6"  rx="2" fill="white" fillOpacity="0.2"/>
+    <rect x="390" y="48" width="60" height="12" rx="6" fill="white" fillOpacity="0.28"/>
+
+    {/* Hero banner */}
+    <rect x="16" y="68" width="448" height="80" fill="white" fillOpacity="0.05"/>
+    <rect x="36" y="80"  width="140" height="12" rx="3" fill="white" fillOpacity="0.5"/>
+    <rect x="36" y="98"  width="110" height="7"  rx="2" fill="white" fillOpacity="0.25"/>
+    <rect x="36" y="110" width="80"  height="7"  rx="2" fill="white" fillOpacity="0.18"/>
+    <rect x="36" y="124" width="66"  height="18" rx="9" fill="white" fillOpacity="0.3"/>
+    {/* Right — box/package illustration */}
+    <rect x="310" y="74" width="60" height="50" rx="6"  fill="white" fillOpacity="0.14"/>
+    <rect x="316" y="80" width="48" height="36" rx="4"  fill="white" fillOpacity="0.09"/>
+    <rect x="370" y="90" width="42" height="42" rx="6"  fill="white" fillOpacity="0.11"/>
+
+    {/* Divider */}
+    <line x1="28" y1="154" x2="452" y2="154" stroke="white" strokeOpacity="0.1" strokeWidth="1"/>
+
+    {/* Section label */}
+    <rect x="28" y="160" width="72" height="7" rx="2" fill="white" fillOpacity="0.35"/>
+
+    {/* Product catalog grid — 5 cards */}
+    {[0,1,2,3,4].map(i => (
+      <g key={i}>
+        <rect x={28 + i*86} y="174" width="74" height="80" rx="7"
+          fill="white" fillOpacity={0.12 - i*0.015}/>
+        <rect x={36 + i*86} y="180" width="58" height="44" rx="4"
+          fill="white" fillOpacity="0.08"/>
+        {/* Package icon */}
+        <rect x={50 + i*86} y="192" width="30" height="24" rx="3"
+          fill="white" fillOpacity="0.12"/>
+        <rect x={45 + i*86} y="230" width="44" height="5" rx="2"
+          fill="white" fillOpacity={0.3 - i*0.04}/>
+        <rect x={50 + i*86} y="239" width="32" height="4" rx="2"
+          fill="white" fillOpacity={0.18 - i*0.03}/>
+      </g>
+    ))}
+  </svg>
+);
+
 /* ── AI — Dashboard ── */
 const PatternAI = () => (
   <svg viewBox="0 0 480 280" preserveAspectRatio="xMidYMid slice" fill="none"
@@ -233,10 +284,11 @@ const PatternAI = () => (
 );
 
 const PATTERNS = {
-  fashion: <PatternFashion />,
-  clinic:  <PatternClinic />,
-  legal:   <PatternLegal />,
-  ai:      <PatternAI />,
+  fashion:  <PatternFashion />,
+  clinic:   <PatternClinic />,
+  legal:    <PatternLegal />,
+  ai:       <PatternAI />,
+  plastik:  <PatternPlastik />,
 };
 
 const projects = [
@@ -272,6 +324,16 @@ const projects = [
   },
   {
     id: 4,
+    title: "Sumber Aneka Plastik & Kemasan",
+    category: "Company Profile / Catalog",
+    description: "Company profile and product catalog for a plastic packaging supplier — showcasing product lines, company info, and contact flow.",
+    tags: ["WordPress", "Elementor"],
+    gradient: "from-emerald-500 to-teal-500",
+    link: "https://sumberanekaplastikdankemasan.com",
+    pattern: "plastik",
+  },
+  {
+    id: 5,
     title: "Tumbuh AI",
     category: "AI Automation Platform",
     description: "AI-powered business automation platform for Indonesian SMEs — converts WhatsApp & Instagram conversations into automated sales pipelines with RAG-based intelligence.",
