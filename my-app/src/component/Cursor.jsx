@@ -55,8 +55,8 @@ const Cursor = () => {
 
     const tick = () => {
       prevLX = lerpX; prevLY = lerpY;
-      lerpX += (mouseX - lerpX) * 0.18;
-      lerpY += (mouseY - lerpY) * 0.18;
+      lerpX += (mouseX - lerpX) * 0.28;
+      lerpY += (mouseY - lerpY) * 0.28;
 
       const vx    = lerpX - prevLX;
       const vy    = lerpY - prevLY;
