@@ -144,12 +144,12 @@ export const translations = {
           description: "A premium aesthetic clinic landing page with an editorial feel, a service catalog, gallery, and consultation booking.",
         },
         {
-          category: "Company Profile / Catalog",
-          description: "A company profile and product catalog for a plastic packaging supplier, covering product lines, company story, and contact.",
-        },
-        {
           category: "AI Automation Platform",
           description: "An AI automation platform for Indonesian SMEs that turns WhatsApp and Instagram chats into a self-running sales pipeline.",
+        },
+        {
+          category: "Company Profile / Catalog",
+          description: "A company profile and product catalog for a plastic packaging supplier, covering product lines, company story, and contact.",
         },
         {
           category: "Competitive Programming Contest",
@@ -318,12 +318,12 @@ export const translations = {
           description: "充滿編輯質感的高端醫美診所官網，涵蓋療程介紹、作品藝廊與諮詢預約。",
         },
         {
-          category: "公司形象 / 型錄",
-          description: "塑膠包裝供應商的公司形象與產品型錄網站，涵蓋產品線、公司故事與聯絡方式。",
-        },
-        {
           category: "AI 自動化平台",
           description: "為印尼中小企業打造的 AI 自動化平台，將 WhatsApp 與 Instagram 對話轉化為自動運轉的銷售管線。",
+        },
+        {
+          category: "公司形象 / 型錄",
+          description: "塑膠包裝供應商的公司形象與產品型錄網站，涵蓋產品線、公司故事與聯絡方式。",
         },
         {
           category: "競技程式設計賽事",
@@ -492,12 +492,12 @@ export const translations = {
           description: "Landing page klinik estetika premium dengan nuansa editorial, katalog layanan, galeri, dan booking konsultasi.",
         },
         {
-          category: "Company Profile / Katalog",
-          description: "Company profile dan katalog produk untuk pemasok kemasan plastik, mencakup lini produk, kisah perusahaan, dan kontak.",
-        },
-        {
           category: "Platform Otomatisasi AI",
           description: "Platform otomatisasi AI untuk UKM Indonesia yang mengubah chat WhatsApp dan Instagram menjadi pipeline penjualan yang berjalan sendiri.",
+        },
+        {
+          category: "Company Profile / Katalog",
+          description: "Company profile dan katalog produk untuk pemasok kemasan plastik, mencakup lini produk, kisah perusahaan, dan kontak.",
         },
         {
           category: "Kontes Competitive Programming",
