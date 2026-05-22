@@ -90,6 +90,17 @@ body, #root {
   to   { opacity: 1; }
 }
 
+/* ─── Hero — masked line reveal ─── */
+@keyframes hero-rise {
+  from { transform: translateY(110%); }
+  to   { transform: translateY(0); }
+}
+.hero-line { animation: hero-rise 0.9s cubic-bezier(0.23, 1, 0.32, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-line { animation: none; }
+}
+
 /* ─── Timeline dot ─── */
 @keyframes dot-pop {
   0%   { transform: scale(0); opacity: 0; }
