@@ -95,21 +95,12 @@ const Services = () => {
                 }}
                 data-delay={`${i * 80}ms`}
               >
-                {/* Featured: faint gradient wash */}
-                {s.featured && (
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-0 -z-10"
-                    style={{ background: "linear-gradient(155deg, var(--accent-soft), transparent 55%)" }}
-                  />
-                )}
-
-                {/* Top accent rail — draws across on hover, always-on when featured */}
+                {/* Accent background wash — fades in on hover, always-on when featured */}
                 <span
                   aria-hidden="true"
-                  className={`absolute top-0 left-0 h-[3px] bg-[var(--accent)]
-                    transition-all duration-300 ease-out
-                    ${s.featured ? "w-full" : "w-0 group-hover:w-full"}`}
+                  className={`absolute inset-0 pointer-events-none transition-opacity duration-300
+                    ${s.featured ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+                  style={{ background: "linear-gradient(150deg, var(--accent-glow), transparent 75%)" }}
                 />
 
                 {/* Corner glow */}
@@ -120,22 +111,13 @@ const Services = () => {
                     ${s.featured ? "opacity-60" : "opacity-0 group-hover:opacity-100"}`}
                 />
 
-                {/* Oversized ghost numeral */}
-                <span
-                  aria-hidden="true"
-                  className="absolute -top-5 -right-1 text-[6.5rem] font-black leading-none
-                    select-none pointer-events-none text-[var(--accent)]
-                    opacity-[0.08] group-hover:opacity-[0.16] transition-opacity duration-300"
-                >
-                  {s.num}
-                </span>
-
                 {/* Icon */}
                 <div
                   className="relative z-10 w-12 h-12 rounded-xl flex items-center justify-center
                     text-[var(--accent)] bg-[var(--accent-soft)]
-                    transition-transform duration-300 ease-out
-                    group-hover:scale-110 group-hover:rotate-3"
+                    transition-[transform,background-color] duration-300 ease-out
+                    group-hover:scale-110 group-hover:rotate-3
+                    group-hover:bg-[var(--accent-glow)]"
                 >
                   {s.icon}
                 </div>
