@@ -175,6 +175,8 @@ export const translations = {
       ],
       footerNote: "* The listed cost is the Development Fee. It does not include third-party operational costs (domain, Supabase Pro, AI API quota).",
       shortcut: "ESC to close · Alt+P to toggle",
+      shortcutAUS: "ESC to close · Alt+Q to toggle",
+      estimateNote: "Estimated pricing only. The final quote depends on project scope and requirements.",
     },
   },
 
@@ -347,6 +349,8 @@ export const translations = {
       ],
       footerNote: "* 上列費用為開發費（Development Fee），不含第三方營運成本（網域、Supabase Pro、AI API 額度）。",
       shortcut: "ESC 關閉 · Alt+P 開關",
+      shortcutAUS: "ESC 關閉 · Alt+Q 開關",
+      estimateNote: "僅為估算價格，最終報價視專案範圍與需求而定。",
     },
   },
 };

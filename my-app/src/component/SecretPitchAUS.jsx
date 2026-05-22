@@ -1,0 +1,209 @@
+import { useState, useEffect } from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
+
+const TIERS = [
+  { range: [0, 1], label: 'Starter',    color: '#8b5cf6', bg: 'rgba(139,92,246,0.08)' },
+  { range: [2, 3], label: 'Pro',         color: '#0d9488', bg: 'rgba(13,148,136,0.08)' },
+  { range: [4, 5], label: 'AI',          color: '#3b82f6', bg: 'rgba(59,130,246,0.08)' },
+  { range: [6, 6], label: 'Enterprise',  color: '#f59e0b', bg: 'rgba(245,158,11,0.08)' },
+];
+
+/* Australian estimate ladder — competitive offshore positioning,
+   priced below local AU freelancers/agencies. Indicative only. */
+const PRICES_AUD = [
+  'A$700 - A$1,000',
+  'A$1,400',
+  'A$2,000',
+  'A$3,500 - A$5,000',
+  'A$3,200',
+  'A$4,000 - A$4,500',
+  'A$8,000 - A$12,000',
+];
+
+const getTier = (i) => TIERS.find(t => i >= t.range[0] && i <= t.range[1]);
+
+const SecretPitchAUS = () => {
+  const { t } = useLanguage();
+  const [isOpen, setIsOpen]   = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.altKey && e.key.toLowerCase() === 'q') setIsOpen(prev => !prev);
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) requestAnimationFrame(() => setVisible(true));
+    else setVisible(false);
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  const pricingData = t.pitch.items.map((it, i) => ({
+    name: it.name,
+    desc: it.desc,
+    price: PRICES_AUD[i],
+  }));
+
+  return (
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center px-4"
+      style={{
+        background: 'rgba(0,0,0,0.75)',
+        backdropFilter: 'blur(18px)',
+        opacity: visible ? 1 : 0,
+        transition: 'opacity 0.25s ease',
+      }}
+      onClick={e => e.target === e.currentTarget && setIsOpen(false)}
+    >
+      <div
+        className="relative w-full max-w-3xl"
+        style={{
+          transform: visible ? 'translateY(0) scale(1)' : 'translateY(24px) scale(0.97)',
+          transition: 'transform 0.3s cubic-bezier(0.23,1,0.32,1)',
+        }}
+      >
+        {/* Glow */}
+        <div style={{
+          position: 'absolute', inset: -1, borderRadius: 20,
+          background: 'linear-gradient(135deg, rgba(59,130,246,0.3), rgba(13,148,136,0.2))',
+          filter: 'blur(1px)', zIndex: -1,
+        }}/>
+
+        {/* Card */}
+        <div style={{
+          background: 'rgba(9,9,11,0.96)',
+          border: '1px solid rgba(255,255,255,0.08)',
+          borderRadius: 20,
+          overflow: 'hidden',
+        }}>
+
+          {/* Header */}
+          <div style={{ padding: '28px 32px 24px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+              <div>
+                <p style={{ fontSize: 10, fontFamily: 'monospace', color: '#60a5fa', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 6 }}>
+                  {t.pitch.devTag}
+                </p>
+                <h2 style={{ fontSize: 22, fontWeight: 300, color: 'white', letterSpacing: '-0.02em', margin: 0 }}>
+                  {t.pitch.title}
+                  <span style={{
+                    marginLeft: 10, fontSize: 10, padding: '3px 8px',
+                    borderRadius: 6, background: 'rgba(59,130,246,0.16)',
+                    color: '#60a5fa', fontFamily: 'monospace',
+                    letterSpacing: '0.12em', verticalAlign: 'middle',
+                  }}>AU · AUD</span>
+                </h2>
+                <p style={{ fontSize: 12, color: '#64748b', marginTop: 4 }}>
+                  {t.pitch.subtitle}
+                </p>
+                <p style={{ fontSize: 11, color: '#fbbf24', marginTop: 8, display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#fbbf24', display: 'inline-block', flexShrink: 0 }} />
+                  {t.pitch.estimateNote}
+                </p>
+              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                style={{
+                  width: 32, height: 32, borderRadius: '50%',
+                  background: 'rgba(255,255,255,0.06)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  color: '#64748b', cursor: 'pointer',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 14, transition: 'all 0.15s', flexShrink: 0,
+                }}
+                onMouseEnter={e => { e.target.style.background = 'rgba(255,255,255,0.1)'; e.target.style.color = 'white'; }}
+                onMouseLeave={e => { e.target.style.background = 'rgba(255,255,255,0.06)'; e.target.style.color = '#64748b'; }}
+              >✕</button>
+            </div>
+
+            {/* Tier legend */}
+            <div style={{ display: 'flex', gap: 12, marginTop: 16 }}>
+              {TIERS.map(tier => (
+                <div key={tier.label} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                  <div style={{ width: 6, height: 6, borderRadius: '50%', background: tier.color }}/>
+                  <span style={{ fontSize: 10, color: '#64748b', fontFamily: 'monospace' }}>{tier.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Pricing rows */}
+          <div style={{ padding: '8px 0' }}>
+            {pricingData.map((item, i) => {
+              const tier = getTier(i);
+              const isEnterprise = i === 6;
+              return (
+                <div key={i} style={{
+                  display: 'flex', alignItems: 'center',
+                  padding: '14px 32px',
+                  borderLeft: `3px solid ${tier.color}`,
+                  marginLeft: 0,
+                  background: isEnterprise ? 'rgba(245,158,11,0.05)' : 'transparent',
+                  transition: 'background 0.15s',
+                  gap: 16,
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.background = tier.bg; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = isEnterprise ? 'rgba(245,158,11,0.05)' : 'transparent'; }}
+                >
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{
+                      fontSize: isEnterprise ? 13 : 12,
+                      fontWeight: isEnterprise ? 600 : 500,
+                      color: isEnterprise ? '#f59e0b' : 'white',
+                      marginBottom: 2,
+                    }}>
+                      {item.name}
+                      {isEnterprise && (
+                        <span style={{
+                          marginLeft: 8, fontSize: 9, padding: '2px 6px',
+                          borderRadius: 4, background: 'rgba(245,158,11,0.15)',
+                          color: '#f59e0b', fontFamily: 'monospace',
+                          letterSpacing: '0.1em', verticalAlign: 'middle',
+                        }}>TOP</span>
+                      )}
+                    </div>
+                    <div style={{ fontSize: 11, color: '#475569' }}>{item.desc}</div>
+                  </div>
+                  <div style={{
+                    fontSize: isEnterprise ? 14 : 13,
+                    fontWeight: 700,
+                    color: tier.color,
+                    whiteSpace: 'nowrap',
+                    fontFamily: 'monospace',
+                  }}>
+                    ~{item.price}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Footer note */}
+          <div style={{
+            margin: '0 24px 24px',
+            padding: '12px 16px',
+            borderRadius: 10,
+            background: 'rgba(245,158,11,0.06)',
+            border: '1px solid rgba(245,158,11,0.12)',
+          }}>
+            <p style={{ fontSize: 10, color: 'rgba(253,230,138,0.7)', textAlign: 'center', margin: 0, lineHeight: 1.6 }}>
+              {t.pitch.footerNote}
+            </p>
+          </div>
+        </div>
+
+        {/* Shortcut hint */}
+        <p style={{ textAlign: 'center', marginTop: 12, fontSize: 10, color: '#334155', fontFamily: 'monospace' }}>
+          {t.pitch.shortcutAUS}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default SecretPitchAUS;

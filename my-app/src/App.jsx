@@ -11,6 +11,7 @@ import Process from './component/Process';
 import Footer from './component/Footer';
 
 import SecretPitch from './component/SecretPitch';
+import SecretPitchAUS from './component/SecretPitchAUS';
 import { useLanguage } from './i18n/LanguageContext';
 
 function App() {
@@ -352,6 +353,7 @@ function App() {
           <Footer />
 
           <SecretPitch />
+          <SecretPitchAUS />
         </div>
       </div>
     </>
