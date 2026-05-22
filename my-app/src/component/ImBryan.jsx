@@ -1,14 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../i18n/LanguageContext";
 
-/* Tech stack grouped by domain — easier to scan than one flat list */
-const TECH_GROUPS = [
-  { group: "Frontend",  items: ["React", "Tailwind CSS", "GSAP", "Three.js"] },
-  { group: "Backend",   items: ["Node.js", "PostgreSQL"] },
-  { group: "AI",        items: ["LLM API", "RAG"] },
-  { group: "Languages", items: ["Python", "Java", "C"] },
-  { group: "Tooling",   items: ["Vite", "Figma"] },
-];
+/* Tech stack — kept understated; visitors care about outcomes, not tooling */
+const TECH = ["React", "Tailwind CSS", "GSAP", "Three.js", "Node.js", "PostgreSQL", "LLM API", "RAG", "Python", "Java", "C", "Vite", "Figma"];
 
 const LINES = [
   { prompt: true,  text: "bryan --info" },
@@ -220,39 +214,14 @@ const ImBryan = () => {
               </p>
             </div>
 
-            {/* Tech stack — grouped by domain */}
-            <div className="scroll-reveal" data-delay="290ms">
-              <p className="text-xs font-mono text-gray-400 dark:text-gray-600 tracking-widest uppercase mb-4">
+            {/* Tech stack — understated; one quiet line, not a centerpiece */}
+            <div className="scroll-reveal flex flex-wrap items-baseline gap-x-2.5 gap-y-1 pt-1" data-delay="290ms">
+              <span className="text-[10px] font-mono text-gray-400 dark:text-gray-600 uppercase tracking-widest shrink-0">
                 {t.bio.techStack}
-              </p>
-              <div className="flex flex-col gap-3.5">
-                {TECH_GROUPS.map(({ group, items }) => (
-                  <div
-                    key={group}
-                    className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4"
-                  >
-                    <span className="text-[10px] font-mono text-gray-400 dark:text-gray-600 uppercase tracking-wider shrink-0 sm:w-20 sm:text-right">
-                      {group}
-                    </span>
-                    <div className="flex flex-wrap gap-2">
-                      {items.map((name) => (
-                        <span
-                          key={name}
-                          className="px-3 py-1 text-xs font-mono rounded-full
-                            bg-gray-100 dark:bg-white/5
-                            border border-gray-200 dark:border-white/8
-                            text-gray-700 dark:text-gray-300
-                            hover:border-violet-400 dark:hover:border-violet-500
-                            hover:text-violet-600 dark:hover:text-violet-400
-                            transition-colors duration-150"
-                        >
-                          {name}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              </span>
+              <span className="text-[11px] font-mono text-gray-400 dark:text-gray-500 leading-relaxed">
+                {TECH.join("  ·  ")}
+              </span>
             </div>
           </div>
         </div>
