@@ -84,6 +84,12 @@ body, #root {
   .proj-rise { animation-duration: 0.01ms; animation-delay: 0ms !important; }
 }
 
+/* ─── About — terminal line reveal ─── */
+@keyframes term-line {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 /* ─── Timeline dot ─── */
 @keyframes dot-pop {
   0%   { transform: scale(0); opacity: 0; }
