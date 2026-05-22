@@ -45,6 +45,7 @@ const Hero = () => {
   const { t } = useLanguage();
   return (
     <main
+      id="hero"
       className="relative flex flex-col justify-center min-h-screen px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48"
       aria-label={t.sections.hero}
     >

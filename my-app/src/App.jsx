@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './index.css';
 import Header from './component/Header';
 import Hero from './component/Hero';
+import BackToTop from './component/BackToTop';
 import Cursor from './component/Cursor';
 import InteractiveDots from './component/InteractiveDots';
 import ImBryan from './component/ImBryan';
@@ -275,6 +276,8 @@ function App() {
           </section>
 
           <Footer />
+
+          <BackToTop />
 
           <SecretPitch />
           <SecretPitchAUS />
