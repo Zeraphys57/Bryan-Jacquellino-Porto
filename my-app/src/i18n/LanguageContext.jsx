@@ -4,7 +4,7 @@ import { translations } from "./translations";
 const LanguageContext = createContext(null);
 
 const STORAGE_KEY = "lang";
-const SUPPORTED = ["en", "zh"];
+const SUPPORTED = ["en", "zh", "id"];
 
 /* Loads the Traditional Chinese webfont once, only when needed. */
 const ensureChineseFont = () => {
@@ -25,7 +25,7 @@ export const LanguageProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, lang);
-    document.documentElement.lang = lang === "zh" ? "zh-TW" : "en";
+    document.documentElement.lang = lang === "zh" ? "zh-TW" : lang;
     if (lang === "zh") ensureChineseFont();
   }, [lang]);
 
@@ -34,7 +34,7 @@ export const LanguageProvider = ({ children }) => {
   }, []);
 
   const toggleLang = useCallback(() => {
-    setLangState((l) => (l === "en" ? "zh" : "en"));
+    setLangState((l) => SUPPORTED[(SUPPORTED.indexOf(l) + 1) % SUPPORTED.length]);
   }, []);
 
   const value = { lang, setLang, toggleLang, t: translations[lang] };

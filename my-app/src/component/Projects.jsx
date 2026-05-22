@@ -42,6 +42,7 @@ const projects = [
     shot: shotBashion,
     domain: "zeraphys57.github.io/Bashion",
     link: "https://zeraphys57.github.io/Bashion/",
+    locked: true,  // live screenshot shown, but Visit Site stays non-clickable
   },
   {
     id: 2,
@@ -109,6 +110,7 @@ const Projects = () => {
   const n = projects.length;
   const p = projects[current];
   const copy = t.projects.items[current];
+  const locked = Boolean(p.locked);  // Visit Site visible but non-clickable
 
   useEffect(() => {
     reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -280,7 +282,7 @@ const Projects = () => {
                   <span className="shrink-0 text-[11px] font-mono text-white/35 tabular-nums">
                     {String(current + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
                   </span>
-                  {isLive(p) && (
+                  {isLive(p) && !locked && (
                     <a
                       href={p.link} target="_blank" rel="noopener noreferrer"
                       aria-label={`${t.projects.openNewTab} — ${p.title}`}
@@ -296,9 +298,10 @@ const Projects = () => {
                 {/* Screenshot */}
                 {isLive(p) ? (
                   <a
-                    href={p.link} target="_blank" rel="noopener noreferrer"
-                    aria-label={`${t.projects.visitSite} — ${p.title}`}
-                    onClick={onShotClick}
+                    {...(locked
+                      ? {}
+                      : { href: p.link, target: "_blank", rel: "noopener noreferrer", onClick: onShotClick })}
+                    aria-label={locked ? p.title : `${t.projects.visitSite} — ${p.title}`}
                     className="group/shot relative block aspect-[16/10] overflow-hidden"
                     style={{ background: "linear-gradient(135deg, var(--accent), #18181b)" }}
                   >
@@ -406,10 +409,12 @@ const Projects = () => {
             </ul>
             {isLive(p) ? (
               <a
-                href={p.link} target="_blank" rel="noopener noreferrer"
-                className="group/cta inline-flex items-center gap-2 px-5 py-2.5 rounded-full
-                  text-sm font-medium text-white shadow-md
-                  transition-all duration-150 ease-out hover:-translate-y-0.5 active:scale-95"
+                {...(locked
+                  ? {}
+                  : { href: p.link, target: "_blank", rel: "noopener noreferrer" })}
+                className={`group/cta inline-flex items-center gap-2 px-5 py-2.5 rounded-full
+                  text-sm font-medium text-white shadow-md transition-all duration-150 ease-out
+                  ${locked ? "cursor-default" : "hover:-translate-y-0.5 active:scale-95"}`}
                 style={{ backgroundColor: "var(--accent)" }}
               >
                 {t.projects.visitSite}

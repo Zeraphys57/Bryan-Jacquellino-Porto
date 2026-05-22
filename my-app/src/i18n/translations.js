@@ -1,6 +1,6 @@
 /* ──────────────────────────────────────────────────────────────
    Site-wide copy for every language.
-   Languages: en (English) · zh (Traditional Chinese, Taiwan)
+   Languages: en (English) · zh (Traditional Chinese, Taiwan) · id (Indonesian)
    Non-translatable values (brand names, tech tags, prices, icons)
    stay in their components.
 ─────────────────────────────────────────────────────────────── */
@@ -351,6 +351,180 @@ export const translations = {
       shortcut: "ESC 關閉 · Alt+P 開關",
       shortcutAUS: "ESC 關閉 · Alt+Q 開關",
       estimateNote: "僅為估算價格，最終報價視專案範圍與需求而定。",
+    },
+  },
+
+  id: {
+    nav: {
+      about: "Tentang",
+      services: "Layanan",
+      projects: "Proyek",
+      process: "Proses",
+    },
+    header: {
+      getInTouch: "Hubungi saya ↗",
+      switchLang: "Ganti bahasa",
+      toggleTheme: "Ganti mode gelap",
+      toggleMenu: "Buka/tutup menu",
+    },
+    sections: {
+      hero: "Hero",
+      bio: "Tentang Saya",
+      services: "Layanan",
+      education: "Lini Masa Pendidikan",
+      projects: "Proyek Pilihan",
+      process: "Proses Kerja",
+      cta: "Ajakan Bertindak",
+    },
+    hero: {
+      eyebrow: "Tersedia untuk freelance",
+      tagline: "Web developer freelance yang membangun website cepat dan elok, dari desain hingga deployment.",
+      viewWork: "Lihat Karya",
+      getInTouch: "Hubungi Saya",
+      scroll: "gulir",
+      stats: [
+        { n: "50+", label: "Proyek" },
+        { n: "7 Tahun", label: "Pengalaman" },
+        { n: "Pendidikan", label: "IT · Taiwan" },
+        { n: "Terbuka", label: "Untuk freelance" },
+      ],
+    },
+    cta: {
+      eyebrow: "Ayo berkolaborasi",
+      headingLine1: "Punya proyek",
+      headingLine2: "yang ingin diwujudkan?",
+      body: "Siap membantu dari konsep hingga peluncuran. Ceritakan kebutuhanmu dan kita wujudkan bersama.",
+      start: "Mulai Proyek →",
+      viewWork: "Lihat Karya",
+    },
+    bio: {
+      eyebrow: "Tentang Saya",
+      headLead: "Hai, saya Bryan,",
+      headAccent: "web developer",
+      headRest: " & integrator AI.",
+      para1: "Saya web developer freelance yang berbasis di Yogyakarta, fokus membangun website yang tidak hanya tampil tajam, tapi juga cepat, responsif, dan benar-benar bekerja untuk bisnismu. Dari personal branding dan portofolio hingga toko online dan integrasi AI, semua saya tangani dari awal sampai peluncuran.",
+      para2: "Stack utama saya adalah React dan Tailwind CSS, kombinasi yang memberi kontrol penuh atas performa sekaligus detail visual. Didukung diploma D3 IT di Taiwan yang membangun fondasi teknis dan pola pikir terstruktur saya, setiap proyek yang saya kerjakan memegang standar yang jelas: bersih, efisien, dan tepat sasaran.",
+      para3: "Belakangan ini saya juga mengintegrasikan AI ke produk web, dari sistem berbasis RAG yang benar-benar memahami konteks bisnis, hingga otomatisasi alur kerja dan pipeline cerdas yang terhubung langsung ke operasionalmu. AI bukan sekadar tren; jika disiapkan dengan benar, ia menjadi daya ungkit nyata bagi pertumbuhan bisnismu.",
+      techStack: "Tech Stack",
+    },
+    services: {
+      eyebrow: "Layanan",
+      heading: "Yang Saya Tawarkan",
+      items: [
+        {
+          title: "Desain UI / UX",
+          desc: "Antarmuka yang bersih, estetis, dan ramah pengguna, dirancang agar pengguna merasa nyaman dan bisnismu terlihat profesional.",
+        },
+        {
+          title: "Pengembangan Web",
+          desc: "Website cepat, scalable, dan terstruktur rapi dengan React dan Tailwind CSS. Sempurna di setiap perangkat, dari ponsel hingga desktop.",
+        },
+        {
+          title: "Deploy & Maintenance",
+          desc: "Dari lokal hingga online, di-deploy ke Vercel atau hosting pilihanmu, termasuk setup domain dan dukungan pasca-peluncuran.",
+        },
+        {
+          title: "Integrasi AI",
+          desc: "Sistem AI berbasis RAG yang memahami konteks bisnismu, otomatisasi alur kerja via API, dan pipeline cerdas yang terhubung langsung ke operasionalmu.",
+        },
+      ],
+    },
+    education: {
+      eyebrow: "Latar Belakang",
+      heading: "Lini Masa Pendidikan",
+      scrollHint: "gulir untuk menjelajah",
+      items: [
+        { status: "SMA",         desc: "IPA, Gembala Baik",     location: "Pontianak",  year: "Fondasi" },
+        { status: "Gelar D3",    desc: "IT & Teknik",           location: "Taiwan",     year: "2020" },
+        { status: "Universitas", desc: "IT, Atma Jaya",         location: "Yogyakarta", year: "2023" },
+        { status: "Sekarang",    desc: "Membangun Website-mu",  location: "Kamar Saya", year: "Hari Ini" },
+      ],
+    },
+    process: {
+      eyebrow: "Cara Saya Bekerja",
+      heading: "Proses Kerja",
+      stepLabel: "Langkah",
+      items: [
+        {
+          title: "Discovery",
+          desc: "Kita bicara dulu tentang bisnis, tujuan, dan target audiensmu. Dari situ saya petakan apa yang benar-benar dibutuhkan, bukan sekadar fitur, tapi solusinya.",
+          note: "Brief · Tujuan",
+        },
+        {
+          title: "Desain",
+          desc: "Wireframe dan mockup UI dibuat di Figma. Kamu bisa meninjau, memberi masukan, dan meminta perubahan sebelum satu baris kode pun ditulis.",
+          note: "Figma · Mockup",
+        },
+        {
+          title: "Build",
+          desc: "Pengembangan dimulai dengan React dan Tailwind sebagai fondasi: bersih, cepat, dan scalable. Setiap komponen dibangun dengan standar yang jelas.",
+          note: "React · Tailwind",
+        },
+        {
+          title: "Peluncuran",
+          desc: "Di-deploy ke layanan hosting pilihanmu. Setup domain, pengecekan performa, dan memastikan semuanya berjalan sempurna sebelum go-live.",
+          note: "Vercel · Domain",
+        },
+      ],
+    },
+    projects: {
+      eyebrow: "Karya Pilihan",
+      heading: "Yang sudah saya bangun.",
+      visitSite: "Kunjungi situs",
+      inDevelopment: "Dalam pengembangan",
+      comingSoon: "Pratinjau langsung segera hadir",
+      prev: "Proyek sebelumnya",
+      next: "Proyek berikutnya",
+      view: "Lihat",
+      openNewTab: "Buka di tab baru",
+      regionLabel: "Pratinjau proyek",
+      items: [
+        {
+          category: "Platform E-Commerce",
+          description: "Toko streetwear dengan halaman produk bergaya editorial, filter instan, dan alur checkout yang dirancang agar pembeli terus bergerak.",
+        },
+        {
+          category: "Sistem Booking Klinik",
+          description: "Sistem booking klinik dengan penjadwalan janji temu, rekam medis pasien, dan dashboard dokter yang tetap cepat di perangkat apa pun.",
+        },
+        {
+          category: "Landing Klinik Kecantikan",
+          description: "Landing page klinik estetika premium dengan nuansa editorial, katalog layanan, galeri, dan booking konsultasi.",
+        },
+        {
+          category: "Company Profile / Katalog",
+          description: "Company profile dan katalog produk untuk pemasok kemasan plastik, mencakup lini produk, kisah perusahaan, dan kontak.",
+        },
+        {
+          category: "Platform Otomatisasi AI",
+          description: "Platform otomatisasi AI untuk UKM Indonesia yang mengubah chat WhatsApp dan Instagram menjadi pipeline penjualan yang berjalan sendiri.",
+        },
+        {
+          category: "Kontes Competitive Programming",
+          description: "Platform acara untuk LINK 2026, kontes competitive programming, dengan login tim, info kontes, dan lini masa.",
+        },
+      ],
+    },
+    footer: {
+      available: "Tersedia",
+    },
+    pitch: {
+      devTag: "Bryan Jacquellino · Dev",
+      title: "Pilihan Investasi",
+      subtitle: "Solusi Digital & Integrasi AI",
+      items: [
+        { name: "Landing Page Standar",        desc: "Satu halaman, responsif, Tailwind CSS" },
+        { name: "Website Multi-Halaman",       desc: "Hingga 5 halaman (Beranda, Tentang, dll.), SEO" },
+        { name: "Web App + CRUD Sederhana",    desc: "Login admin, manajemen data, database" },
+        { name: "Web App + CRUD Kompleks",     desc: "Relasi kompleks, dashboard, ekspor laporan" },
+        { name: "Integrasi AI Saja",           desc: "Integrasi chatbot atau analisis tanpa database berat" },
+        { name: "Web Cerdas (CRUD + AI)",      desc: "Manajemen data plus asisten AI cerdas" },
+        { name: "SISTEM PENUH (Enterprise)",   desc: "Otomatisasi total, AI Analyst, skala besar" },
+      ],
+      footerNote: "* Biaya yang tercantum adalah Development Fee. Belum termasuk biaya operasional pihak ketiga (domain, Supabase Pro, kuota AI API).",
+      shortcut: "ESC untuk menutup · Alt+P untuk membuka",
+      shortcutAUS: "ESC untuk menutup · Alt+Q untuk membuka",
+      estimateNote: "Hanya estimasi harga. Penawaran akhir tergantung lingkup dan kebutuhan proyek.",
     },
   },
 };

@@ -108,6 +108,10 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
             <span className={lang === 'zh'
               ? 'text-violet-600 dark:text-violet-400'
               : 'text-gray-400 dark:text-gray-600'}>中</span>
+            <span className="text-gray-300 dark:text-gray-700">·</span>
+            <span className={lang === 'id'
+              ? 'text-violet-600 dark:text-violet-400'
+              : 'text-gray-400 dark:text-gray-600'}>ID</span>
           </button>
 
           {/* Dark mode toggle */}
