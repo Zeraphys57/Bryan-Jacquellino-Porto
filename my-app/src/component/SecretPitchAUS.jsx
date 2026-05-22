@@ -11,7 +11,7 @@ const TIERS = [
 /* Australian estimate ladder — competitive offshore positioning,
    priced below local AU freelancers/agencies. Indicative only. */
 const PRICES_AUD = [
-  'A$700 - A$1,000',
+  'A$1,300',
   'A$1,400',
   'A$2,000',
   'A$3,500 - A$5,000',

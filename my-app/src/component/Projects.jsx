@@ -64,7 +64,7 @@ const projects = [
   {
     id: 4,
     title: "Sumber Aneka Plastik & Kemasan",
-    tags: ["WordPress", "Elementor"],
+    tags: ["Next.js", "Tailwind", "GSAP"],
     accent: "#10b981",
     shot: shotPlastik,
     domain: "sumberanekaplastikdankemasan.com",
@@ -103,6 +103,8 @@ const Projects = () => {
   const firstRun  = useRef(true);
   const reduced   = useRef(false);
   const finePtr   = useRef(false);
+  const touchRef  = useRef(null);  // swipe start coords
+  const swipedRef = useRef(false); // suppress link tap after a swipe
 
   const n = projects.length;
   const p = projects[current];
@@ -161,6 +163,28 @@ const Projects = () => {
     if (tiltRef.current) tiltRef.current.style.transform = "rotateX(0deg) rotateY(0deg)";
   };
 
+  /* Swipe gesture — touch devices */
+  const onTouchStart = (e) => {
+    const tch = e.touches[0];
+    touchRef.current = { x: tch.clientX, y: tch.clientY };
+    swipedRef.current = false;
+  };
+  const onTouchEnd = (e) => {
+    if (!touchRef.current) return;
+    const tch = e.changedTouches[0];
+    const dx = tch.clientX - touchRef.current.x;
+    const dy = tch.clientY - touchRef.current.y;
+    touchRef.current = null;
+    if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+      swipedRef.current = true;
+      go(dx < 0 ? 1 : -1);
+    }
+  };
+  /* Cancel the screenshot link if the touch was actually a swipe */
+  const onShotClick = (e) => {
+    if (swipedRef.current) { e.preventDefault(); swipedRef.current = false; }
+  };
+
   const onKeyNav = (e) => {
     if (e.key === "ArrowLeft")  { e.preventDefault(); go(-1); }
     if (e.key === "ArrowRight") { e.preventDefault(); go(1);  }
@@ -209,7 +233,12 @@ const Projects = () => {
           </span>
 
           {/* Perspective wrapper */}
-          <div className="relative z-10" style={{ perspective: "1500px" }}>
+          <div
+            className="relative z-10"
+            style={{ perspective: "1500px" }}
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+          >
 
             {/* Accent glow */}
             <div
@@ -269,6 +298,7 @@ const Projects = () => {
                   <a
                     href={p.link} target="_blank" rel="noopener noreferrer"
                     aria-label={`${t.projects.visitSite} — ${p.title}`}
+                    onClick={onShotClick}
                     className="group/shot relative block aspect-[16/10] overflow-hidden"
                     style={{ background: "linear-gradient(135deg, var(--accent), #18181b)" }}
                   >
