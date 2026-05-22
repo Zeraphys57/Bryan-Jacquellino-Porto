@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -35,16 +35,46 @@ const PROCESS_META = [
 
 const n = PROCESS_META.length;
 
+const QUERY_DESKTOP = "(min-width: 768px)";
+const QUERY_REDUCED = "(prefers-reduced-motion: reduce)";
+
+/* The pinned scrub is desktop-only; mobile and reduced-motion
+   users get a plain vertical flow instead. */
+const resolveMode = () => {
+  const reduced = window.matchMedia(QUERY_REDUCED).matches;
+  const desktop = window.matchMedia(QUERY_DESKTOP).matches;
+  return desktop && !reduced ? "pinned" : "flow";
+};
+
 const Process = () => {
   const { t } = useLanguage();
-  const sectionRef    = useRef(null);
-  const stepRefs      = useRef([]);
-  const wordRefs      = useRef([]);
-  const timelineRef   = useRef(null);
-  const dotRefs       = useRef([]);
-  const counterRef    = useRef(null);
+  const sectionRef  = useRef(null);
+  const stepRefs    = useRef([]);
+  const wordRefs    = useRef([]);
+  const timelineRef = useRef(null);
+  const dotRefs     = useRef([]);
+  const labelRefs   = useRef([]);
+  const counterRef  = useRef(null);
 
+  const [mode, setMode]       = useState(resolveMode);
+  const [reduced, setReduced] = useState(() => window.matchMedia(QUERY_REDUCED).matches);
+
+  /* Keep layout in sync with viewport / motion-preference changes */
   useEffect(() => {
+    const mqDesktop = window.matchMedia(QUERY_DESKTOP);
+    const mqReduced = window.matchMedia(QUERY_REDUCED);
+    const sync = () => { setMode(resolveMode()); setReduced(mqReduced.matches); };
+    mqDesktop.addEventListener("change", sync);
+    mqReduced.addEventListener("change", sync);
+    return () => {
+      mqDesktop.removeEventListener("change", sync);
+      mqReduced.removeEventListener("change", sync);
+    };
+  }, []);
+
+  /* ── Pinned mode: scrub through the stacked steps ── */
+  useEffect(() => {
+    if (mode !== "pinned") return;
     const section = sectionRef.current;
 
     // Hide steps 2–4 before first paint
@@ -70,7 +100,7 @@ const Process = () => {
             if (timelineRef.current) {
               timelineRef.current.style.transform = `scaleY(${self.progress})`;
             }
-            // Light up dots as each step is reached
+            // Light up dots + reveal the step word on the active one
             const passed = self.progress * (n - 1);
             dotRefs.current.forEach((dot, i) => {
               if (!dot) return;
@@ -90,6 +120,11 @@ const Process = () => {
                 dot.style.borderRadius = '50%';
                 dot.style.transform    = '';
                 dot.style.boxShadow    = 'none';
+              }
+              const label = labelRefs.current[i];
+              if (label) {
+                label.textContent = active ? PROCESS_META[i].word : PROCESS_META[i].step;
+                label.style.color = active ? '#14b8a6' : '';
               }
             });
             // Counter
@@ -124,8 +159,105 @@ const Process = () => {
     }, section);
 
     return () => ctx.revert();
-  }, []);
+  }, [mode]);
 
+  /* ── Flow mode: reveal each step row on scroll ── */
+  useEffect(() => {
+    if (mode !== "flow" || reduced) return;
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray(".pf-row").forEach((row) => {
+        gsap.from(row, {
+          opacity: 0,
+          y: 40,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: { trigger: row, start: "top 85%" },
+        });
+      });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, [mode, reduced]);
+
+  /* ─────────────────────────  Flow layout  ───────────────────────── */
+  if (mode === "flow") {
+    return (
+      <section
+        ref={sectionRef}
+        className="relative bg-white dark:bg-gray-950
+                   py-16 md:py-24 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48"
+      >
+        <div className="max-w-[1500px] mx-auto">
+          <p className="scroll-reveal text-xs font-mono text-teal-600 dark:text-teal-400 tracking-[0.2em] uppercase mb-3">
+            {t.process.eyebrow}
+          </p>
+          <h2 className="scroll-reveal text-3xl md:text-4xl xl:text-5xl font-light text-gray-900 dark:text-white" data-delay="60ms">
+            {t.process.heading}
+          </h2>
+
+          {/* Vertical spine + steps */}
+          <div className="relative mt-14">
+            <span
+              aria-hidden="true"
+              className="absolute left-[13px] top-3 bottom-3 w-px
+                         bg-gradient-to-b from-teal-500/70 via-teal-400/30 to-transparent
+                         dark:from-teal-400/70 dark:via-teal-400/20"
+            />
+            <div className="flex flex-col gap-14">
+              {PROCESS_META.map((item, i) => {
+                const copy = t.process.items[i];
+                return (
+                  <div key={i} className="pf-row relative pl-12 overflow-hidden">
+                    {/* Node */}
+                    <span
+                      className="absolute left-0 top-0 w-[27px] h-[27px] rounded-full
+                                 flex items-center justify-center
+                                 border border-teal-500/60 dark:border-teal-400/60
+                                 bg-white dark:bg-gray-950
+                                 text-[10px] font-mono text-teal-600 dark:text-teal-400"
+                    >
+                      {item.step}
+                    </span>
+
+                    {/* Watermark word */}
+                    <span
+                      aria-hidden="true"
+                      className={`absolute -right-4 -top-6 text-[19vw] sm:text-[15vw]
+                                 font-black leading-none tracking-tight select-none pointer-events-none
+                                 bg-gradient-to-br ${item.gradLight} ${item.gradDark}
+                                 bg-clip-text text-transparent`}
+                    >
+                      {item.word}
+                    </span>
+
+                    {/* Content */}
+                    <div className="relative z-10">
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="text-[11px] font-mono text-teal-600 dark:text-teal-400 tracking-[0.2em] uppercase">
+                          {t.process.stepLabel} {item.step}
+                        </span>
+                        <span className="w-8 h-px bg-teal-400/50 dark:bg-teal-500/30" />
+                        <span className="text-[11px] font-mono text-gray-400 dark:text-gray-600 tracking-widest">
+                          {copy.note}
+                        </span>
+                      </div>
+                      <h3 className="text-3xl sm:text-4xl xl:text-5xl font-light text-gray-900 dark:text-white leading-tight mb-3">
+                        {copy.title}
+                      </h3>
+                      <p className="text-base sm:text-lg text-gray-500 dark:text-gray-400 max-w-lg leading-relaxed">
+                        {copy.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  /* ───────────────────────  Pinned layout  ──────────────────────── */
   return (
     <section
       ref={sectionRef}
@@ -173,10 +305,12 @@ const Process = () => {
           <div key={i}
                className="absolute left-1/2"
                style={{ top: `${(i / (n - 1)) * 100}%`, transform: 'translate(-50%, -50%)' }}>
-            {/* Step label — floats left, never shifts the dot */}
-            <span className="absolute right-[calc(100%+7px)] top-1/2 -translate-y-1/2
+            {/* Step label — turns into the step word when active */}
+            <span ref={el => { labelRefs.current[i] = el; }}
+                  className="absolute right-[calc(100%+7px)] top-1/2 -translate-y-1/2
                              text-[9px] font-mono tracking-widest whitespace-nowrap
-                             text-gray-400 dark:text-gray-600 select-none hidden md:block">
+                             text-gray-400 dark:text-gray-600 select-none
+                             transition-colors duration-300">
               {item.step}
             </span>
             {/* Dot — always exactly on the line */}
