@@ -1,8 +1,31 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../i18n/LanguageContext";
 
-/* Tech stack — kept understated; visitors care about outcomes, not tooling */
-const TECH = ["React", "Tailwind CSS", "GSAP", "Three.js", "Node.js", "PostgreSQL", "LLM API", "RAG", "Python", "Java", "C", "Vite", "Figma"];
+/* Tech stack — flat pill list, colour-coded by type (full class strings
+   so Tailwind keeps them; ordered so same-type pills sit together) */
+const CATEGORY_STYLE = {
+  frontend: "bg-violet-50 dark:bg-violet-500/10 border-violet-200 dark:border-violet-500/30 text-violet-700 dark:text-violet-300",
+  backend:  "bg-teal-50 dark:bg-teal-500/10 border-teal-200 dark:border-teal-500/30 text-teal-700 dark:text-teal-300",
+  ai:       "bg-blue-50 dark:bg-blue-500/10 border-blue-200 dark:border-blue-500/30 text-blue-700 dark:text-blue-300",
+  lang:     "bg-amber-50 dark:bg-amber-500/10 border-amber-200 dark:border-amber-500/30 text-amber-700 dark:text-amber-300",
+  tool:     "bg-gray-100 dark:bg-white/5 border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400",
+};
+
+const TECH = [
+  { name: "React",        cat: "frontend" },
+  { name: "Tailwind CSS", cat: "frontend" },
+  { name: "GSAP",         cat: "frontend" },
+  { name: "Three.js",     cat: "frontend" },
+  { name: "Node.js",      cat: "backend" },
+  { name: "PostgreSQL",   cat: "backend" },
+  { name: "LLM API",      cat: "ai" },
+  { name: "RAG",          cat: "ai" },
+  { name: "Python",       cat: "lang" },
+  { name: "Java",         cat: "lang" },
+  { name: "C",            cat: "lang" },
+  { name: "Vite",         cat: "tool" },
+  { name: "Figma",        cat: "tool" },
+];
 
 const LINES = [
   { prompt: true,  text: "bryan --info" },
@@ -214,14 +237,22 @@ const ImBryan = () => {
               </p>
             </div>
 
-            {/* Tech stack — understated; one quiet line, not a centerpiece */}
-            <div className="scroll-reveal flex flex-wrap items-baseline gap-x-2.5 gap-y-1 pt-1" data-delay="290ms">
-              <span className="text-[10px] font-mono text-gray-400 dark:text-gray-600 uppercase tracking-widest shrink-0">
+            {/* Tech stack — flat pill list */}
+            <div className="scroll-reveal" data-delay="290ms">
+              <p className="text-xs font-mono text-gray-400 dark:text-gray-600 tracking-widest uppercase mb-3">
                 {t.bio.techStack}
-              </span>
-              <span className="text-[11px] font-mono text-gray-400 dark:text-gray-500 leading-relaxed">
-                {TECH.join("  ·  ")}
-              </span>
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {TECH.map(({ name, cat }) => (
+                  <span
+                    key={name}
+                    className={`px-3 py-1 text-xs font-mono rounded-full border
+                      transition-colors duration-150 ${CATEGORY_STYLE[cat]}`}
+                  >
+                    {name}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
