@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import InvoiceApp from './invoice/InvoiceApp.jsx'
+import { LanguageProvider } from './i18n/LanguageContext.jsx'
 
 if (
   localStorage.getItem('theme') === 'dark' ||
@@ -17,6 +18,12 @@ const isInvoice = window.location.pathname.startsWith('/invoice');
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {isInvoice ? <InvoiceApp /> : <App />}
+    {isInvoice ? (
+      <InvoiceApp />
+    ) : (
+      <LanguageProvider>
+        <App />
+      </LanguageProvider>
+    )}
   </StrictMode>,
 )

@@ -1,17 +1,17 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { useLanguage } from "../i18n/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* Non-translatable per-entry data — copy lives in i18n/translations.js */
 const educationData = [
-  { num: "01", status: "High School", desc: "Science — Gembala Baik", location: "Pontianak",  year: "Foundation" },
-  { num: "02", status: "D3 Degree",   desc: "IT & Engineering",        location: "Taiwan",     year: "2020" },
-  { num: "03", status: "University",  desc: "IT — Atma Jaya",          location: "Yogyakarta", year: "2023" },
-  { num: "04", status: "Now",         desc: "Building Your Website",   location: "My Room",    year: "Today" },
+  { num: "01" }, { num: "02" }, { num: "03" }, { num: "04" },
 ];
 
 const About = () => {
+  const { t } = useLanguage();
   const sectionRef  = useRef(null);
   const trackRef    = useRef(null);
   const progressRef = useRef(null);
@@ -71,10 +71,10 @@ const About = () => {
           <div className="flex items-end justify-between mb-8">
             <div>
               <p className="scroll-reveal text-xs font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-3">
-                Background
+                {t.education.eyebrow}
               </p>
               <h2 className="scroll-reveal text-3xl md:text-4xl xl:text-5xl font-light text-gray-900 dark:text-white" data-delay="60ms">
-                Education Timeline
+                {t.education.heading}
               </h2>
             </div>
             <span
@@ -102,41 +102,44 @@ const About = () => {
         className="flex h-full will-change-transform"
         style={{ width: `${educationData.length * 100}vw` }}
       >
-        {educationData.map((edu, i) => (
-          <div
-            key={i}
-            className="relative flex-shrink-0 w-screen h-full flex items-center
-                       px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48"
-          >
-            {/* Decorative big number */}
-            <span
-              aria-hidden="true"
-              className="absolute inset-0 flex items-center justify-center
-                         text-[28vw] font-black leading-none select-none pointer-events-none
-                         text-gray-100 dark:text-white/[0.025]"
+        {educationData.map((edu, i) => {
+          const copy = t.education.items[i];
+          return (
+            <div
+              key={i}
+              className="relative flex-shrink-0 w-screen h-full flex items-center
+                         px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48"
             >
-              {edu.num}
-            </span>
+              {/* Decorative big number */}
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 flex items-center justify-center
+                           text-[28vw] font-black leading-none select-none pointer-events-none
+                           text-gray-100 dark:text-white/[0.025]"
+              >
+                {edu.num}
+              </span>
 
-            {/* Content */}
-            <div className="relative z-10 max-w-[1500px] mx-auto w-full">
-              <p className="text-[11px] font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-8">
-                {edu.year}
-              </p>
-              <h3 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl font-light
-                             text-gray-900 dark:text-white mb-5 leading-none">
-                {edu.status}
-              </h3>
-              <p className="text-base sm:text-xl md:text-2xl text-gray-500 dark:text-gray-400 mb-8 max-w-lg">
-                {edu.desc}
-              </p>
-              <div className="flex items-center gap-2.5">
-                <div className="w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-teal-400 shrink-0" />
-                <span className="text-sm font-mono text-teal-600 dark:text-teal-400">{edu.location}</span>
+              {/* Content */}
+              <div className="relative z-10 max-w-[1500px] mx-auto w-full">
+                <p className="text-[11px] font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-8">
+                  {copy.year}
+                </p>
+                <h3 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl font-light
+                               text-gray-900 dark:text-white mb-5 leading-none">
+                  {copy.status}
+                </h3>
+                <p className="text-base sm:text-xl md:text-2xl text-gray-500 dark:text-gray-400 mb-8 max-w-lg">
+                  {copy.desc}
+                </p>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-teal-400 shrink-0" />
+                  <span className="text-sm font-mono text-teal-600 dark:text-teal-400">{copy.location}</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Scroll hint */}
@@ -146,7 +149,7 @@ const About = () => {
                    text-[10px] font-mono text-gray-300 dark:text-gray-700 tracking-[0.2em] uppercase
                    transition-opacity duration-500 pointer-events-none"
       >
-        <span>scroll to explore</span>
+        <span>{t.education.scrollHint}</span>
         <svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true">
           <path d="M1 5h16M12 1l4 4-4 4" stroke="currentColor" strokeWidth="1.2"
                 strokeLinecap="round" strokeLinejoin="round" />

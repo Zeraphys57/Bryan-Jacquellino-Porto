@@ -1,5 +1,6 @@
 import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
 import gsap from "gsap";
+import { useLanguage } from "../i18n/LanguageContext";
 
 import shotBashion from "../assets/projects/bashion.webp";
 import shotDentist from "../assets/projects/dentist.webp";
@@ -31,12 +32,11 @@ const MockPreview = () => (
   </svg>
 );
 
+/* Non-translatable per-project data — category & description live in i18n/translations.js */
 const projects = [
   {
     id: 1,
     title: "Bashion Fashion",
-    category: "E-Commerce Platform",
-    description: "A streetwear storefront with editorial product pages, instant filtering, and a checkout flow built to keep shoppers moving.",
     tags: ["React", "Tailwind", "AOS"],
     accent: "#7c3aed",
     shot: shotBashion,
@@ -46,8 +46,6 @@ const projects = [
   {
     id: 2,
     title: "Dentist Workshop",
-    category: "Clinic Booking System",
-    description: "A clinic booking system with appointment scheduling, patient records, and a doctor dashboard that stays fast on any device.",
     tags: ["HTML", "CSS", "JS", "Bootstrap", "PHP"],
     accent: "#14b8a6",
     shot: shotDentist,
@@ -57,8 +55,6 @@ const projects = [
   {
     id: 3,
     title: "Lumière Beauty Clinic",
-    category: "Beauty Clinic Landing",
-    description: "A premium aesthetic clinic landing page with an editorial feel, a service catalog, gallery, and consultation booking.",
     tags: ["React", "Tailwind", "Vite", "GSAP", "R3F"],
     accent: "#c46b81",
     shot: shotLumiere,
@@ -68,8 +64,6 @@ const projects = [
   {
     id: 4,
     title: "Sumber Aneka Plastik & Kemasan",
-    category: "Company Profile / Catalog",
-    description: "A company profile and product catalog for a plastic packaging supplier, covering product lines, company story, and contact.",
     tags: ["WordPress", "Elementor"],
     accent: "#10b981",
     shot: shotPlastik,
@@ -79,8 +73,6 @@ const projects = [
   {
     id: 5,
     title: "Tumbuh AI",
-    category: "AI Automation Platform",
-    description: "An AI automation platform for Indonesian SMEs that turns WhatsApp and Instagram chats into a self-running sales pipeline.",
     tags: ["AI / RAG", "Meta API", "React", "Node.js", "PostgreSQL"],
     accent: "#6366f1",
     shot: shotTumbuh,
@@ -90,8 +82,6 @@ const projects = [
   {
     id: 6,
     title: "Link 2026",
-    category: "Competitive Programming Contest",
-    description: "The event platform for LINK 2026, a competitive programming contest, with team login, contest info, and timeline.",
     tags: ["Next.js", "React", "Tailwind"],
     accent: "#f43f5e",
     shot: shotLink,
@@ -103,6 +93,7 @@ const projects = [
 const isLive = (p) => Boolean(p.link) && p.link !== "#";
 
 const Projects = () => {
+  const { t } = useLanguage();
   const [current, setCurrent]         = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -115,6 +106,7 @@ const Projects = () => {
 
   const n = projects.length;
   const p = projects[current];
+  const copy = t.projects.items[current];
 
   useEffect(() => {
     reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -188,15 +180,12 @@ const Projects = () => {
               className="scroll-reveal text-xs font-mono tracking-[0.2em] uppercase mb-4 transition-colors duration-500"
               style={{ color: "var(--accent)" }}
             >
-              Selected Work
+              {t.projects.eyebrow}
             </p>
             <h2 className="scroll-reveal text-3xl md:text-4xl xl:text-5xl font-light text-gray-900 dark:text-white" data-delay="60ms">
-              What I&apos;ve built.
+              {t.projects.heading}
             </h2>
           </div>
-          <p className="scroll-reveal hidden md:block text-xs font-mono text-gray-400 dark:text-gray-600 tracking-[0.18em] uppercase tabular-nums pb-1" data-delay="120ms">
-            {n} projects
-          </p>
         </div>
 
         {/* ── Stage ── */}
@@ -204,7 +193,7 @@ const Projects = () => {
           className="relative mx-auto max-w-[940px]"
           role="group"
           aria-roledescription="carousel"
-          aria-label="Project previews"
+          aria-label={t.projects.regionLabel}
           onKeyDown={onKeyNav}
         >
           {/* Oversized index numeral */}
@@ -265,7 +254,7 @@ const Projects = () => {
                   {isLive(p) && (
                     <a
                       href={p.link} target="_blank" rel="noopener noreferrer"
-                      aria-label={`Open ${p.title} in a new tab`}
+                      aria-label={`${t.projects.openNewTab} — ${p.title}`}
                       className="shrink-0 text-white/40 hover:text-white transition-colors duration-150"
                     >
                       <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -279,12 +268,12 @@ const Projects = () => {
                 {isLive(p) ? (
                   <a
                     href={p.link} target="_blank" rel="noopener noreferrer"
-                    aria-label={`Visit ${p.title} live site`}
+                    aria-label={`${t.projects.visitSite} — ${p.title}`}
                     className="group/shot relative block aspect-[16/10] overflow-hidden"
                     style={{ background: "linear-gradient(135deg, var(--accent), #18181b)" }}
                   >
                     <img
-                      src={p.shot} alt={`${p.title} live site preview`} draggable="false"
+                      src={p.shot} alt={`${p.title} — ${copy.category}`} draggable="false"
                       className="w-full h-full object-cover object-top"
                     />
                     <div
@@ -297,7 +286,7 @@ const Projects = () => {
                           shadow-lg transition-colors duration-500"
                         style={{ backgroundColor: "var(--accent)" }}
                       >
-                        Visit live site ↗
+                        {t.projects.visitSite} ↗
                       </span>
                     </div>
                   </a>
@@ -310,7 +299,7 @@ const Projects = () => {
                       ? <img src={p.shot} alt={`${p.title} preview`} draggable="false" className="w-full h-full object-cover object-top" />
                       : <MockPreview />}
                     <span className="absolute bottom-3.5 right-3.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider text-white/70 bg-black/35 backdrop-blur-sm">
-                      In development
+                      {t.projects.inDevelopment}
                     </span>
                   </div>
                 )}
@@ -319,7 +308,7 @@ const Projects = () => {
 
             {/* Prev / Next */}
             <button
-              onClick={() => go(-1)} disabled={isAnimating} aria-label="Previous project"
+              onClick={() => go(-1)} disabled={isAnimating} aria-label={t.projects.prev}
               className="absolute top-1/2 -translate-y-1/2 left-3 md:-left-5 z-20
                 w-10 h-10 md:w-11 md:h-11 rounded-full
                 bg-white/90 dark:bg-[#18181b]/90 backdrop-blur-sm
@@ -334,7 +323,7 @@ const Projects = () => {
               </svg>
             </button>
             <button
-              onClick={() => go(1)} disabled={isAnimating} aria-label="Next project"
+              onClick={() => go(1)} disabled={isAnimating} aria-label={t.projects.next}
               className="absolute top-1/2 -translate-y-1/2 right-3 md:-right-5 z-20
                 w-10 h-10 md:w-11 md:h-11 rounded-full
                 bg-white/90 dark:bg-[#18181b]/90 backdrop-blur-sm
@@ -357,7 +346,7 @@ const Projects = () => {
             className="proj-rise text-xs font-mono tracking-[0.18em] uppercase transition-colors duration-500"
             style={{ color: "var(--accent)", animationDelay: "0ms" }}
           >
-            {p.category}
+            {copy.category}
           </p>
           <h3
             className="proj-rise text-2xl md:text-3xl xl:text-4xl font-light text-gray-900 dark:text-white leading-tight mt-2.5"
@@ -369,7 +358,7 @@ const Projects = () => {
             className="proj-rise text-sm md:text-base xl:text-lg text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl mt-3.5"
             style={{ animationDelay: "140ms" }}
           >
-            {p.description}
+            {copy.description}
           </p>
           <div
             className="proj-rise flex flex-wrap items-center justify-between gap-x-8 gap-y-5 mt-7"
@@ -393,7 +382,7 @@ const Projects = () => {
                   transition-all duration-150 ease-out hover:-translate-y-0.5 active:scale-95"
                 style={{ backgroundColor: "var(--accent)" }}
               >
-                Visit live site
+                {t.projects.visitSite}
                 <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"
                   className="transition-transform duration-150 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5">
                   <path d="M2.5 11.5l9-9M5 2.5h6.5V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -402,7 +391,7 @@ const Projects = () => {
             ) : (
               <span className="inline-flex items-center gap-2 text-sm font-mono text-gray-400 dark:text-gray-600">
                 <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--accent)" }} />
-                Live preview coming soon
+                {t.projects.comingSoon}
               </span>
             )}
           </div>
@@ -420,7 +409,7 @@ const Projects = () => {
                   key={proj.id}
                   onClick={() => change(i, i > current ? 1 : -1)}
                   disabled={isAnimating}
-                  aria-label={`View ${proj.title}`}
+                  aria-label={`${t.projects.view} ${proj.title}`}
                   aria-current={active ? "true" : undefined}
                   className={`group/th relative shrink-0 w-[104px] sm:w-[120px] md:w-[136px]
                     aspect-[16/10] rounded-lg overflow-hidden

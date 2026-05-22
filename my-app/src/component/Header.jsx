@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { FaSun, FaMoon } from "react-icons/fa";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const NAV = [
-  { label: "About",    href: "#bio" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
-  { label: "Process",  href: "#process" },
+  { key: "about",    href: "#bio" },
+  { key: "services", href: "#services" },
+  { key: "projects", href: "#projects" },
+  { key: "process",  href: "#process" },
 ];
 
 const GREETINGS = ["Hello!", "你好!", "Halo!", "こんにちは!", "Bonjour!"];
@@ -30,6 +31,7 @@ const Greeting = () => {
 };
 
 const Header = ({ isDarkMode, toggleDarkMode }) => {
+  const { t, lang, toggleLang } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible]   = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -73,15 +75,15 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
 
         {/* Desktop nav links */}
         <nav className="relative z-10 hidden md:flex items-center justify-center gap-8">
-          {NAV.map(({ label, href }) => (
+          {NAV.map(({ key, href }) => (
             <a
-              key={label}
+              key={key}
               href={href}
               className="relative text-sm text-gray-500 dark:text-gray-400
                 hover:text-gray-900 dark:hover:text-white
                 transition-colors duration-150 group"
             >
-              {label}
+              {t.nav[key]}
               <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-violet-500 dark:bg-violet-400
                 group-hover:w-full transition-all duration-200 ease-out" />
             </a>
@@ -90,6 +92,24 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
 
         {/* Right controls */}
         <div className="relative flex items-center justify-end gap-0.5 z-10">
+          {/* Language toggle */}
+          <button
+            onClick={toggleLang}
+            className="h-10 px-3 flex items-center gap-1.5 rounded-full
+              font-mono text-[11px] font-semibold leading-none
+              hover:bg-gray-100 dark:hover:bg-white/[0.08]
+              active:scale-[0.9] transition-all duration-150 focus:outline-none"
+            aria-label={t.header.switchLang}
+          >
+            <span className={lang === 'en'
+              ? 'text-violet-600 dark:text-violet-400'
+              : 'text-gray-400 dark:text-gray-600'}>EN</span>
+            <span className="text-gray-300 dark:text-gray-700">·</span>
+            <span className={lang === 'zh'
+              ? 'text-violet-600 dark:text-violet-400'
+              : 'text-gray-400 dark:text-gray-600'}>中</span>
+          </button>
+
           {/* Dark mode toggle */}
           <button
             onClick={toggleDarkMode}
@@ -97,7 +117,7 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
               text-gray-500 dark:text-gray-400
               hover:bg-gray-100 dark:hover:bg-white/[0.08]
               active:scale-[0.9] transition-all duration-150 focus:outline-none"
-            aria-label="Toggle dark mode"
+            aria-label={t.header.toggleTheme}
           >
             <div key={isDarkMode ? 'dark' : 'light'} style={{ animation: 'icon-in 0.25s ease-out both' }}>
               {isDarkMode
@@ -114,7 +134,7 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
               hover:bg-gray-100 dark:hover:bg-white/[0.08]
               active:scale-[0.9] transition-all duration-150
               focus:outline-none text-gray-700 dark:text-gray-200"
-            aria-label="Toggle menu"
+            aria-label={t.header.toggleMenu}
             aria-expanded={isMenuOpen}
           >
             <span
@@ -143,9 +163,9 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
         style={{ transitionTimingFunction: 'cubic-bezier(0.32,0.72,0,1)' }}
       >
         <div className="flex flex-col w-full">
-          {NAV.map(({ label, href }, i) => (
+          {NAV.map(({ key, href }, i) => (
             <a
-              key={label}
+              key={key}
               href={href}
               className="group flex items-baseline gap-5 py-5
                 border-b border-gray-100 dark:border-white/[0.06]
@@ -162,7 +182,7 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
                 text-gray-800 dark:text-white
                 group-hover:text-violet-500 dark:group-hover:text-violet-400
                 transition-colors duration-150">
-                {label}
+                {t.nav[key]}
               </span>
             </a>
           ))}
@@ -185,7 +205,7 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
               hover:text-violet-500 dark:hover:text-violet-400
               transition-colors duration-150"
           >
-            Get in touch ↗
+            {t.header.getInTouch}
           </a>
           <span className="text-[11px] font-mono tracking-widest uppercase text-gray-300 dark:text-gray-700">
             © 2026

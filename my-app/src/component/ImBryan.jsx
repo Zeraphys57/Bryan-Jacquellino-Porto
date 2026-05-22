@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const TECH = ["React", "Tailwind CSS", "GSAP", "Vite", "Figma", "Node.js", "PostgreSQL", "LLM API", "RAG", "Three.js", "Python", "Java", "C"];
 
@@ -99,6 +100,7 @@ const TerminalCard = () => {
 };
 
 const ImBryan = () => {
+  const { t } = useLanguage();
   return (
     <div className="py-16 md:py-24 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48">
       <div className="max-w-[1500px] mx-auto">
@@ -107,7 +109,7 @@ const ImBryan = () => {
         <p
           className="scroll-reveal text-xs font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-4"
         >
-          About Me
+          {t.bio.eyebrow}
         </p>
 
         {/* Main grid */}
@@ -122,39 +124,30 @@ const ImBryan = () => {
           <div className="flex flex-col gap-8">
             <div className="scroll-reveal" data-delay="120ms">
               <h2 className="text-3xl md:text-4xl xl:text-5xl font-light text-gray-900 dark:text-white mb-6 leading-tight">
-                Hi, I'm Bryan —<br />
-                <span className="text-violet-600 dark:text-violet-400">web developer</span> & AI integrator.
+                {t.bio.headLead}<br />
+                <span className="text-violet-600 dark:text-violet-400">{t.bio.headAccent}</span>{t.bio.headRest}
               </h2>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl">
-                Aku freelance web developer berbasis di Yogyakarta, spesialis membangun website yang
-                tidak cuma kelihatan keren — tapi juga cepat, responsif, dan beneran bekerja buat
-                bisnis kamu. Dari personal branding, portofolio, toko online, sampai integrasi AI,
-                aku handle semuanya dari awal sampai live.
+                {t.bio.para1}
               </p>
             </div>
 
             <div className="scroll-reveal" data-delay="180ms">
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl">
-                Stack utamaku adalah React + Tailwind CSS — kombinasi yang ngasih kontrol penuh
-                atas performa dan tampilan sekaligus. Ditambah pengalaman D3 IT di Taiwan yang
-                melatih fondasi teknis dan cara berpikir terstruktur, setiap project yang aku
-                kerjain punya standar yang jelas: clean, efisien, dan tepat sasaran.
+                {t.bio.para2}
               </p>
             </div>
 
             <div className="scroll-reveal" data-delay="240ms">
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl">
-                Belakangan ini aku juga aktif mengintegrasikan AI ke dalam product web — mulai dari
-                sistem AI berbasis RAG yang beneran paham konteks bisnis, otomatisasi alur kerja,
-                sampai pipeline cerdas yang langsung nyambung ke operasional kamu. AI bukan sekedar
-                tren, kalau dipasang dengan benar, itu jadi leverage nyata buat bisnis kamu tumbuh.
+                {t.bio.para3}
               </p>
             </div>
 
             {/* Tech stack */}
             <div className="scroll-reveal" data-delay="290ms">
               <p className="text-xs font-mono text-gray-400 dark:text-gray-600 tracking-widest uppercase mb-3">
-                Tech Stack
+                {t.bio.techStack}
               </p>
               <div className="flex flex-wrap gap-2">
                 {TECH.map(t => (

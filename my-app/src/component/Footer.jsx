@@ -1,11 +1,12 @@
 import React from "react";
 import { FaGithub, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const NAV = [
-  { label: "About",    href: "#bio" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
-  { label: "Process",  href: "#process" },
+  { key: "about",    href: "#bio" },
+  { key: "services", href: "#services" },
+  { key: "projects", href: "#projects" },
+  { key: "process",  href: "#process" },
 ];
 
 const SOCIALS = [
@@ -15,6 +16,7 @@ const SOCIALS = [
 ];
 
 const Footer = () => {
+  const { t } = useLanguage();
   const year = new Date().getFullYear();
 
   return (
@@ -37,18 +39,18 @@ const Footer = () => {
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-teal-500" />
               </span>
               <span className="text-[11px] font-mono text-teal-600 dark:text-teal-400 tracking-widest uppercase">
-                Available
+                {t.footer.available}
               </span>
             </div>
           </div>
 
           {/* Nav links */}
           <nav className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            {NAV.map(({ label, href }) => (
-              <a key={label} href={href}
+            {NAV.map(({ key, href }) => (
+              <a key={key} href={href}
                 className="text-xs font-mono text-gray-400 dark:text-gray-600 tracking-wide
                   hover:text-gray-900 dark:hover:text-white transition-colors duration-150">
-                {label}
+                {t.nav[key]}
               </a>
             ))}
           </nav>

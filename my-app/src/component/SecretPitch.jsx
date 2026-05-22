@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const TIERS = [
   { range: [0, 1], label: 'Starter',    color: '#8b5cf6', bg: 'rgba(139,92,246,0.08)' },
@@ -7,9 +8,15 @@ const TIERS = [
   { range: [6, 6], label: 'Enterprise',  color: '#f59e0b', bg: 'rgba(245,158,11,0.08)' },
 ];
 
+const PRICES = [
+  'Rp 3 - 4 Juta', 'Rp 5 Juta', 'Rp 7 Juta', 'Rp 10 - 15 Juta',
+  'Rp 10 Juta', 'Rp 12 - 13 Juta', 'Rp 25 - 30 Juta',
+];
+
 const getTier = (i) => TIERS.find(t => i >= t.range[0] && i <= t.range[1]);
 
 const SecretPitch = () => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen]   = useState(false);
   const [visible, setVisible] = useState(false);
 
@@ -29,15 +36,11 @@ const SecretPitch = () => {
 
   if (!isOpen) return null;
 
-  const pricingData = [
-    { name: 'Landing Page Standar', desc: 'Single page, responsif, Tailwind CSS', price: 'Rp 3 - 4 Juta' },
-    { name: 'Multi-Page Website',   desc: 'Up to 5 halaman (Home, About, dll), SEO', price: 'Rp 5 Juta' },
-    { name: 'Web App + CRUD Simple',  desc: 'Login admin, manajemen data, Database', price: 'Rp 7 Juta' },
-    { name: 'Web App + CRUD Complex', desc: 'Relasi kompleks, dashboard, ekspor laporan', price: 'Rp 10 - 15 Juta' },
-    { name: 'AI Integration Only',  desc: 'Integrasi chatbot/analisis tanpa DB berat', price: 'Rp 10 Juta' },
-    { name: 'Smart Web (CRUD + AI)', desc: 'Manajemen data + Asisten cerdas AI', price: 'Rp 12 - 13 Juta' },
-    { name: 'FULL SYSTEM (Enterprise)', desc: 'Otomasi total, AI Analyst, Skala Besar', price: 'Rp 25 - 30 Juta' },
-  ];
+  const pricingData = t.pitch.items.map((it, i) => ({
+    name: it.name,
+    desc: it.desc,
+    price: PRICES[i],
+  }));
 
   return (
     <div
@@ -77,13 +80,13 @@ const SecretPitch = () => {
             <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
               <div>
                 <p style={{ fontSize: 10, fontFamily: 'monospace', color: '#8b5cf6', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 6 }}>
-                  Bryan Jacquellino · Dev
+                  {t.pitch.devTag}
                 </p>
                 <h2 style={{ fontSize: 22, fontWeight: 300, color: 'white', letterSpacing: '-0.02em', margin: 0 }}>
-                  Investment Options
+                  {t.pitch.title}
                 </h2>
                 <p style={{ fontSize: 12, color: '#64748b', marginTop: 4 }}>
-                  Digital Solution & AI Integration
+                  {t.pitch.subtitle}
                 </p>
               </div>
               <button
@@ -172,15 +175,14 @@ const SecretPitch = () => {
             border: '1px solid rgba(245,158,11,0.12)',
           }}>
             <p style={{ fontSize: 10, color: 'rgba(253,230,138,0.7)', textAlign: 'center', margin: 0, lineHeight: 1.6 }}>
-              * Biaya yang tertera adalah <strong style={{ color: 'rgba(253,230,138,0.9)' }}>Development Fee</strong> (Jasa Pengembangan).
-              Belum termasuk biaya operasional pihak ketiga (Domain, Supabase Pro, kuota API AI).
+              {t.pitch.footerNote}
             </p>
           </div>
         </div>
 
         {/* Shortcut hint */}
         <p style={{ textAlign: 'center', marginTop: 12, fontSize: 10, color: '#334155', fontFamily: 'monospace' }}>
-          ESC to close · Alt+P to toggle
+          {t.pitch.shortcut}
         </p>
       </div>
     </div>

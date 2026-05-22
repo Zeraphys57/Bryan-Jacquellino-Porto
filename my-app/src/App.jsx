@@ -11,7 +11,10 @@ import Process from './component/Process';
 import Footer from './component/Footer';
 
 import SecretPitch from './component/SecretPitch';
+import { useLanguage } from './i18n/LanguageContext';
+
 function App() {
+  const { t } = useLanguage();
   const cursorOrbRef = useRef(null);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const stored = localStorage.getItem("theme");
@@ -173,14 +176,14 @@ function App() {
           <Header toggleDarkMode={() => setIsDarkMode(d => !d)} isDarkMode={isDarkMode} />
 
           {/* ── Hero ── */}
-          <main className="relative flex flex-col justify-center min-h-screen px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48" aria-label="Hero">
+          <main className="relative flex flex-col justify-center min-h-screen px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48" aria-label={t.sections.hero}>
             <div className="max-w-[1500px] w-full mx-auto pt-28 pb-20">
 
               <p
                 className="text-xs font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-6"
                 style={{ animation: 'fade-up 0.5s 0.05s cubic-bezier(0.23,1,0.32,1) both' }}
               >
-                Available for freelance
+                {t.hero.eyebrow}
               </p>
 
               <h1
@@ -195,7 +198,7 @@ function App() {
                 className="text-lg md:text-xl xl:text-2xl text-gray-500 dark:text-gray-400 max-w-xl leading-relaxed mb-12"
                 style={{ animation: 'fade-up 0.6s 0.22s cubic-bezier(0.23,1,0.32,1) both' }}
               >
-                Freelance web developer crafting fast, beautiful websites — from design to deployment.
+                {t.hero.tagline}
               </p>
 
               <div
@@ -208,7 +211,7 @@ function App() {
                     transition-all duration-150 ease-out
                     hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.97]"
                 >
-                  View Work
+                  {t.hero.viewWork}
                 </a>
                 <a
                   href="https://wa.me/+6281351958200"
@@ -219,7 +222,7 @@ function App() {
                     transition-all duration-150 ease-out
                     hover:-translate-y-0.5 hover:bg-gray-100 dark:hover:bg-white/5 active:scale-[0.97]"
                 >
-                  Get in Touch
+                  {t.hero.getInTouch}
                 </a>
               </div>
 
@@ -228,12 +231,7 @@ function App() {
                 className="grid grid-cols-2 sm:flex sm:flex-wrap gap-6 sm:gap-8 xl:gap-16 mt-14 pt-10 border-t border-gray-100 dark:border-white/[0.06]"
                 style={{ animation: 'fade-up 0.6s 0.42s cubic-bezier(0.23,1,0.32,1) both' }}
               >
-                {[
-                  { n: "50+",    label: "Projects" },
-                  { n: "7 Years",    label: "Experience" },
-                  { n: "Education",    label: "IT — Taiwan" },
-                  { n: "Open",  label: "For freelance" },
-                ].map(s => (
+                {t.hero.stats.map(s => (
                   <div key={s.label}>
                     <p className="text-2xl md:text-3xl xl:text-4xl font-light text-gray-900 dark:text-white">{s.n}</p>
                     <p className="text-[10px] xl:text-xs font-mono text-gray-400 dark:text-gray-600 tracking-widest uppercase mt-1">{s.label}</p>
@@ -248,27 +246,27 @@ function App() {
                 text-gray-400 dark:text-gray-600 cursor-pointer select-none border-none bg-transparent p-0"
               style={{ animation: 'bounce-y 2.2s ease-in-out infinite' }}
               onClick={() => document.getElementById('bio')?.scrollIntoView({ behavior: 'smooth' })}
-              aria-label="Scroll down"
+              aria-label={t.hero.scroll}
             >
-              <span className="text-[10px] font-mono tracking-[0.2em] uppercase">scroll</span>
+              <span className="text-[10px] font-mono tracking-[0.2em] uppercase">{t.hero.scroll}</span>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
           </main>
 
-          <section id="bio" aria-label="About Me"><ImBryan /></section>
-          <section id="services" aria-label="Services"><Services /></section>
-          <section id="education" aria-label="Education Timeline"><About /></section>
-          <section id="projects" aria-label="Selected Projects"><Projects /></section>
-          <section id="process" aria-label="My Process"><Process /></section>
+          <section id="bio" aria-label={t.sections.bio}><ImBryan /></section>
+          <section id="services" aria-label={t.sections.services}><Services /></section>
+          <section id="education" aria-label={t.sections.education}><About /></section>
+          <section id="projects" aria-label={t.sections.projects}><Projects /></section>
+          <section id="process" aria-label={t.sections.process}><Process /></section>
 
           {/* CTA block */}
           <section
             className="min-h-screen relative flex items-center overflow-hidden
                        bg-[#fafafa] dark:bg-[#030712]
                        px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48"
-            aria-label="Call to Action"
+            aria-label={t.sections.cta}
             onMouseMove={e => {
               const r = e.currentTarget.getBoundingClientRect();
               setCtaPos({ x: e.clientX - r.left, y: e.clientY - r.top });
@@ -307,19 +305,19 @@ function App() {
             {/* Content */}
             <div className="relative z-10 max-w-[1500px] mx-auto w-full">
               <p className="scroll-reveal text-xs font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-8">
-                Let&apos;s collaborate
+                {t.cta.eyebrow}
               </p>
 
               <h2 className="scroll-reveal text-[clamp(2.2rem,7vw,8.5rem)] font-light
                              leading-[0.92] tracking-tight text-gray-900 dark:text-white mb-10"
                   data-delay="60ms">
-                Punya project<br />
-                <em className="not-italic text-violet-600 dark:text-violet-400">di pikiran?</em>
+                {t.cta.headingLine1}<br />
+                <em className="not-italic text-violet-600 dark:text-violet-400">{t.cta.headingLine2}</em>
               </h2>
 
               <p className="scroll-reveal text-gray-500 dark:text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mb-14"
                  data-delay="120ms">
-                Siap bantu dari konsep sampai live. Ceritain kebutuhanmu dan kita mulai wujudkan.
+                {t.cta.body}
               </p>
 
               <div className="scroll-reveal flex flex-wrap gap-4" data-delay="180ms">
@@ -334,7 +332,7 @@ function App() {
                              hover:shadow-lg dark:hover:shadow-[0_8px_30px_rgba(124,58,237,0.45)]
                              active:scale-[0.97] transition-all duration-150 ease-out"
                 >
-                  Start a Project →
+                  {t.cta.start}
                 </a>
                 <a
                   href="#projects"
@@ -345,7 +343,7 @@ function App() {
                              hover:border-gray-300 dark:hover:border-white/25
                              active:scale-[0.97] transition-all duration-150 ease-out"
                 >
-                  View Work
+                  {t.cta.viewWork}
                 </a>
               </div>
             </div>
