@@ -6,6 +6,7 @@ import shotDentist from "../assets/projects/dentist.webp";
 import shotPlastik from "../assets/projects/plastik.webp";
 import shotTumbuh  from "../assets/projects/tumbuh.webp";
 import shotLink    from "../assets/projects/link2026.webp";
+import shotLumiere from "../assets/projects/lumiere.webp";
 
 /* ── Abstract wireframe — fallback preview for projects with no live screenshot ── */
 const MockPreview = () => (
@@ -55,14 +56,14 @@ const projects = [
   },
   {
     id: 3,
-    title: "Lawcorps",
-    category: "Legal Services Landing",
-    description: "A legal services landing page with consultation booking and a secure document submission flow.",
-    tags: ["React", "Tailwind", "Vite", "PostgreSQL"],
-    accent: "#f59e0b",
-    shot: null,
-    domain: "lawcorps",
-    link: "#",
+    title: "Lumière Beauty Clinic",
+    category: "Beauty Clinic Landing",
+    description: "A premium aesthetic clinic landing page with an editorial feel, a service catalog, gallery, and consultation booking.",
+    tags: ["React", "Tailwind", "Vite", "GSAP", "R3F"],
+    accent: "#c46b81",
+    shot: shotLumiere,
+    domain: "lumiere-beauty-clinic.vercel.app",
+    link: "https://lumiere-beauty-clinic.vercel.app/",
   },
   {
     id: 4,
