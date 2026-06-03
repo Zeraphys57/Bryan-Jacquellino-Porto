@@ -34,7 +34,7 @@ const Stat = ({ n, label }) => {
       <p className="text-2xl md:text-3xl xl:text-4xl font-light text-gray-900 dark:text-white tabular-nums">
         {match ? `${value}${match[2]}` : n}
       </p>
-      <p className="text-[10px] xl:text-xs font-mono text-gray-400 dark:text-gray-600 tracking-widest uppercase mt-1">
+      <p className="text-[10px] xl:text-xs font-mono text-gray-500 dark:text-gray-400 tracking-widest uppercase mt-1">
         {label}
       </p>
     </div>
@@ -89,7 +89,7 @@ const Hero = () => {
 
         {/* Tagline */}
         <p
-          className="text-lg md:text-xl xl:text-2xl text-gray-500 dark:text-gray-400 max-w-xl leading-relaxed mb-12"
+          className="text-lg md:text-xl xl:text-2xl text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed mb-12"
           style={{ animation: `fade-up 0.6s 0.38s ${EASE} both` }}
         >
           {t.hero.tagline}
