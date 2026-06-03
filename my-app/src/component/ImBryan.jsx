@@ -232,13 +232,33 @@ const ImBryan = () => {
               </div>
             </div>
 
-            {/* Quote Box */}
+            {/* Status Box */}
             <div className="scroll-reveal" data-delay="180ms">
-              <div className="relative p-6 rounded-2xl border border-violet-100 dark:border-violet-500/10 bg-violet-50/50 dark:bg-violet-500/5 overflow-hidden group">
-                <div className="absolute top-0 left-0 w-1 h-full bg-violet-400 dark:bg-violet-500" />
-                <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed italic">
-                  {t.bio.quote}
-                </p>
+              <div className="p-5 md:p-6 rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50/50 dark:bg-zinc-900/30 flex flex-col gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-500" />
+                  </span>
+                  <p className="text-sm font-mono text-gray-900 dark:text-white uppercase tracking-widest">
+                    {t.bio.status.title}
+                  </p>
+                </div>
+                
+                <div className="space-y-3 mt-1">
+                  <div className="flex justify-between items-center border-b border-gray-200 dark:border-white/5 pb-3">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">{t.bio.status.availability}</span>
+                    <span className="text-sm text-gray-900 dark:text-white font-medium">{t.bio.status.available}</span>
+                  </div>
+                  <div className="flex justify-between items-center border-b border-gray-200 dark:border-white/5 pb-3">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">{t.bio.status.timezone}</span>
+                    <span className="text-sm text-gray-900 dark:text-white font-medium">{t.bio.status.location}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">{t.bio.status.response}</span>
+                    <span className="text-sm text-gray-900 dark:text-white font-medium">{t.bio.status.responseTime}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
