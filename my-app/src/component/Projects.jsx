@@ -97,7 +97,6 @@ const Projects = () => {
   const { t } = useLanguage();
   const [current, setCurrent]         = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [showCaseStudy, setShowCaseStudy] = useState(false);
 
   const frameRef  = useRef(null);   // GSAP swap target
   const tiltRef   = useRef(null);   // cursor-tracked tilt target
@@ -143,7 +142,6 @@ const Projects = () => {
     if (isAnimating || idx === current) return;
     dirRef.current = dir;
     setIsAnimating(true);
-    setShowCaseStudy(false);
     if (reduced.current) { setCurrent(idx); return; }
     gsap.to(frameRef.current, {
       opacity: 0, scale: 0.95, x: dir * -44,
@@ -410,17 +408,6 @@ const Projects = () => {
               ))}
             </ul>
             <div className="flex flex-wrap items-center gap-3">
-              {copy.caseStudy && (
-                <button
-                  onClick={() => setShowCaseStudy(!showCaseStudy)}
-                  className="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-150 ease-out
-                    border border-gray-200 dark:border-white/10
-                    text-gray-700 dark:text-gray-300
-                    hover:bg-gray-100 dark:hover:bg-white/5 active:scale-95"
-                >
-                  {showCaseStudy ? "Close Case Study" : "View Case Study"}
-                </button>
-              )}
               {isLive(p) ? (
                 <a
                   {...(locked
@@ -446,7 +433,7 @@ const Projects = () => {
             </div>
           </div>
           
-          {showCaseStudy && copy.caseStudy && (
+          {copy.caseStudy && (
             <div
               className="mt-8 p-6 md:p-8 rounded-2xl bg-gray-50 dark:bg-[#121215] border border-gray-200 dark:border-white/10 shadow-sm"
               style={{ animation: "fade-up 0.4s ease-out both" }}

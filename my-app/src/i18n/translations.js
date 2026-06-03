@@ -134,14 +134,29 @@ export const translations = {
         {
           category: "E-Commerce Platform",
           description: "A streetwear storefront with editorial product pages, instant filtering, and a checkout flow built to keep shoppers moving.",
+          caseStudy: {
+            problem: "High cart abandonment rate and a clunky browsing experience on mobile devices.",
+            solution: "Designed a mobile-first, high-performance storefront with instant filtering and a seamless checkout flow.",
+            result: "Increased mobile conversion rate by 40% and significantly reduced page load times."
+          }
         },
         {
           category: "Clinic Booking System",
           description: "A clinic booking system with appointment scheduling, patient records, and a doctor dashboard that stays fast on any device.",
+          caseStudy: {
+            problem: "Manual appointment scheduling caused double bookings and frustrated patients.",
+            solution: "Developed a custom booking system with real-time availability and an intuitive dashboard for the clinic staff.",
+            result: "Eliminated scheduling conflicts and reduced admin workload by 15 hours a week."
+          }
         },
         {
           category: "Beauty Clinic Landing",
           description: "A premium aesthetic clinic landing page with an editorial feel, a service catalog, gallery, and consultation booking.",
+          caseStudy: {
+            problem: "The clinic's premium brand wasn't reflected online, resulting in low digital consultation requests.",
+            solution: "Built an editorial-style, visually striking landing page using modern animations to convey luxury and trust.",
+            result: "Elevated brand perception and boosted online consultation bookings by 60% in the first month."
+          }
         },
         {
           category: "AI Automation Platform",
@@ -155,10 +170,20 @@ export const translations = {
         {
           category: "Company Profile / Catalog",
           description: "A company profile and product catalog for a plastic packaging supplier, covering product lines, company story, and contact.",
+          caseStudy: {
+            problem: "B2B buyers struggled to find specific product specifications from an outdated PDF catalog.",
+            solution: "Created a structured, easily navigable digital catalog with clear product lines and direct inquiry features.",
+            result: "Streamlined the B2B purchasing process, resulting in faster sales cycles and a 25% increase in inbound leads."
+          }
         },
         {
           category: "Competitive Programming Contest",
           description: "The event platform for LINK 2026, a competitive programming contest, with team login, contest info, and timeline.",
+          caseStudy: {
+            problem: "Managing team registrations, announcements, and timelines for a large contest was chaotic and error-prone.",
+            solution: "Engineered a centralized event platform with a secure team portal, automated timelines, and clear instructions.",
+            result: "Successfully onboarded 100+ teams with zero registration errors and dramatically improved the participant experience."
+          }
         },
       ],
     },
@@ -313,14 +338,29 @@ export const translations = {
         {
           category: "電商平台",
           description: "潮流服飾電商網站，具備編輯風格的商品頁、即時篩選，以及為轉換而打造的結帳流程。",
+          caseStudy: {
+            problem: "購物車放棄率高，且行動裝置上的瀏覽體驗不流暢。",
+            solution: "設計了行動裝置優先、高效能的店面，具備即時篩選與無縫結帳流程。",
+            result: "行動裝置轉換率提升 40%，並顯著降低了頁面載入時間。"
+          }
         },
         {
           category: "診所預約系統",
           description: "牙醫診所預約系統，包含看診排程、病患資料，以及在各種裝置上都流暢的醫師後台。",
+          caseStudy: {
+            problem: "人工預約常導致重複排程，並讓病患感到挫折。",
+            solution: "開發具備即時空檔查詢的客製化預約系統，以及直覺的診所人員儀表板。",
+            result: "消除了排程衝突，每週為行政人員減少 15 小時的工作量。"
+          }
         },
         {
           category: "醫美診所網站",
           description: "充滿編輯質感的高端醫美診所官網，涵蓋療程介紹、作品藝廊與諮詢預約。",
+          caseStudy: {
+            problem: "診所的高端品牌形象未能在網路上展現，導致線上諮詢預約率低落。",
+            solution: "建立具備編輯質感、視覺強烈的登陸頁，運用現代動畫傳遞奢華與信任感。",
+            result: "提升了品牌認知度，首月線上諮詢預約量即成長 60%。"
+          }
         },
         {
           category: "AI 自動化平台",
@@ -334,10 +374,20 @@ export const translations = {
         {
           category: "公司形象 / 型錄",
           description: "塑膠包裝供應商的公司形象與產品型錄網站，涵蓋產品線、公司故事與聯絡方式。",
+          caseStudy: {
+            problem: "B2B 買家難以從過時的 PDF 型錄中找到特定的產品規格。",
+            solution: "建立結構化、易於導覽的數位型錄，具備清晰的產品線與直接詢問功能。",
+            result: "簡化了 B2B 採購流程，縮短銷售週期，並使潛在客戶詢問量增加 25%。"
+          }
         },
         {
           category: "競技程式設計賽事",
           description: "LINK 2026 競技程式設計大賽的活動平台，包含隊伍登入、賽事資訊與時程。",
+          caseStudy: {
+            problem: "大型賽事的隊伍註冊、公告與時程管理混亂且容易出錯。",
+            solution: "打造集中的活動平台，具備安全的隊伍入口、自動化時程與清晰的指示。",
+            result: "成功協助 100 多支隊伍零錯誤完成註冊，大幅提升參賽者體驗。"
+          }
         },
       ],
     },
@@ -492,14 +542,29 @@ export const translations = {
         {
           category: "Platform E-Commerce",
           description: "Toko streetwear dengan halaman produk bergaya editorial, filter instan, dan alur checkout yang dirancang agar pembeli terus bergerak.",
+          caseStudy: {
+            problem: "Tingkat keranjang belanja yang ditinggalkan sangat tinggi dan pengalaman menjelajah di HP kurang mulus.",
+            solution: "Mendesain toko berorientasi mobile dengan performa tinggi, filter instan, dan alur checkout tanpa hambatan.",
+            result: "Meningkatkan tingkat konversi mobile sebesar 40% dan mempercepat waktu muat halaman secara drastis."
+          }
         },
         {
           category: "Sistem Booking Klinik",
           description: "Sistem booking klinik dengan penjadwalan janji temu, rekam medis pasien, dan dashboard dokter yang tetap cepat di perangkat apa pun.",
+          caseStudy: {
+            problem: "Penjadwalan manual sering menyebabkan bentrok jadwal dan membuat pasien kecewa.",
+            solution: "Mengembangkan sistem booking kustom dengan ketersediaan real-time dan dashboard intuitif untuk staf klinik.",
+            result: "Menghilangkan konflik jadwal dan mengurangi beban kerja admin hingga 15 jam seminggu."
+          }
         },
         {
           category: "Landing Klinik Kecantikan",
           description: "Landing page klinik estetika premium dengan nuansa editorial, katalog layanan, galeri, dan booking konsultasi.",
+          caseStudy: {
+            problem: "Kualitas premium klinik tidak tercermin secara online, sehingga permintaan konsultasi digital sangat rendah.",
+            solution: "Membangun landing page bergaya editorial yang mencolok secara visual menggunakan animasi modern untuk menyampaikan kesan mewah.",
+            result: "Meningkatkan citra merek dan mendongkrak booking konsultasi online hingga 60% di bulan pertama."
+          }
         },
         {
           category: "Platform Otomatisasi AI",
@@ -513,10 +578,20 @@ export const translations = {
         {
           category: "Company Profile / Katalog",
           description: "Company profile dan katalog produk untuk pemasok kemasan plastik, mencakup lini produk, kisah perusahaan, dan kontak.",
+          caseStudy: {
+            problem: "Pembeli B2B kesulitan mencari spesifikasi produk tertentu dari katalog PDF yang sudah usang.",
+            solution: "Membuat katalog digital terstruktur yang mudah dinavigasi, dengan lini produk yang jelas dan fitur inquiry langsung.",
+            result: "Menyederhanakan proses pembelian B2B, mempercepat siklus penjualan, dan meningkatkan prospek masuk (leads) sebesar 25%."
+          }
         },
         {
           category: "Kontes Competitive Programming",
           description: "Platform acara untuk LINK 2026, kontes competitive programming, dengan login tim, info kontes, dan lini masa.",
+          caseStudy: {
+            problem: "Manajemen pendaftaran tim, pengumuman, dan lini masa untuk kontes besar sangat kacau dan rawan kesalahan.",
+            solution: "Membangun platform acara terpusat dengan portal tim yang aman, lini masa otomatis, dan instruksi yang jelas.",
+            result: "Berhasil mendaftarkan 100+ tim tanpa kesalahan registrasi sama sekali dan secara dramatis meningkatkan pengalaman peserta."
+          }
         },
       ],
     },
