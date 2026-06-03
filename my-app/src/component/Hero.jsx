@@ -117,7 +117,7 @@ const Hero = () => {
             </svg>
           </a>
           <a
-            href="https://wa.me/+6281351958200"
+            href="https://wa.me/+6281351958200?text=Hi%20Bryan!%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 px-6 py-3 rounded-full

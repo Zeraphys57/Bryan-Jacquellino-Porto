@@ -50,7 +50,7 @@ const LINES = [
   { prompt: false, text: "" },
   { prompt: true,  text: "bryan --contact" },
   { prompt: false, text: "" },
-  { prompt: false, text: "  wa    +62 813 5195 8200",          href: "https://wa.me/6281351958200" },
+  { prompt: false, text: "  wa    +62 813 5195 8200",          href: "https://wa.me/6281351958200?text=Hi%20Bryan!%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." },
   { prompt: false, text: "  mail  jacquellinobryan@gmail.com", href: "mailto:jacquellinobryan@gmail.com" },
   { prompt: false, text: "" },
   { prompt: true,  text: "_" },

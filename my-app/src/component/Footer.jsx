@@ -12,7 +12,7 @@ const NAV = [
 const SOCIALS = [
   { href: "https://github.com/Zeraphys57",               Icon: FaGithub,    label: "GitHub",    hover: "hover:text-gray-900 dark:hover:text-white" },
   { href: "https://www.instagram.com/bryanjacquellino/", Icon: FaInstagram, label: "Instagram", hover: "hover:text-pink-500" },
-  { href: "https://wa.me/+6281351958200",                Icon: FaWhatsapp,  label: "WhatsApp",  hover: "hover:text-green-500" },
+  { href: "https://wa.me/+6281351958200?text=Hi%20Bryan!%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.",                Icon: FaWhatsapp,  label: "WhatsApp",  hover: "hover:text-green-500" },
 ];
 
 const Footer = () => {

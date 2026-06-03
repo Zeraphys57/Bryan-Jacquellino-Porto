@@ -248,7 +248,7 @@ function App() {
 
               <div className="scroll-reveal flex flex-wrap gap-4" data-delay="180ms">
                 <a
-                  href="https://wa.me/+6281351958200"
+                  href="https://wa.me/+6281351958200?text=Hi%20Bryan!%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-4 rounded-full text-white text-sm font-medium

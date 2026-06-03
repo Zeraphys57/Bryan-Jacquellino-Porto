@@ -201,7 +201,7 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
             : { opacity: 0 }}
         >
           <a
-            href="https://wa.me/+6281351958200"
+            href="https://wa.me/+6281351958200?text=Hi%20Bryan!%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
             target="_blank"
             rel="noopener noreferrer"
             className="text-[11px] font-mono tracking-widest uppercase
