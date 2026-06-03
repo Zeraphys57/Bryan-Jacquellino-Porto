@@ -258,14 +258,19 @@ const About = () => {
               style={{ transform: "scaleX(0)" }}
             />
             {educationData.map((_, i) => (
-              <span
+              <div
                 key={i}
-                ref={(el) => (markersRef.current[i] = el)}
-                className="absolute top-1/2 w-1.5 h-1.5 rounded-full
-                           -translate-x-1/2 -translate-y-1/2
-                           bg-gray-200 dark:bg-white/15 transition-colors duration-300"
+                className="absolute top-1/2 -translate-x-1/2 flex flex-col items-center"
                 style={{ left: `${(i / (n - 1)) * 100}%` }}
-              />
+              >
+                <span className="absolute bottom-4 text-[10px] font-mono tracking-widest text-gray-400 dark:text-gray-500 uppercase whitespace-nowrap">
+                  {t.education.items[i].year}
+                </span>
+                <span
+                  ref={(el) => (markersRef.current[i] = el)}
+                  className="w-1.5 h-1.5 rounded-full -translate-y-1/2 bg-gray-200 dark:bg-white/15 transition-colors duration-300"
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -298,9 +303,6 @@ const About = () => {
               {/* Content */}
               <div className="relative z-10 max-w-[1500px] mx-auto w-full flex items-center justify-between gap-8">
                 <div className="max-w-2xl">
-                  <p className="tl-item text-[11px] font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-8">
-                    {copy.year}
-                  </p>
                   <h3 className="tl-item text-4xl sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl font-light
                                  text-gray-900 dark:text-white mb-5 leading-none">
                     {copy.status}
