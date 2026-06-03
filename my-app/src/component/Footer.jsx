@@ -48,7 +48,7 @@ const Footer = () => {
           <nav className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {NAV.map(({ key, href }) => (
               <a key={key} href={href}
-                className="text-xs font-mono text-gray-400 dark:text-gray-600 tracking-wide
+                className="text-xs font-mono text-gray-500 dark:text-gray-600 tracking-wide
                   hover:text-gray-900 dark:hover:text-white transition-colors duration-150">
                 {t.nav[key]}
               </a>
@@ -56,7 +56,7 @@ const Footer = () => {
           </nav>
 
           {/* Socials */}
-          <div className="flex items-center gap-4 text-gray-300 dark:text-gray-700">
+          <div className="flex items-center gap-4 text-gray-400 dark:text-gray-600">
             {SOCIALS.map(({ href, Icon, label, hover }) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer"
                 aria-label={label}
@@ -69,7 +69,7 @@ const Footer = () => {
 
         {/* Bottom line */}
         <div className="border-t border-gray-100 dark:border-white/[0.05] pt-6">
-          <p className="text-center text-[11px] font-mono text-gray-300 dark:text-gray-700 tracking-widest uppercase">
+          <p className="text-center text-[11px] font-mono text-gray-400 dark:text-gray-700 tracking-widest uppercase">
             © {year} Bryan Jacquellino · React · Tailwind · GSAP
           </p>
         </div>
