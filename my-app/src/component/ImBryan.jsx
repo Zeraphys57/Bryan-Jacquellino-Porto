@@ -208,14 +208,44 @@ const ImBryan = () => {
         {/* Main grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 xl:gap-28">
 
-          {/* Left Column: Terminal + Tech Stack + Quote */}
-          <div className="flex flex-col gap-10">
+          {/* Left Column: Terminal + Status + Tech Stack */}
+          <div className="flex flex-col gap-8">
             <div className="scroll-reveal" data-delay="60ms">
               <TerminalCard />
             </div>
 
-            {/* Tech stack — flat pill list */}
+            {/* Status Box */}
             <div className="scroll-reveal" data-delay="120ms">
+              <div className="p-4 md:p-5 rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50/50 dark:bg-zinc-900/30 flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
+                  </span>
+                  <p className="text-xs font-mono text-gray-900 dark:text-white uppercase tracking-widest">
+                    {t.bio.status.title}
+                  </p>
+                </div>
+                
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center border-b border-gray-200 dark:border-white/5 pb-2">
+                    <span className="text-xs text-gray-500 dark:text-gray-400">{t.bio.status.availability}</span>
+                    <span className="text-xs text-gray-900 dark:text-white font-medium">{t.bio.status.available}</span>
+                  </div>
+                  <div className="flex justify-between items-center border-b border-gray-200 dark:border-white/5 pb-2">
+                    <span className="text-xs text-gray-500 dark:text-gray-400">{t.bio.status.timezone}</span>
+                    <span className="text-xs text-gray-900 dark:text-white font-medium">{t.bio.status.location}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs text-gray-500 dark:text-gray-400">{t.bio.status.response}</span>
+                    <span className="text-xs text-gray-900 dark:text-white font-medium">{t.bio.status.responseTime}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tech stack — flat pill list */}
+            <div className="scroll-reveal" data-delay="180ms">
               <p className="text-xs font-mono text-gray-400 dark:text-gray-600 tracking-widest uppercase mb-4">
                 {t.bio.techStack}
               </p>
@@ -229,36 +259,6 @@ const ImBryan = () => {
                     {name}
                   </span>
                 ))}
-              </div>
-            </div>
-
-            {/* Status Box */}
-            <div className="scroll-reveal" data-delay="180ms">
-              <div className="p-5 md:p-6 rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50/50 dark:bg-zinc-900/30 flex flex-col gap-4">
-                <div className="flex items-center gap-3">
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-500" />
-                  </span>
-                  <p className="text-sm font-mono text-gray-900 dark:text-white uppercase tracking-widest">
-                    {t.bio.status.title}
-                  </p>
-                </div>
-                
-                <div className="space-y-3 mt-1">
-                  <div className="flex justify-between items-center border-b border-gray-200 dark:border-white/5 pb-3">
-                    <span className="text-sm text-gray-500 dark:text-gray-400">{t.bio.status.availability}</span>
-                    <span className="text-sm text-gray-900 dark:text-white font-medium">{t.bio.status.available}</span>
-                  </div>
-                  <div className="flex justify-between items-center border-b border-gray-200 dark:border-white/5 pb-3">
-                    <span className="text-sm text-gray-500 dark:text-gray-400">{t.bio.status.timezone}</span>
-                    <span className="text-sm text-gray-900 dark:text-white font-medium">{t.bio.status.location}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-500 dark:text-gray-400">{t.bio.status.response}</span>
-                    <span className="text-sm text-gray-900 dark:text-white font-medium">{t.bio.status.responseTime}</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
