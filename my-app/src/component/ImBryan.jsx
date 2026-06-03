@@ -206,10 +206,10 @@ const ImBryan = () => {
         </p>
 
         {/* Main grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 xl:gap-28 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 xl:gap-28">
 
           {/* Left Column: Terminal + Tech Stack */}
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col justify-between h-full gap-10">
             <div className="scroll-reveal" data-delay="60ms">
               <TerminalCard />
             </div>
