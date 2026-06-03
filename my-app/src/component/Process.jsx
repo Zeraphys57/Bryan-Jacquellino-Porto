@@ -54,8 +54,6 @@ const Process = () => {
   const timelineRef = useRef(null);
   const dotRefs     = useRef([]);
   const labelRefs   = useRef([]);
-  const counterRef  = useRef(null);
-
   const [mode, setMode]       = useState(resolveMode);
   const [reduced, setReduced] = useState(() => window.matchMedia(QUERY_REDUCED).matches);
 
@@ -127,11 +125,7 @@ const Process = () => {
                 label.style.color = active ? '#14b8a6' : '';
               }
             });
-            // Counter
-            if (counterRef.current) {
-              const idx = Math.min(Math.floor(self.progress * n) + 1, n);
-              counterRef.current.textContent = `0${idx}  /  0${n}`;
-            }
+
           },
         },
       });
@@ -296,10 +290,7 @@ const Process = () => {
               {t.process.heading}
             </h2>
           </div>
-          <span ref={counterRef}
-                className="text-xs font-mono text-gray-300 dark:text-gray-700 tracking-widest pb-1 tabular-nums">
-            01  /  04
-          </span>
+
         </div>
       </div>
 
