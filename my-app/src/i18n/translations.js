@@ -58,6 +58,7 @@ export const translations = {
       para2: "My core stack is <strong>React and Tailwind CSS</strong>, a combination that gives full control over both performance and visual detail. Backed by a <strong>D3 IT diploma in Taiwan</strong> that built my technical foundation and structured thinking, every project I take on holds a clear standard: <strong>clean, efficient, and on point</strong>.",
       para3: "Lately I've also been integrating AI into web products, from <strong>RAG-based systems</strong> that genuinely understand business context, to <strong>workflow automation</strong> and smart pipelines wired straight into your operations. AI isn't just a trend; set up properly, it becomes <strong>real leverage</strong> for your business to grow.",
       techStack: "Tech Stack",
+      quote: `"Code should be clean, fast, and maintainable. But most importantly, it must solve real problems."`
     },
     services: {
       eyebrow: "Services",
@@ -262,6 +263,7 @@ export const translations = {
       para2: "我的核心技術組合是 <strong>React 與 Tailwind CSS</strong>，這個搭配能同時完整掌控效能與視覺細節。加上在<strong>台灣修讀資訊科技二專</strong>所打下的技術基礎與結構化思維，我經手的每個專案都有明確標準：<strong>乾淨、高效、切中要點</strong>。",
       para3: "近來我也持續將 AI 整合進網頁產品中，從真正理解業務脈絡的 <strong>RAG 系統</strong>，到<strong>工作流程自動化</strong>，以及直接串接你營運的智慧管線。AI 不只是趨勢；只要佈署得當，它就能成為你業務成長的<strong>真實助力</strong>。",
       techStack: "技術棧",
+      quote: `"程式碼應該乾淨、快速且易於維護。但最重要的是，它必須解決真正的問題。"`
     },
     services: {
       eyebrow: "服務",
@@ -466,6 +468,7 @@ export const translations = {
       para2: "Stack utama saya adalah <strong>React dan Tailwind CSS</strong>, kombinasi yang memberi kontrol penuh atas performa sekaligus detail visual. Didukung <strong>diploma D3 IT di Taiwan</strong> yang membangun fondasi teknis dan pola pikir terstruktur saya, setiap proyek yang saya kerjakan memegang standar yang jelas: <strong>bersih, efisien, dan tepat sasaran</strong>.",
       para3: "Belakangan ini saya juga mengintegrasikan AI ke produk web, dari <strong>sistem berbasis RAG</strong> yang benar-benar memahami konteks bisnis, hingga <strong>otomatisasi alur kerja</strong> dan pipeline cerdas yang terhubung langsung ke operasionalmu. AI bukan sekadar tren; jika disiapkan dengan benar, ia menjadi <strong>daya ungkit nyata</strong> bagi pertumbuhan bisnismu.",
       techStack: "Tech Stack",
+      quote: `"Kode harus bersih, cepat, dan mudah dipelihara. Tapi yang terpenting, kode harus bisa memecahkan masalah nyata."`
     },
     services: {
       eyebrow: "Layanan",

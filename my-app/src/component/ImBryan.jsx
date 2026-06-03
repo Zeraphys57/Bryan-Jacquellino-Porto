@@ -208,8 +208,8 @@ const ImBryan = () => {
         {/* Main grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 xl:gap-28">
 
-          {/* Left Column: Terminal + Tech Stack */}
-          <div className="flex flex-col justify-between h-full gap-10">
+          {/* Left Column: Terminal + Tech Stack + Quote */}
+          <div className="flex flex-col gap-10">
             <div className="scroll-reveal" data-delay="60ms">
               <TerminalCard />
             </div>
@@ -229,6 +229,16 @@ const ImBryan = () => {
                     {name}
                   </span>
                 ))}
+              </div>
+            </div>
+
+            {/* Quote Box */}
+            <div className="scroll-reveal" data-delay="180ms">
+              <div className="relative p-6 rounded-2xl border border-violet-100 dark:border-violet-500/10 bg-violet-50/50 dark:bg-violet-500/5 overflow-hidden group">
+                <div className="absolute top-0 left-0 w-1 h-full bg-violet-400 dark:bg-violet-500" />
+                <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed italic">
+                  {t.bio.quote}
+                </p>
               </div>
             </div>
           </div>
