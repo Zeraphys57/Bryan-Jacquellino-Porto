@@ -173,6 +173,23 @@ const Process = () => {
           ease: "power2.out",
           scrollTrigger: { trigger: row, start: "top 85%" },
         });
+
+        const node = row.querySelector(".pf-node");
+        if (node) {
+          gsap.to(node, {
+            backgroundColor: "var(--tw-colors-teal-500, #14b8a6)",
+            color: "#ffffff",
+            borderColor: "var(--tw-colors-teal-400, #2dd4bf)",
+            boxShadow: "0 0 15px rgba(20, 184, 166, 0.5)",
+            duration: 0.3,
+            scrollTrigger: {
+              trigger: row,
+              start: "top 55%",
+              end: "bottom 45%",
+              toggleActions: "play reverse play reverse",
+            }
+          });
+        }
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -209,11 +226,12 @@ const Process = () => {
                   <div key={i} className="pf-row relative pl-12 overflow-hidden">
                     {/* Node */}
                     <span
-                      className="absolute left-0 top-0 w-[27px] h-[27px] rounded-full
+                      className="pf-node absolute left-0 top-0 w-[27px] h-[27px] rounded-full
                                  flex items-center justify-center
                                  border border-teal-500/60 dark:border-teal-400/60
                                  bg-white dark:bg-gray-950
-                                 text-[10px] font-mono text-teal-600 dark:text-teal-400"
+                                 text-[10px] font-mono text-teal-600 dark:text-teal-400
+                                 transition-colors duration-300"
                     >
                       {item.step}
                     </span>
@@ -243,7 +261,7 @@ const Process = () => {
                       <h3 className="text-3xl sm:text-4xl xl:text-5xl font-light text-gray-900 dark:text-white leading-tight mb-3">
                         {copy.title}
                       </h3>
-                      <p className="text-base sm:text-lg text-gray-500 dark:text-gray-400 max-w-lg leading-relaxed">
+                      <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-lg leading-relaxed">
                         {copy.desc}
                       </p>
                     </div>
@@ -362,7 +380,7 @@ const Process = () => {
                 {copy.title}
               </h3>
 
-              <p className="text-base sm:text-xl md:text-2xl text-gray-500 dark:text-gray-400
+              <p className="text-base sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400
                             max-w-lg leading-relaxed">
                 {copy.desc}
               </p>

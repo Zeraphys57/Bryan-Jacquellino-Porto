@@ -99,7 +99,7 @@ export const translations = {
       items: [
         {
           title: "Discovery",
-          desc: "We talk first about your business, goals, and target audience. From there I map out what's truly needed, not just features, but the solution.",
+          desc: "We talk first about your business, goals, and target audience. From there I map out what's truly needed—including potential AI automations—to build the right solution.",
           note: "Brief · Goals",
         },
         {
@@ -303,7 +303,7 @@ export const translations = {
       items: [
         {
           title: "探索",
-          desc: "我們先聊聊你的業務、目標與受眾。我會從中釐清真正需要的，不只是功能，而是解決方案。",
+          desc: "我們先聊聊你的業務、目標與受眾。接著我會規劃出真正需要的項目（包含潛在的 AI 自動化），為您打造最合適的解決方案。",
           note: "需求 · 目標",
         },
         {
@@ -507,7 +507,7 @@ export const translations = {
       items: [
         {
           title: "Discovery",
-          desc: "Kita bicara dulu tentang bisnis, tujuan, dan target audiensmu. Dari situ saya petakan apa yang benar-benar dibutuhkan, bukan sekadar fitur, tapi solusinya.",
+          desc: "Kita bicara dulu tentang bisnis, tujuan, dan target audiensmu. Dari situ saya petakan apa yang benar-benar dibutuhkan—termasuk potensi otomatisasi AI—untuk merancang solusi yang tepat.",
           note: "Brief · Tujuan",
         },
         {
