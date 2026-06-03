@@ -28,7 +28,7 @@ const About = () => {
   const sectionRef  = useRef(null);
   const trackRef    = useRef(null);
   const progressRef = useRef(null);
-  const counterRef  = useRef(null);
+  const yearRefs    = useRef([]);
   const hintRef     = useRef(null);
   const markersRef  = useRef([]);
 
@@ -77,10 +77,14 @@ const About = () => {
             if (progressRef.current) {
               progressRef.current.style.transform = `scaleX(${self.progress})`;
             }
-            if (counterRef.current) {
-              const idx = Math.min(Math.floor(self.progress * n) + 1, n);
-              counterRef.current.textContent = `0${idx}  /  0${n}`;
-            }
+            const passed = self.progress * (n - 1);
+            yearRefs.current.forEach((el, i) => {
+              if (el) {
+                const isActive = passed >= i - 0.05;
+                el.style.opacity = isActive ? "1" : "0";
+                el.style.transform = isActive ? "translateY(0)" : "translateY(4px)";
+              }
+            });
             if (hintRef.current) {
               hintRef.current.style.opacity = self.progress > 0.06 ? "0" : "1";
             }
@@ -242,12 +246,7 @@ const About = () => {
                 {t.education.heading}
               </h2>
             </div>
-            <span
-              ref={counterRef}
-              className="text-xs font-mono text-gray-300 dark:text-gray-700 tracking-widest pb-1 tabular-nums"
-            >
-              01  /  0{n}
-            </span>
+
           </div>
 
           {/* Progress bar with one marker per stop */}
@@ -263,7 +262,11 @@ const About = () => {
                 className="absolute top-1/2 -translate-x-1/2 flex flex-col items-center"
                 style={{ left: `${(i / (n - 1)) * 100}%` }}
               >
-                <span className="absolute bottom-4 text-[10px] font-mono tracking-widest text-gray-400 dark:text-gray-500 uppercase whitespace-nowrap">
+                <span
+                  ref={(el) => (yearRefs.current[i] = el)}
+                  className="absolute bottom-4 text-[10px] font-mono tracking-widest text-violet-600 dark:text-violet-400 uppercase whitespace-nowrap transition-all duration-300"
+                  style={{ opacity: i === 0 ? 1 : 0, transform: i === 0 ? "translateY(0)" : "translateY(4px)" }}
+                >
                   {t.education.items[i].year}
                 </span>
                 <span
