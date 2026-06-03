@@ -149,19 +149,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll cue */}
-      <button
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2
-          text-gray-400 dark:text-gray-600 cursor-pointer select-none border-none bg-transparent p-0"
-        style={{ animation: "bounce-y 2.2s ease-in-out infinite" }}
-        onClick={() => document.getElementById("bio")?.scrollIntoView({ behavior: "smooth" })}
-        aria-label={t.hero.scroll}
-      >
-        <span className="text-[10px] font-mono tracking-[0.2em] uppercase">{t.hero.scroll}</span>
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
     </main>
   );
 };
