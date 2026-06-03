@@ -129,7 +129,7 @@ const Services = () => {
                     <h3 className="text-base xl:text-lg font-semibold text-gray-900 dark:text-white">
                       {copy.title}
                     </h3>
-                    <p className="text-sm xl:text-base text-gray-500 dark:text-gray-400 leading-relaxed">
+                    <p className="text-sm xl:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
                       {copy.desc}
                     </p>
                   </div>
@@ -140,7 +140,7 @@ const Services = () => {
                     {s.tags.map(tag => (
                       <span
                         key={tag}
-                        className="flex items-center gap-1.5 text-[10px] font-mono text-gray-400 dark:text-gray-500"
+                        className="flex items-center gap-1.5 text-[10px] font-mono text-gray-500 dark:text-gray-400"
                       >
                         <span className="w-1 h-1 rounded-full bg-[var(--accent)]" />
                         {tag}
