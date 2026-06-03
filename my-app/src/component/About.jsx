@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useLanguage } from "../i18n/LanguageContext";
+import AbstractGraphic from "./AbstractGraphic";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -136,6 +137,23 @@ const About = () => {
           ease: "power2.out",
           scrollTrigger: { trigger: row, start: "top 85%" },
         });
+
+        const node = row.querySelector(".tl-vnode");
+        if (node) {
+          gsap.to(node, {
+            backgroundColor: "var(--tw-colors-violet-500, #8b5cf6)",
+            color: "#ffffff",
+            borderColor: "var(--tw-colors-violet-400, #a78bfa)",
+            boxShadow: "0 0 15px rgba(139, 92, 246, 0.5)",
+            duration: 0.3,
+            scrollTrigger: {
+              trigger: row,
+              start: "top 55%",
+              end: "bottom 45%",
+              toggleActions: "play reverse play reverse",
+            }
+          });
+        }
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -172,11 +190,12 @@ const About = () => {
                   <div key={i} className="tl-vrow relative pl-12">
                     {/* Node */}
                     <span
-                      className="absolute left-0 top-0 w-[27px] h-[27px] rounded-full
+                      className="tl-vnode absolute left-0 top-0 w-[27px] h-[27px] rounded-full
                                  flex items-center justify-center
                                  border border-violet-500/60 dark:border-violet-400/60
                                  bg-white dark:bg-gray-950
-                                 text-[10px] font-mono text-violet-600 dark:text-violet-400"
+                                 text-[10px] font-mono text-violet-600 dark:text-violet-400
+                                 transition-colors duration-300"
                     >
                       {edu.num}
                     </span>
@@ -187,7 +206,7 @@ const About = () => {
                     <h3 className="text-3xl sm:text-4xl font-light text-gray-900 dark:text-white leading-tight mb-2.5">
                       {copy.status}
                     </h3>
-                    <p className="text-base sm:text-lg text-gray-500 dark:text-gray-400 mb-3.5 max-w-md">
+                    <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-3.5 max-w-md">
                       {copy.desc}
                     </p>
                     <div className="flex items-center gap-2.5">
@@ -277,20 +296,29 @@ const About = () => {
               </span>
 
               {/* Content */}
-              <div className="relative z-10 max-w-[1500px] mx-auto w-full">
-                <p className="tl-item text-[11px] font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-8">
-                  {copy.year}
-                </p>
-                <h3 className="tl-item text-4xl sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl font-light
-                               text-gray-900 dark:text-white mb-5 leading-none">
-                  {copy.status}
-                </h3>
-                <p className="tl-item text-base sm:text-xl md:text-2xl text-gray-500 dark:text-gray-400 mb-8 max-w-lg">
-                  {copy.desc}
-                </p>
-                <div className="tl-item flex items-center gap-2.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-teal-400 shrink-0" />
-                  <span className="text-sm font-mono text-teal-600 dark:text-teal-400">{copy.location}</span>
+              <div className="relative z-10 max-w-[1500px] mx-auto w-full flex items-center justify-between gap-8">
+                <div className="max-w-2xl">
+                  <p className="tl-item text-[11px] font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-8">
+                    {copy.year}
+                  </p>
+                  <h3 className="tl-item text-4xl sm:text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl font-light
+                                 text-gray-900 dark:text-white mb-5 leading-none">
+                    {copy.status}
+                  </h3>
+                  <p className="tl-item text-base sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-lg">
+                    {copy.desc}
+                  </p>
+                  <div className="tl-item flex items-center gap-2.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-teal-500 dark:bg-teal-400 shrink-0" />
+                    <span className="text-sm font-mono text-teal-600 dark:text-teal-400">{copy.location}</span>
+                  </div>
+                </div>
+                
+                {/* Abstract Graphic Right Side */}
+                <div className="hidden md:flex w-1/2 justify-center items-center">
+                  <div className="tl-item">
+                    <AbstractGraphic index={i} />
+                  </div>
                 </div>
               </div>
             </div>
