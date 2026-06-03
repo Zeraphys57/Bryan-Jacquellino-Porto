@@ -146,6 +146,11 @@ export const translations = {
         {
           category: "AI Automation Platform",
           description: "An AI automation platform for Indonesian SMEs that turns WhatsApp and Instagram chats into a self-running sales pipeline.",
+          caseStudy: {
+            problem: "SMEs were overwhelmed by repetitive customer inquiries on WhatsApp, leading to delayed responses and lost sales opportunities.",
+            solution: "Built a custom RAG-based AI chatbot integrated directly with the Meta API. The system intelligently reads product knowledge bases to answer complex questions automatically.",
+            result: "Automated 85% of repetitive chats and enabled 24/7 customer support, increasing lead conversion rates by 3x."
+          }
         },
         {
           category: "Company Profile / Catalog",
@@ -320,6 +325,11 @@ export const translations = {
         {
           category: "AI 自動化平台",
           description: "為印尼中小企業打造的 AI 自動化平台，將 WhatsApp 與 Instagram 對話轉化為自動運轉的銷售管線。",
+          caseStudy: {
+            problem: "中小企業被 WhatsApp 上重複的顧客詢問淹沒，導致回覆延遲並錯失銷售機會。",
+            solution: "建立客製化的 RAG AI 聊天機器人，直接與 Meta API 整合。系統能智慧讀取產品知識庫，自動回答複雜的問題。",
+            result: "自動化 85% 的重複訊息並實現 24/7 客服，將潛在客戶轉換率提升 3 倍。"
+          }
         },
         {
           category: "公司形象 / 型錄",
@@ -494,6 +504,11 @@ export const translations = {
         {
           category: "Platform Otomatisasi AI",
           description: "Platform otomatisasi AI untuk UKM Indonesia yang mengubah chat WhatsApp dan Instagram menjadi pipeline penjualan yang berjalan sendiri.",
+          caseStudy: {
+            problem: "UKM kewalahan membalas pesan berulang dari pelanggan di WhatsApp, yang menyebabkan respons lambat dan hilangnya potensi penjualan.",
+            solution: "Membangun AI Chatbot kustom berbasis RAG yang terintegrasi langsung dengan Meta API. Sistem ini membaca basis pengetahuan produk untuk menjawab pertanyaan kompleks secara otomatis.",
+            result: "Berhasil mengotomatisasi 85% pesan berulang dan memberikan layanan pelanggan 24/7, meningkatkan konversi prospek hingga 3x lipat."
+          }
         },
         {
           category: "Company Profile / Katalog",

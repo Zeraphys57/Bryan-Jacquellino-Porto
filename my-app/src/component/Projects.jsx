@@ -97,6 +97,7 @@ const Projects = () => {
   const { t } = useLanguage();
   const [current, setCurrent]         = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [showCaseStudy, setShowCaseStudy] = useState(false);
 
   const frameRef  = useRef(null);   // GSAP swap target
   const tiltRef   = useRef(null);   // cursor-tracked tilt target
@@ -142,6 +143,7 @@ const Projects = () => {
     if (isAnimating || idx === current) return;
     dirRef.current = dir;
     setIsAnimating(true);
+    setShowCaseStudy(false);
     if (reduced.current) { setCurrent(idx); return; }
     gsap.to(frameRef.current, {
       opacity: 0, scale: 0.95, x: dir * -44,
@@ -407,29 +409,64 @@ const Projects = () => {
                 </li>
               ))}
             </ul>
-            {isLive(p) ? (
-              <a
-                {...(locked
-                  ? {}
-                  : { href: p.link, target: "_blank", rel: "noopener noreferrer" })}
-                className={`group/cta inline-flex items-center gap-2 px-5 py-2.5 rounded-full
-                  text-sm font-medium text-white shadow-md transition-all duration-150 ease-out
-                  ${locked ? "cursor-default" : "hover:-translate-y-0.5 active:scale-95"}`}
-                style={{ backgroundColor: "var(--accent)" }}
-              >
-                {t.projects.visitSite}
-                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"
-                  className="transition-transform duration-150 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5">
-                  <path d="M2.5 11.5l9-9M5 2.5h6.5V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </a>
-            ) : (
-              <span className="inline-flex items-center gap-2 text-sm font-mono text-gray-400 dark:text-gray-600">
-                <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--accent)" }} />
-                {t.projects.comingSoon}
-              </span>
-            )}
+            <div className="flex flex-wrap items-center gap-3">
+              {copy.caseStudy && (
+                <button
+                  onClick={() => setShowCaseStudy(!showCaseStudy)}
+                  className="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-150 ease-out
+                    border border-gray-200 dark:border-white/10
+                    text-gray-700 dark:text-gray-300
+                    hover:bg-gray-100 dark:hover:bg-white/5 active:scale-95"
+                >
+                  {showCaseStudy ? "Close Case Study" : "View Case Study"}
+                </button>
+              )}
+              {isLive(p) ? (
+                <a
+                  {...(locked
+                    ? {}
+                    : { href: p.link, target: "_blank", rel: "noopener noreferrer" })}
+                  className={`group/cta inline-flex items-center gap-2 px-5 py-2.5 rounded-full
+                    text-sm font-medium text-white shadow-md transition-all duration-150 ease-out
+                    ${locked ? "cursor-default" : "hover:-translate-y-0.5 active:scale-95"}`}
+                  style={{ backgroundColor: "var(--accent)" }}
+                >
+                  {t.projects.visitSite}
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"
+                    className="transition-transform duration-150 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5">
+                    <path d="M2.5 11.5l9-9M5 2.5h6.5V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </a>
+              ) : (
+                <span className="inline-flex items-center gap-2 text-sm font-mono text-gray-400 dark:text-gray-600">
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--accent)" }} />
+                  {t.projects.comingSoon}
+                </span>
+              )}
+            </div>
           </div>
+          
+          {showCaseStudy && copy.caseStudy && (
+            <div
+              className="mt-8 p-6 md:p-8 rounded-2xl bg-gray-50 dark:bg-[#121215] border border-gray-200 dark:border-white/10 shadow-sm"
+              style={{ animation: "fade-up 0.4s ease-out both" }}
+            >
+              <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+                <div>
+                  <h4 className="text-xs font-mono tracking-widest text-gray-400 mb-2 uppercase" style={{ color: "var(--accent)" }}>The Problem</h4>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{copy.caseStudy.problem}</p>
+                </div>
+                <div>
+                  <h4 className="text-xs font-mono tracking-widest text-gray-400 mb-2 uppercase" style={{ color: "var(--accent)" }}>The Solution</h4>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{copy.caseStudy.solution}</p>
+                </div>
+                <div>
+                  <h4 className="text-xs font-mono tracking-widest text-gray-400 mb-2 uppercase" style={{ color: "var(--accent)" }}>The Result</h4>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{copy.caseStudy.result}</p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* ── Filmstrip ── */}
