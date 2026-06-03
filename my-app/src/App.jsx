@@ -241,7 +241,7 @@ function App() {
                 <em className="not-italic text-violet-600 dark:text-violet-400">{t.cta.headingLine2}</em>
               </h2>
 
-              <p className="scroll-reveal text-gray-500 dark:text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mb-14"
+              <p className="scroll-reveal text-gray-600 dark:text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mb-14"
                  data-delay="120ms">
                 {t.cta.body}
               </p>
