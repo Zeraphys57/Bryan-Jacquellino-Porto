@@ -171,9 +171,9 @@ export const translations = {
           category: "Company Profile / Catalog",
           description: "A company profile and product catalog for a plastic packaging supplier, covering product lines, company story, and contact.",
           caseStudy: {
-            problem: "B2B buyers struggled to find specific product specifications from an outdated PDF catalog.",
-            solution: "Created a structured, easily navigable digital catalog with clear product lines and direct inquiry features.",
-            result: "Streamlined the B2B purchasing process, resulting in faster sales cycles and a 25% increase in inbound leads."
+            problem: "The client needed a professional digital presence to establish strong product branding and transition away from relying solely on offline catalogs.",
+            solution: "Designed a modern, structured company profile and digital catalog that beautifully showcases their product lines and builds brand credibility.",
+            result: "Successfully elevated their brand image, providing B2B buyers with an accessible platform that directly increased inquiries."
           }
         },
         {
@@ -375,9 +375,9 @@ export const translations = {
           category: "公司形象 / 型錄",
           description: "塑膠包裝供應商的公司形象與產品型錄網站，涵蓋產品線、公司故事與聯絡方式。",
           caseStudy: {
-            problem: "B2B 買家難以從過時的 PDF 型錄中找到特定的產品規格。",
-            solution: "建立結構化、易於導覽的數位型錄，具備清晰的產品線與直接詢問功能。",
-            result: "簡化了 B2B 採購流程，縮短銷售週期，並使潛在客戶詢問量增加 25%。"
+            problem: "客戶需要一個專業的數位形象來建立強大的產品品牌，並擺脫僅依賴線下型錄的現狀。",
+            solution: "設計了現代化、結構化的公司簡介與數位型錄，精美展示其產品線並建立品牌信譽。",
+            result: "成功提升了品牌形象，為 B2B 買家提供了一個易於存取的平台，並直接增加了詢問量。"
           }
         },
         {
@@ -579,9 +579,9 @@ export const translations = {
           category: "Company Profile / Katalog",
           description: "Company profile dan katalog produk untuk pemasok kemasan plastik, mencakup lini produk, kisah perusahaan, dan kontak.",
           caseStudy: {
-            problem: "Pembeli B2B kesulitan mencari spesifikasi produk tertentu dari katalog PDF yang sudah usang.",
-            solution: "Membuat katalog digital terstruktur yang mudah dinavigasi, dengan lini produk yang jelas dan fitur inquiry langsung.",
-            result: "Menyederhanakan proses pembelian B2B, mempercepat siklus penjualan, dan meningkatkan prospek masuk (leads) sebesar 25%."
+            problem: "Klien membutuhkan kehadiran digital yang profesional untuk membangun branding produk yang kuat dan tidak lagi hanya mengandalkan katalog offline.",
+            solution: "Mendesain profil perusahaan dan katalog digital yang modern dan terstruktur untuk menampilkan lini produk dengan elegan dan membangun kredibilitas merek.",
+            result: "Berhasil meningkatkan citra merek klien, memberikan platform yang mudah diakses oleh pembeli B2B dan secara langsung meningkatkan prospek (inquiries)."
           }
         },
         {
