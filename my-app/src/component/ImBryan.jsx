@@ -13,6 +13,7 @@ const CATEGORY_STYLE = {
 
 const TECH = [
   { name: "React",        cat: "frontend" },
+  { name: "Next.js",      cat: "frontend" },
   { name: "Tailwind CSS", cat: "frontend" },
   { name: "GSAP",         cat: "frontend" },
   { name: "Three.js",     cat: "frontend" },
@@ -20,9 +21,8 @@ const TECH = [
   { name: "PostgreSQL",   cat: "backend" },
   { name: "LLM API",      cat: "ai" },
   { name: "RAG",          cat: "ai" },
+  { name: "TypeScript",   cat: "lang" },
   { name: "Python",       cat: "lang" },
-  { name: "Java",         cat: "lang" },
-  { name: "C",            cat: "lang" },
   { name: "Vite",         cat: "tool" },
   { name: "Figma",        cat: "tool" },
 ];
@@ -220,21 +220,27 @@ const ImBryan = () => {
                 {t.bio.headLead}<br />
                 <span className="text-violet-600 dark:text-violet-400">{t.bio.headAccent}</span>{t.bio.headRest}
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl">
-                {t.bio.para1}
-              </p>
+              <p
+                className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl
+                           [&>strong]:font-medium [&>strong]:text-gray-900 dark:[&>strong]:text-white"
+                dangerouslySetInnerHTML={{ __html: t.bio.para1 }}
+              />
             </div>
 
             <div className="scroll-reveal" data-delay="180ms">
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl">
-                {t.bio.para2}
-              </p>
+              <p
+                className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl
+                           [&>strong]:font-medium [&>strong]:text-gray-900 dark:[&>strong]:text-white"
+                dangerouslySetInnerHTML={{ __html: t.bio.para2 }}
+              />
             </div>
 
             <div className="scroll-reveal" data-delay="240ms">
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl">
-                {t.bio.para3}
-              </p>
+              <p
+                className="text-gray-600 dark:text-gray-400 leading-relaxed text-base md:text-lg xl:text-xl
+                           [&>strong]:font-medium [&>strong]:text-gray-900 dark:[&>strong]:text-white"
+                dangerouslySetInnerHTML={{ __html: t.bio.para3 }}
+              />
             </div>
 
             {/* Tech stack — flat pill list */}
