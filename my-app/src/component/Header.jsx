@@ -79,7 +79,7 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
             <a
               key={key}
               href={href}
-              className="relative text-sm text-gray-500 dark:text-gray-400
+              className="relative text-sm text-gray-600 dark:text-gray-400
                 hover:text-gray-900 dark:hover:text-white
                 transition-colors duration-150 group"
             >
@@ -103,15 +103,15 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
           >
             <span className={lang === 'en'
               ? 'text-violet-600 dark:text-violet-400'
-              : 'text-gray-400 dark:text-gray-600'}>EN</span>
-            <span className="text-gray-300 dark:text-gray-700">·</span>
+              : 'text-gray-500 dark:text-gray-600'}>EN</span>
+            <span className="text-gray-400 dark:text-gray-700">·</span>
             <span className={lang === 'zh'
               ? 'text-violet-600 dark:text-violet-400'
-              : 'text-gray-400 dark:text-gray-600'}>中</span>
-            <span className="text-gray-300 dark:text-gray-700">·</span>
+              : 'text-gray-500 dark:text-gray-600'}>中</span>
+            <span className="text-gray-400 dark:text-gray-700">·</span>
             <span className={lang === 'id'
               ? 'text-violet-600 dark:text-violet-400'
-              : 'text-gray-400 dark:text-gray-600'}>ID</span>
+              : 'text-gray-500 dark:text-gray-600'}>ID</span>
           </button>
 
           {/* Dark mode toggle */}
@@ -205,13 +205,13 @@ const Header = ({ isDarkMode, toggleDarkMode }) => {
             target="_blank"
             rel="noopener noreferrer"
             className="text-[11px] font-mono tracking-widest uppercase
-              text-gray-400 dark:text-gray-600
+              text-gray-500 dark:text-gray-600
               hover:text-violet-500 dark:hover:text-violet-400
               transition-colors duration-150"
           >
             {t.header.getInTouch}
           </a>
-          <span className="text-[11px] font-mono tracking-widest uppercase text-gray-300 dark:text-gray-700">
+          <span className="text-[11px] font-mono tracking-widest uppercase text-gray-400 dark:text-gray-700">
             © 2026
           </span>
         </div>
