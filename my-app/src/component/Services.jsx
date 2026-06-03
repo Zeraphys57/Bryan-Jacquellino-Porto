@@ -135,8 +135,7 @@ const Services = () => {
                   </div>
 
                   {/* Tags — accent dot + label */}
-                  <div className="relative z-10 flex flex-wrap gap-x-3 gap-y-1.5 pt-4
-                    border-t border-gray-100 dark:border-white/[0.06]">
+                  <div className="relative z-10 flex flex-wrap gap-x-3 gap-y-1.5 pt-2 mt-auto">
                     {s.tags.map(tag => (
                       <span
                         key={tag}
