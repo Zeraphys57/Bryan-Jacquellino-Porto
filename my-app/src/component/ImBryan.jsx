@@ -208,9 +208,29 @@ const ImBryan = () => {
         {/* Main grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 xl:gap-28 items-start">
 
-          {/* Terminal card — replaces photo */}
-          <div className="scroll-reveal" data-delay="60ms">
-            <TerminalCard />
+          {/* Left Column: Terminal + Tech Stack */}
+          <div className="flex flex-col gap-10">
+            <div className="scroll-reveal" data-delay="60ms">
+              <TerminalCard />
+            </div>
+
+            {/* Tech stack — flat pill list */}
+            <div className="scroll-reveal" data-delay="120ms">
+              <p className="text-xs font-mono text-gray-400 dark:text-gray-600 tracking-widest uppercase mb-4">
+                {t.bio.techStack}
+              </p>
+              <div className="flex flex-wrap gap-2.5">
+                {TECH.map(({ name, cat }) => (
+                  <span
+                    key={name}
+                    className={`px-3 py-1.5 text-xs font-mono rounded-full border
+                      transition-colors duration-150 ${CATEGORY_STYLE[cat]}`}
+                  >
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Text */}
@@ -243,23 +263,7 @@ const ImBryan = () => {
               />
             </div>
 
-            {/* Tech stack — flat pill list */}
-            <div className="scroll-reveal" data-delay="290ms">
-              <p className="text-xs font-mono text-gray-400 dark:text-gray-600 tracking-widest uppercase mb-3">
-                {t.bio.techStack}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {TECH.map(({ name, cat }) => (
-                  <span
-                    key={name}
-                    className={`px-3 py-1 text-xs font-mono rounded-full border
-                      transition-colors duration-150 ${CATEGORY_STYLE[cat]}`}
-                  >
-                    {name}
-                  </span>
-                ))}
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
