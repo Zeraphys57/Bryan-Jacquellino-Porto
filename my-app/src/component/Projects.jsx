@@ -314,10 +314,14 @@ const Projects = () => {
                     className="group/shot relative block aspect-[16/10] overflow-hidden"
                     style={{ background: "linear-gradient(135deg, var(--accent), #18181b)" }}
                   >
-                    <img
-                      src={p.shot} alt={`${p.title} — ${copy.category}`} draggable="false"
-                      className="w-full h-full object-cover object-top"
-                    />
+                    {p.shot ? (
+                      <img
+                        src={p.shot} alt={`${p.title} — ${copy.category}`} draggable="false"
+                        className="w-full h-full object-cover object-top"
+                      />
+                    ) : (
+                      <MockPreview />
+                    )}
                     <div
                       className="absolute inset-0 flex items-end justify-center pb-8
                         opacity-0 group-hover/shot:opacity-100 transition-opacity duration-300"
