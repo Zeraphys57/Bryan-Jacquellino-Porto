@@ -194,6 +194,15 @@ export const translations = {
             result: "Successfully onboarded 100+ teams with zero registration errors and dramatically improved the participant experience."
           }
         },
+        {
+          category: "Fashion Portfolio",
+          description: "A neo-brutalist fashion portfolio and experimental shop showcasing bold designs.",
+          caseStudy: {
+            problem: "The client needed a highly unique and bold digital presence to stand out in the fashion industry.",
+            solution: "Designed a neo-brutalist website combining raw, high-contrast aesthetics with modern web interactions.",
+            result: "Created a visually striking and engaging experience that perfectly aligns with the experimental brand identity."
+          }
+        },
       ],
     },
     footer: {
@@ -407,6 +416,15 @@ export const translations = {
             result: "成功協助 100 多支隊伍零錯誤完成註冊，大幅提升參賽者體驗。"
           }
         },
+        {
+          category: "時尚品牌作品集",
+          description: "展現大膽設計的新粗野主義（Neo-Brutalism）時尚作品集與實驗性商店。",
+          caseStudy: {
+            problem: "客戶需要一個極具獨特性與大膽風格的數位形象，以在時尚產業中脫穎而出。",
+            solution: "設計了結合原始、高對比美學與現代網頁互動的新粗野主義網站。",
+            result: "創造了視覺強烈且引人入勝的體驗，完美契合其實驗性的品牌定位。"
+          }
+        },
       ],
     },
     footer: {
@@ -618,6 +636,15 @@ export const translations = {
             problem: "Manajemen pendaftaran tim, pengumuman, dan lini masa untuk kontes besar sangat kacau dan rawan kesalahan.",
             solution: "Membangun platform acara terpusat dengan portal tim yang aman, lini masa otomatis, dan instruksi yang jelas.",
             result: "Berhasil mendaftarkan 100+ tim tanpa kesalahan registrasi sama sekali dan secara dramatis meningkatkan pengalaman peserta."
+          }
+        },
+        {
+          category: "Portofolio Fashion",
+          description: "Portofolio fashion neo-brutalis dan toko eksperimental yang menampilkan desain berani.",
+          caseStudy: {
+            problem: "Klien membutuhkan kehadiran digital yang sangat unik dan berani untuk menonjol di industri fashion.",
+            solution: "Mendesain website neo-brutalis yang menggabungkan estetika kasar dan kontras tinggi dengan interaksi web modern.",
+            result: "Menciptakan pengalaman yang mencolok secara visual dan sangat menarik, sejalan dengan identitas merek yang eksperimental."
           }
         },
       ],

@@ -89,6 +89,15 @@ const projects = [
     domain: "link-2026-seven.vercel.app",
     link: "https://link-2026-seven.vercel.app",
   },
+  {
+    id: 7,
+    title: "Neo Brutalism Fashion",
+    tags: ["React", "Vite", "Tailwind"],
+    accent: "#eab308",
+    shot: null,
+    domain: "neo-brutalism-fashion.vercel.app",
+    link: "https://neo-brutalism-fashion.vercel.app/",
+  },
 ];
 
 const isLive = (p) => Boolean(p.link) && p.link !== "#";
