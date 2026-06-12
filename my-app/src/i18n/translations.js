@@ -203,6 +203,15 @@ export const translations = {
             result: "Created a visually striking and engaging experience that perfectly aligns with the experimental brand identity."
           }
         },
+        {
+          category: "Architecture Portfolio",
+          description: "A minimalist, high-end portfolio for an architecture firm, showcasing projects with smooth scrolling and elegant typography.",
+          caseStudy: {
+            problem: "The firm needed a website that matched the precision and elegance of their physical architectural projects.",
+            solution: "Designed a clean, minimalist digital portfolio focusing on high-quality imagery and smooth page transitions.",
+            result: "Delivered an immersive web experience that effectively communicates the firm's premium design philosophy."
+          }
+        },
       ],
     },
     footer: {
@@ -425,6 +434,15 @@ export const translations = {
             result: "創造了視覺強烈且引人入勝的體驗，完美契合其實驗性的品牌定位。"
           }
         },
+        {
+          category: "建築事務所作品集",
+          description: "為建築事務所打造的極簡高端作品集，透過流暢的捲動與優雅的排版展示建築專案。",
+          caseStudy: {
+            problem: "客戶需要一個能與其建築實體專案的精準度與優雅感相匹配的網站。",
+            solution: "設計了乾淨、極簡的數位作品集，專注於高品質的影像與流暢的頁面轉場。",
+            result: "提供沉浸式的網頁體驗，有效傳達該事務所的高端設計理念。"
+          }
+        },
       ],
     },
     footer: {
@@ -645,6 +663,15 @@ export const translations = {
             problem: "Klien membutuhkan kehadiran digital yang sangat unik dan berani untuk menonjol di industri fashion.",
             solution: "Mendesain website neo-brutalis yang menggabungkan estetika kasar dan kontras tinggi dengan interaksi web modern.",
             result: "Menciptakan pengalaman yang mencolok secara visual dan sangat menarik, sejalan dengan identitas merek yang eksperimental."
+          }
+        },
+        {
+          category: "Portofolio Arsitektur",
+          description: "Portofolio minimalis dan premium untuk firma arsitektur, menampilkan proyek dengan pengguliran mulus dan tipografi yang elegan.",
+          caseStudy: {
+            problem: "Firma membutuhkan website yang mencerminkan presisi dan keanggunan dari proyek arsitektur fisik mereka.",
+            solution: "Mendesain portofolio digital yang bersih dan minimalis, berfokus pada citra berkualitas tinggi dan transisi halaman yang mulus.",
+            result: "Menghasilkan pengalaman web yang imersif dan secara efektif mengkomunikasikan filosofi desain premium firma tersebut."
           }
         },
       ],

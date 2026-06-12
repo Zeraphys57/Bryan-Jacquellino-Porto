@@ -98,6 +98,15 @@ const projects = [
     domain: "neo-brutalism-fashion.vercel.app",
     link: "https://neo-brutalism-fashion.vercel.app/",
   },
+  {
+    id: 8,
+    title: "Meridian Architecture",
+    tags: ["React", "Vite", "Tailwind", "GSAP", "Three.js", "WEBGL"],
+    accent: "#a8a29e",
+    shot: null,
+    domain: "meridian-architecture-one.vercel.app",
+    link: "https://meridian-architecture-one.vercel.app/",
+  },
 ];
 
 const isLive = (p) => Boolean(p.link) && p.link !== "#";
