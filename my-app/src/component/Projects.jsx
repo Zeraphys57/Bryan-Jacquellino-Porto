@@ -6,8 +6,10 @@ import shotBashion from "../assets/projects/bashion.webp";
 import shotDentist from "../assets/projects/dentist.webp";
 import shotPlastik from "../assets/projects/plastik.webp";
 import shotTumbuh  from "../assets/projects/tumbuh.webp";
-import shotLink    from "../assets/projects/link2026.webp";
-import shotLumiere from "../assets/projects/lumiere.webp";
+import shotLink       from "../assets/projects/link2026.webp";
+import shotLumiere    from "../assets/projects/lumiere.webp";
+import shotNeoBrut    from "../assets/projects/neo-brutalism.webp";
+import shotMeridian   from "../assets/projects/meridian.webp";
 
 /* ── Abstract wireframe — fallback preview for projects with no live screenshot ── */
 const MockPreview = () => (
@@ -94,7 +96,7 @@ const projects = [
     title: "Neo Brutalism Fashion",
     tags: ["React", "Vite", "Tailwind"],
     accent: "#eab308",
-    shot: null,
+    shot: shotNeoBrut,
     domain: "neo-brutalism-fashion.vercel.app",
     link: "https://neo-brutalism-fashion.vercel.app/",
   },
@@ -103,7 +105,7 @@ const projects = [
     title: "Meridian Architecture",
     tags: ["React", "Vite", "Tailwind", "GSAP", "Three.js", "WEBGL"],
     accent: "#a8a29e",
-    shot: null,
+    shot: shotMeridian,
     domain: "meridian-architecture-one.vercel.app",
     link: "https://meridian-architecture-one.vercel.app/",
   },
