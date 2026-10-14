@@ -33,7 +33,7 @@ const FAQ = () => {
         <div className="lg:col-span-8 border-b border-gray-200 dark:border-white/10">
           {tf.items.map((item, i) => (
             <details
-              key={item.q}
+              key={i}
               className="scroll-reveal group border-t border-gray-200 dark:border-white/10"
               data-delay={`${i * 60}ms`}
             >

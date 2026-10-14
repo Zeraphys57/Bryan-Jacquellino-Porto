@@ -27,7 +27,7 @@ const Process = () => {
 
           <ol className="relative grid gap-12 lg:grid-cols-4 lg:gap-10">
             {tp.items.map((step, i) => (
-              <li key={step.title} className="scroll-reveal relative pl-10 lg:pl-0 lg:pt-12" data-delay={`${150 + i * 110}ms`}>
+              <li key={i}className="scroll-reveal relative pl-10 lg:pl-0 lg:pt-12" data-delay={`${150 + i * 110}ms`}>
                 <span
                   aria-hidden="true"
                   className="absolute left-0 top-1.5 lg:top-0 w-[15px] h-[15px] rounded-full border-2 border-teal-500

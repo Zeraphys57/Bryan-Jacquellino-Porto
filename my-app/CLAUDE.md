@@ -49,7 +49,7 @@ Class-based (`@custom-variant dark` in `index.css`). `main.jsx` sets the `.dark`
 
 ### Scroll reveal
 
-Add `scroll-reveal` (fade-up) or `reveal-line-x` / `reveal-line-y` (line draw) to an element; optional `data-delay="120ms"`. The observer lives in `App.jsx` and runs once on mount, so these classes only work on elements present at first render. `prefers-reduced-motion` shows everything immediately.
+Add `scroll-reveal` (fade-up) or `reveal-line-x` / `reveal-line-y` (line draw) to an element; optional `data-delay="120ms"`. The observer lives in `App.jsx`; a MutationObserver also catches elements mounted later. Still key lists by index or id, never by translated text, so a language switch updates elements in place instead of remounting them. `prefers-reduced-motion` shows everything immediately.
 
 ### Invoice tool
 

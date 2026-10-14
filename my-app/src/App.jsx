@@ -15,7 +15,11 @@ import FloatingWhatsApp from './component/FloatingWhatsApp';
 import SecretPitch from './component/SecretPitch';
 import SecretPitchAUS from './component/SecretPitchAUS';
 
-/* Adds .visible to .scroll-reveal / .reveal-line-* elements as they enter the viewport */
+const REVEAL = '.scroll-reveal, .reveal-line-x, .reveal-line-y';
+
+/* Adds .visible to .scroll-reveal / .reveal-line-* elements as they enter the viewport.
+   A MutationObserver also picks up elements mounted later (e.g. after a language switch),
+   so nothing is left waiting at opacity 0. */
 const useScrollReveal = () => {
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -30,8 +34,18 @@ const useScrollReveal = () => {
       },
       { threshold: 0.1 }
     );
-    document.querySelectorAll('.scroll-reveal, .reveal-line-x, .reveal-line-y').forEach((el) => obs.observe(el));
-    return () => obs.disconnect();
+    const watch = (root) => {
+      if (root.matches?.(REVEAL) && !root.classList.contains('visible')) obs.observe(root);
+      root.querySelectorAll?.(REVEAL).forEach((el) => {
+        if (!el.classList.contains('visible')) obs.observe(el);
+      });
+    };
+    watch(document.body);
+    const mo = new MutationObserver((records) => {
+      records.forEach((r) => r.addedNodes.forEach((n) => { if (n.nodeType === 1) watch(n); }));
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+    return () => { obs.disconnect(); mo.disconnect(); };
   }, []);
 };
 

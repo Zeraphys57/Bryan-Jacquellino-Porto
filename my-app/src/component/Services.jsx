@@ -28,8 +28,8 @@ const Services = () => {
             <div className="scroll-reveal mt-10" data-delay="120ms">
               <p className="text-sm font-semibold text-gray-900 dark:text-white">{ts.includedLabel}</p>
               <ul className="mt-4 space-y-3">
-                {ts.included.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-base text-gray-700 dark:text-gray-300">
+                {ts.included.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-base text-gray-700 dark:text-gray-300">
                     <Check />
                     {item}
                   </li>
@@ -56,7 +56,7 @@ const Services = () => {
         <ul className="lg:col-span-7 border-b border-gray-200 dark:border-white/10">
           {ts.items.map((s, i) => (
             <li
-              key={s.title}
+              key={i}
               className="scroll-reveal group border-t border-gray-200 dark:border-white/10 py-9 md:py-11"
               data-delay={`${i * 80}ms`}
             >
