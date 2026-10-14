@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 
-// ── Ganti password di sini ──
-const SECRET = "Valencia57%&";
+/* ── Password gate ──
+   Only a SHA-256 hash of "bryan-invoice:<password>" ships in the bundle, never the password.
+   Set VITE_INVOICE_PASS_HASH in .env.local and in Vercel (see .env.example for the command).
+   This hides the tool from casual visitors; it is not real access control. */
+const PASS_HASH = import.meta.env.VITE_INVOICE_PASS_HASH;
+const HASH_SALT = "bryan-invoice:";
+
+const sha256Hex = async (text) => {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+};
 
 const formatIDR = (n) =>
   "Rp " + Math.round(n).toLocaleString("id-ID");
@@ -211,9 +220,18 @@ export default function InvoiceApp() {
     portfolio: ["sumberanekaplastikdankemasan.com"],
   });
 
-  const login = (e) => {
+  /* Keep the tool out of search results */
+  useEffect(() => {
+    const meta = document.createElement("meta");
+    meta.name = "robots";
+    meta.content = "noindex, nofollow";
+    document.head.appendChild(meta);
+    return () => meta.remove();
+  }, []);
+
+  const login = async (e) => {
     e.preventDefault();
-    if (pwd === SECRET) {
+    if (PASS_HASH && (await sha256Hex(HASH_SALT + pwd)) === PASS_HASH) {
       sessionStorage.setItem("inv_auth", "1");
       setAuth(true);
     } else {
@@ -280,6 +298,11 @@ export default function InvoiceApp() {
             ${pwdErr ? "border-red-500 animate-shake" : "border-white/10"}`}
         />
         {pwdErr && <p className="text-red-400 text-xs mt-2">Password salah.</p>}
+        {!PASS_HASH && (
+          <p className="text-amber-400 text-xs mt-2">
+            Password belum diatur: isi VITE_INVOICE_PASS_HASH (lihat .env.example).
+          </p>
+        )}
         <button type="submit"
           className="w-full mt-4 py-3 rounded-xl bg-violet-600 hover:bg-violet-500
             text-white text-sm font-medium transition-colors">
