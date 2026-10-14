@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /invoice
+
+Sitemap: https://bryan-jacquellino.vercel.app/sitemap.xml
