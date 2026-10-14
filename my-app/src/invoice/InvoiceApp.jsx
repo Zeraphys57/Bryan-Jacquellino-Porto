@@ -2,18 +2,6 @@ import { useState, useEffect } from "react";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 
-/* ── Password gate ──
-   Only a SHA-256 hash of "bryan-invoice:<password>" ships in the bundle, never the password.
-   Set VITE_INVOICE_PASS_HASH in .env.local and in Vercel (see .env.example for the command).
-   This hides the tool from casual visitors; it is not real access control. */
-const PASS_HASH = import.meta.env.VITE_INVOICE_PASS_HASH;
-const HASH_SALT = "bryan-invoice:";
-
-const sha256Hex = async (text) => {
-  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
-  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
-};
-
 const formatIDR = (n) =>
   "Rp " + Math.round(n).toLocaleString("id-ID");
 
@@ -194,9 +182,6 @@ const InvoicePreview = ({ form, id }) => {
 
 /* ───────── Main App ───────── */
 export default function InvoiceApp() {
-  const [auth, setAuth]   = useState(() => sessionStorage.getItem("inv_auth") === "1");
-  const [pwd, setPwd]     = useState("");
-  const [pwdErr, setPwdErr] = useState(false);
   const [tab, setTab]     = useState("form");
 
   const [form, setForm] = useState({
@@ -229,18 +214,7 @@ export default function InvoiceApp() {
     return () => meta.remove();
   }, []);
 
-  const login = async (e) => {
-    e.preventDefault();
-    if (PASS_HASH && (await sha256Hex(HASH_SALT + pwd)) === PASS_HASH) {
-      sessionStorage.setItem("inv_auth", "1");
-      setAuth(true);
-    } else {
-      setPwdErr(true);
-      setTimeout(() => setPwdErr(false), 1500);
-    }
-  };
-
-  const set = (key, val) => setForm(f => ({ ...f, [key]: val }));
+  const set =(key, val) => setForm(f => ({ ...f, [key]: val }));
 
   const setService = (i, key, val) =>
     setForm(f => {
@@ -280,38 +254,6 @@ export default function InvoiceApp() {
     pdf.save(`${form.invNum}.pdf`);
   };
 
-  /* ── Password gate ── */
-  if (!auth) return (
-    <div className="min-h-screen bg-[#09090b] flex items-center justify-center px-6">
-      <style>{PRINT_STYLE}</style>
-      <form onSubmit={login} className="w-full max-w-sm">
-        <p className="text-xs font-mono text-violet-400 tracking-[0.2em] uppercase mb-3">Bryan Porto</p>
-        <h1 className="text-2xl font-light text-white mb-8">Invoice Tool</h1>
-        <input
-          type="password"
-          value={pwd}
-          onChange={e => setPwd(e.target.value)}
-          placeholder="Password"
-          autoFocus
-          className={`w-full px-4 py-3 rounded-xl bg-white/5 border text-white placeholder-gray-600
-            text-sm focus:outline-none focus:border-violet-500 transition-colors
-            ${pwdErr ? "border-red-500 animate-shake" : "border-white/10"}`}
-        />
-        {pwdErr && <p className="text-red-400 text-xs mt-2">Password salah.</p>}
-        {!PASS_HASH && (
-          <p className="text-amber-400 text-xs mt-2">
-            Password belum diatur: isi VITE_INVOICE_PASS_HASH (lihat .env.example).
-          </p>
-        )}
-        <button type="submit"
-          className="w-full mt-4 py-3 rounded-xl bg-violet-600 hover:bg-violet-500
-            text-white text-sm font-medium transition-colors">
-          Masuk
-        </button>
-      </form>
-    </div>
-  );
-
   /* ── Invoice Tool ── */
   return (
     <div className="min-h-screen bg-[#09090b] text-white">
@@ -330,10 +272,6 @@ export default function InvoiceApp() {
           <span className="text-xs text-gray-500 font-mono truncate hidden sm:inline">{form.invNum}</span>
         </div>
         <div className="flex gap-2 shrink-0">
-          <button onClick={() => { sessionStorage.removeItem("inv_auth"); setAuth(false); }}
-            className="px-3 py-1.5 text-xs text-gray-500 hover:text-white transition-colors">
-            Keluar
-          </button>
           <button onClick={downloadPDF}
             className="px-4 py-1.5 text-xs bg-violet-600 hover:bg-violet-500
               rounded-lg font-medium transition-colors whitespace-nowrap">

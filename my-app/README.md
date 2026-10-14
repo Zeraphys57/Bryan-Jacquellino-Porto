@@ -13,6 +13,6 @@ npm run lint
 - Copy for all languages: `src/i18n/translations.js`
 - Projects and screenshots: `src/data/projects.js`, `src/assets/projects/` (capture new ones with `node screenshot.js <url> <name>`)
 - Contact details: `src/contact.js`
-- Invoice tool at `/invoice`: set `VITE_INVOICE_PASS_HASH` (see `.env.example`)
+- Invoice generator at `/invoice` (not linked from the site, not indexed)
 
 See `CLAUDE.md` for architecture notes and `PRODUCT.md` for audience and design principles.

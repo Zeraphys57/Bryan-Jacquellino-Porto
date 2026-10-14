@@ -52,7 +52,7 @@ Add `scroll-reveal` (fade-up) or `reveal-line-x` / `reveal-line-y` (line draw) t
 
 ### Invoice tool
 
-`/invoice` is gated by a SHA-256 hash in `VITE_INVOICE_PASS_HASH` (see `.env.example`). It hides the tool from casual visitors only; it is not access control. Never commit a plaintext password.
+`/invoice` is an open invoice/PDF generator, with no login by design. It is lazy-loaded, marked noindex and disallowed in `robots.txt`. Never put secrets in client code: everything in the bundle is public.
 
 ### SEO
 
