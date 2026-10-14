@@ -169,6 +169,7 @@ export const translations = {
         "Saya belajar IT lewat program D3 di Taiwan, lalu melanjutkan studi IT di Universitas Atma Jaya Yogyakarta. Belakangan saya juga membangun chatbot dan otomatisasi berbasis AI, supaya pekerjaan berulang di bisnismu bisa berjalan sendiri.",
       ],
       photoAlt: "Foto Bryan Jacquellino",
+      role: "Freelance web developer · Yogyakarta",
       facts: [
         { label: "Lokasi", value: "Yogyakarta, Indonesia (GMT+7)" },
         { label: "Klien", value: "Indonesia, Taiwan, dan remote" },
@@ -399,6 +400,7 @@ export const translations = {
         "I studied IT through a diploma programme in Taiwan and continued my IT studies at Universitas Atma Jaya Yogyakarta. Lately I also build AI chatbots and automations, so the repetitive work in your business can run on its own.",
       ],
       photoAlt: "Photo of Bryan Jacquellino",
+      role: "Freelance web developer · Yogyakarta",
       facts: [
         { label: "Location", value: "Yogyakarta, Indonesia (GMT+7)" },
         { label: "Clients", value: "Indonesia, Taiwan and remote" },
@@ -629,6 +631,7 @@ export const translations = {
         "我在台灣修讀資訊科技二專，之後在日惹 Atma Jaya 大學繼續攻讀資訊科技。最近我也在打造 AI 聊天機器人與自動化，讓你事業中重複的工作自動完成。",
       ],
       photoAlt: "Bryan Jacquellino 的照片",
+      role: "自由接案網頁開發者 · 印尼日惹",
       facts: [
         { label: "所在地", value: "印尼日惹（GMT+7）" },
         { label: "客戶", value: "印尼、台灣與遠端" },
