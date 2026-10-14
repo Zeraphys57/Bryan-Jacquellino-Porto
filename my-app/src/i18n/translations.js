@@ -39,8 +39,8 @@ export const translations = {
       ctaSecondary: "Lihat karya",
       showcaseLabel: "Lihat karya yang sudah saya bangun",
       stats: [
-        { n: "50+", label: "Project" },
-        { n: "7 Tahun", label: "Pengalaman" },
+        { n: "30+", label: "Project" },
+        { n: "4 Tahun", label: "Pengalaman" },
         { n: "Taiwan", label: "Diploma IT" },
         { n: "< 24 jam", label: "Waktu respons" },
       ],
@@ -270,8 +270,8 @@ export const translations = {
       ctaSecondary: "See my work",
       showcaseLabel: "See the websites I've built",
       stats: [
-        { n: "50+", label: "Projects" },
-        { n: "7 Years", label: "Experience" },
+        { n: "30+", label: "Projects" },
+        { n: "4 Years", label: "Experience" },
         { n: "Taiwan", label: "IT diploma" },
         { n: "< 24h", label: "Response time" },
       ],
@@ -501,8 +501,8 @@ export const translations = {
       ctaSecondary: "查看作品",
       showcaseLabel: "查看我打造的網站",
       stats: [
-        { n: "50+", label: "專案" },
-        { n: "7 年", label: "經驗" },
+        { n: "30+", label: "專案" },
+        { n: "4 年", label: "經驗" },
         { n: "台灣", label: "資訊二專" },
         { n: "< 24 小時", label: "回覆時間" },
       ],
