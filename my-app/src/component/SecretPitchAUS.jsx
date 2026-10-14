@@ -29,7 +29,7 @@ const SecretPitchAUS = () => {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.altKey && e.key.toLowerCase() === 'q') setIsOpen(prev => !prev);
+      if (e.altKey && e.code === 'KeyQ') setIsOpen(prev => !prev);
       if (e.key === 'Escape') setIsOpen(false);
     };
     window.addEventListener('keydown', handleKeyDown);

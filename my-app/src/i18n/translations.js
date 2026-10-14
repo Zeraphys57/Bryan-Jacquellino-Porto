@@ -1,221 +1,452 @@
 /* ──────────────────────────────────────────────────────────────
    Site-wide copy for every language.
-   Languages: en (English) · zh (Traditional Chinese, Taiwan) · id (Indonesian)
-   Non-translatable values (brand names, tech tags, prices, icons)
-   stay in their components.
+   Languages: id (Indonesian, default for Indonesian visitors) · en (English)
+              · zh (Traditional Chinese, Taiwan)
+   Written for business owners, not developers: outcomes first, no jargon.
+   Non-translatable values (brand names, tech tags, links, images)
+   live in src/data/projects.js and the components.
 ─────────────────────────────────────────────────────────────── */
 
 export const translations = {
-  en: {
+  id: {
+    meta: {
+      title: "Jasa Pembuatan Website Yogyakarta — Bryan Jacquellino",
+    },
     nav: {
-      about: "About",
-      services: "Services",
-      projects: "Projects",
-      process: "Process",
+      work: "Karya",
+      services: "Layanan",
+      process: "Proses",
+      about: "Tentang",
+      faq: "FAQ",
     },
     header: {
-      getInTouch: "Get in touch ↗",
-      switchLang: "Switch language",
-      toggleTheme: "Toggle dark mode",
-      toggleMenu: "Toggle menu",
+      home: "Bryan Jacquellino, kembali ke atas",
+      mainNav: "Navigasi utama",
+      contact: "Hubungi",
+      langLabel: "Pilih bahasa",
+      toggleTheme: "Ganti mode gelap atau terang",
+      toggleMenu: "Buka atau tutup menu",
     },
-    sections: {
-      hero: "Hero",
-      bio: "About Me",
-      services: "Services",
-      education: "My Journey",
-      projects: "Selected Projects",
-      process: "My Process",
-      cta: "Call to Action",
+    whatsapp: {
+      label: "Chat via WhatsApp",
+      message: "Halo Bryan! Saya lihat portfolio kamu dan ingin diskusi soal website untuk bisnis saya.",
     },
     hero: {
-      eyebrow: "Available for freelance",
-      tagline: "Freelance web developer crafting fast, beautiful websites, from design to deployment.",
-      viewWork: "View Work",
-      getInTouch: "Get in Touch",
-      scroll: "scroll",
+      available: "Menerima project baru",
+      headline: "Website yang bikin bisnismu dipercaya.",
+      intro: "Saya Bryan, freelance web developer di Yogyakarta. Dari desain sampai website-mu online, semuanya saya urus.",
+      ctaPrimary: "Chat via WhatsApp",
+      ctaSecondary: "Lihat karya",
+      showcaseLabel: "Lihat karya yang sudah saya bangun",
       stats: [
-        { n: "50+", label: "Projects" },
-        { n: "7 Years", label: "Experience" },
-        { n: "Education", label: "IT · Taiwan" },
-        { n: "Open", label: "For freelance" },
-      ],
-    },
-    cta: {
-      eyebrow: "Let's collaborate",
-      headingLine1: "Got a project",
-      headingLine2: "in mind?",
-      body: "Ready to help from concept to launch. Tell me what you need and we'll make it real.",
-      start: "Start a Project →",
-      viewWork: "View Work",
-    },
-    bio: {
-      eyebrow: "About Me",
-      headLead: "Hi, I'm Bryan,",
-      headAccent: "web developer",
-      headRest: " & AI integrator.",
-      para1: "I'm a freelance web developer based in Yogyakarta, focused on building websites that don't just look sharp, but are <strong>fast, responsive</strong>, and actually work for your business. From personal branding and portfolios to online stores and <strong>AI integration</strong>, I handle it all from start to launch.",
-      para2: "My core stack is <strong>React and Tailwind CSS</strong>, a combination that gives full control over both performance and visual detail. Backed by a <strong>D3 IT diploma in Taiwan</strong> that built my technical foundation and structured thinking, every project I take on holds a clear standard: <strong>clean, efficient, and on point</strong>.",
-      para3: "Lately I've also been integrating AI into web products, from <strong>RAG-based systems</strong> that genuinely understand business context, to <strong>workflow automation</strong> and smart pipelines wired straight into your operations. AI isn't just a trend; set up properly, it becomes <strong>real leverage</strong> for your business to grow.",
-      techStack: "Tech Stack",
-      status: {
-        title: "Status",
-        availability: "Availability",
-        available: "Accepting Projects",
-        timezone: "Timezone",
-        location: "GMT+7 (Indonesia)",
-        response: "Response",
-        responseTime: "Within 24 hours"
-      }
-    },
-    services: {
-      eyebrow: "Services",
-      heading: "What I Offer",
-      items: [
-        {
-          title: "UI / UX Design",
-          desc: "Clean, aesthetic, user-friendly interfaces, designed so users feel at home and your business looks professional.",
-        },
-        {
-          title: "Web Development",
-          desc: "Fast, scalable, well-structured websites with React and Tailwind CSS. Flawless on every device, from phone to desktop.",
-        },
-        {
-          title: "Deploy & Maintain",
-          desc: "From local to live, deployed to Vercel or your hosting of choice, including domain setup and post-launch support.",
-        },
-        {
-          title: "AI Integration",
-          desc: "RAG-based AI systems that understand your business context, workflow automation via API, and smart pipelines wired straight into your operations.",
-        },
-      ],
-    },
-    education: {
-      eyebrow: "Background",
-      heading: "My Journey",
-      scrollHint: "scroll to explore",
-      items: [
-        { status: "IT & Engineering", desc: "Built a strong technical foundation and structured engineering mindset during my diploma studies.", location: "Taiwan",  year: "2020" },
-        { status: "Full-Stack Focus", desc: "Deepened IT knowledge at Atma Jaya while taking on real-world freelance web projects across various industries.", location: "Yogyakarta", year: "2023" },
-        { status: "Complex Systems",  desc: "Shifted from basic websites to building scalable e-commerce platforms, clinic booking systems, and dashboards.", location: "Remote", year: "2024" },
-        { status: "Web & AI Integrator", desc: "Helping businesses digitally transform through high-performance websites and AI-driven operational automation.", location: "Global", year: "Today" },
-      ],
-    },
-    process: {
-      eyebrow: "How I Work",
-      heading: "My Process",
-      stepLabel: "Step",
-      items: [
-        {
-          title: "Discovery",
-          desc: "We talk first about your business, goals, and target audience. From there I map out what's truly needed—including potential AI automations—to build the right solution.",
-          note: "Brief · Goals",
-        },
-        {
-          title: "Design",
-          desc: "Wireframes and UI mockups are built in Figma. You can review, give feedback, and request changes before a single line of code is written.",
-          note: "Figma · Mockup",
-        },
-        {
-          title: "Build",
-          desc: "Development starts with React and Tailwind as the foundation: clean, fast, and scalable. Every component is built to a clear standard.",
-          note: "React · Tailwind",
-        },
-        {
-          title: "Launch",
-          desc: "Deployed to the hosting service of your choice. Domain setup, performance checks, and making sure everything runs perfectly before go-live.",
-          note: "Vercel · Domain",
-        },
+        { n: "50+", label: "Project" },
+        { n: "7 Tahun", label: "Pengalaman" },
+        { n: "Taiwan", label: "Diploma IT" },
+        { n: "< 24 jam", label: "Waktu respons" },
       ],
     },
     projects: {
-      eyebrow: "Selected Work",
-      heading: "What I've built.",
-      visitSite: "Visit live site",
-      inDevelopment: "In development",
-      comingSoon: "Live preview coming soon",
-      prev: "Previous project",
-      next: "Next project",
-      view: "View",
-      openNewTab: "Open in a new tab",
-      regionLabel: "Project previews",
+      heading: "Yang sudah saya bangun.",
+      intro: "Project nyata untuk bisnis, komunitas, dan produk digital.",
+      conceptHeading: "Eksplorasi konsep",
+      conceptIntro: "Desain konsep untuk mengasah gaya dan teknik baru, bukan pesanan klien.",
+      conceptBadge: "Konsep",
+      visitSite: "Kunjungi situs",
+      viewDemo: "Lihat demo",
+      story: "Cerita project",
+      problem: "Masalah",
+      solution: "Solusi",
+      result: "Hasil",
+      items: {
+        tumbuh: {
+          category: "Platform otomatisasi AI",
+          description: "Platform untuk UKM Indonesia yang mengubah chat WhatsApp dan Instagram menjadi alur penjualan yang berjalan sendiri.",
+          problem: "UKM kewalahan membalas pesan berulang dari pelanggan di WhatsApp, yang menyebabkan respons lambat dan hilangnya potensi penjualan.",
+          solution: "Membangun AI chatbot kustom berbasis RAG yang terintegrasi langsung dengan Meta API. Sistem ini membaca basis pengetahuan produk untuk menjawab pertanyaan kompleks secara otomatis.",
+          result: "Berhasil mengotomatisasi 85% pesan berulang dan memberikan layanan pelanggan 24/7, meningkatkan konversi prospek hingga 3x lipat.",
+        },
+        plastik: {
+          category: "Company profile & katalog",
+          description: "Company profile dan katalog produk untuk pemasok kemasan plastik, mencakup lini produk, kisah perusahaan, dan kontak.",
+          problem: "Klien membutuhkan kehadiran digital yang profesional untuk membangun branding produk yang kuat dan tidak lagi hanya mengandalkan katalog offline.",
+          solution: "Mendesain profil perusahaan dan katalog digital yang modern dan terstruktur untuk menampilkan lini produk dengan elegan dan membangun kredibilitas merek.",
+          result: "Citra merek klien meningkat, dan pembeli B2B punya platform yang mudah diakses sehingga prospek (inquiries) bertambah.",
+        },
+        ksp: {
+          category: "Portal komunitas kampus",
+          description: "Website Kelompok Studi Pemrograman di Informatika Atma Jaya Yogyakarta: jadwal kelas, modul, challenge mingguan, hall of fame, dan login anggota.",
+          result: "Dipakai puluhan anggota dan tentor aktif untuk kelas dan challenge mingguan.",
+        },
+        link: {
+          category: "Platform lomba competitive programming",
+          description: "Platform acara untuk LINK 2026, kontes competitive programming, dengan login tim, info kontes, dan lini masa.",
+          problem: "Manajemen pendaftaran tim, pengumuman, dan lini masa untuk kontes besar sangat kacau dan rawan kesalahan.",
+          solution: "Membangun platform acara terpusat dengan portal tim yang aman, lini masa otomatis, dan instruksi yang jelas.",
+          result: "Berhasil mendaftarkan 100+ tim tanpa kesalahan registrasi dan membuat pengalaman peserta jauh lebih lancar.",
+        },
+        meridian: {
+          category: "Portfolio arsitektur",
+          description: "Konsep portfolio studio arsitektur dengan model 3D bangunan dan tipografi yang elegan.",
+        },
+        lumiere: {
+          category: "Landing page klinik",
+          description: "Konsep landing page klinik kecantikan premium dengan katalog layanan, galeri, dan booking konsultasi.",
+        },
+        neobrut: {
+          category: "Toko fashion",
+          description: "Konsep toko fashion neo-brutalis dengan kontras tinggi dan interaksi yang berani.",
+        },
+        bashion: {
+          category: "Toko online",
+          description: "Konsep toko streetwear dengan halaman produk bergaya editorial dan filter instan.",
+        },
+        dentist: {
+          category: "Dashboard klinik",
+          description: "Konsep dashboard dokter gigi untuk jadwal janji temu dan data pasien.",
+        },
+      },
+    },
+    services: {
+      heading: "Yang bisa saya buatkan.",
+      intro: "Pilih yang paling dekat dengan kebutuhanmu. Kalau masih ragu, ceritakan saja bisnismu dan saya bantu tentukan.",
+      includedLabel: "Selalu termasuk",
+      included: [
+        "Desain di Figma sebelum coding",
+        "Tampilan rapi di HP",
+        "Setup domain & hosting",
+        "Bantuan setelah website online",
+      ],
+      cta: "Diskusikan kebutuhanmu",
       items: [
         {
-          category: "E-Commerce Platform",
-          description: "A streetwear storefront with editorial product pages, instant filtering, and a checkout flow built to keep shoppers moving.",
-          caseStudy: {
-            problem: "High cart abandonment rate and a clunky browsing experience on mobile devices.",
-            solution: "Designed a mobile-first, high-performance storefront with instant filtering and a seamless checkout flow.",
-            result: "Increased mobile conversion rate by 40% and significantly reduced page load times."
-          }
+          title: "Landing page",
+          desc: "Satu halaman yang fokus untuk promo, peluncuran produk, atau tujuan iklan, dengan tombol WhatsApp langsung ke kamu.",
+          fit: "Cocok untuk produk baru, event, dan iklan Instagram atau Google.",
         },
         {
-          category: "Clinic Booking System",
-          description: "A clinic booking system with appointment scheduling, patient records, and a doctor dashboard that stays fast on any device.",
-          caseStudy: {
-            problem: "Manual appointment scheduling caused double bookings and frustrated patients.",
-            solution: "Developed a custom booking system with real-time availability and an intuitive dashboard for the clinic staff.",
-            result: "Eliminated scheduling conflicts and reduced admin workload by 15 hours a week."
-          }
+          title: "Website company profile",
+          desc: "Hingga 5 halaman (beranda, tentang, produk, kontak, dan lainnya) dengan SEO dasar supaya bisnismu mudah ditemukan di Google.",
+          fit: "Cocok untuk usaha yang ingin terlihat profesional di depan pelanggan dan mitra B2B.",
         },
         {
-          category: "Beauty Clinic Landing",
-          description: "A premium aesthetic clinic landing page with an editorial feel, a service catalog, gallery, and consultation booking.",
-          caseStudy: {
-            problem: "The clinic's premium brand wasn't reflected online, resulting in low digital consultation requests.",
-            solution: "Built an editorial-style, visually striking landing page using modern animations to convey luxury and trust.",
-            result: "Elevated brand perception and boosted online consultation bookings by 60% in the first month."
-          }
+          title: "Web app & dashboard",
+          desc: "Sistem dengan login admin untuk mengelola data harian: booking, pendaftaran, stok, sampai laporan yang bisa diekspor.",
+          fit: "Cocok untuk klinik, komunitas, event, dan bisnis dengan banyak data.",
         },
         {
-          category: "AI Automation Platform",
-          description: "An AI automation platform for Indonesian SMEs that turns WhatsApp and Instagram chats into a self-running sales pipeline.",
-          caseStudy: {
-            problem: "SMEs were overwhelmed by repetitive customer inquiries on WhatsApp, leading to delayed responses and lost sales opportunities.",
-            solution: "Built a custom RAG-based AI chatbot integrated directly with the Meta API. The system intelligently reads product knowledge bases to answer complex questions automatically.",
-            result: "Automated 85% of repetitive chats and enabled 24/7 customer support, increasing lead conversion rates by 3x."
-          }
-        },
-        {
-          category: "Company Profile / Catalog",
-          description: "A company profile and product catalog for a plastic packaging supplier, covering product lines, company story, and contact.",
-          caseStudy: {
-            problem: "The client needed a professional digital presence to establish strong product branding and transition away from relying solely on offline catalogs.",
-            solution: "Designed a modern, structured company profile and digital catalog that beautifully showcases their product lines and builds brand credibility.",
-            result: "Successfully elevated their brand image, providing B2B buyers with an accessible platform that directly increased inquiries."
-          }
-        },
-        {
-          category: "Competitive Programming Contest",
-          description: "The event platform for LINK 2026, a competitive programming contest, with team login, contest info, and timeline.",
-          caseStudy: {
-            problem: "Managing team registrations, announcements, and timelines for a large contest was chaotic and error-prone.",
-            solution: "Engineered a centralized event platform with a secure team portal, automated timelines, and clear instructions.",
-            result: "Successfully onboarded 100+ teams with zero registration errors and dramatically improved the participant experience."
-          }
-        },
-        {
-          category: "Fashion Portfolio",
-          description: "A neo-brutalist fashion portfolio and experimental shop showcasing bold designs.",
-          caseStudy: {
-            problem: "The client needed a highly unique and bold digital presence to stand out in the fashion industry.",
-            solution: "Designed a neo-brutalist website combining raw, high-contrast aesthetics with modern web interactions.",
-            result: "Created a visually striking and engaging experience that perfectly aligns with the experimental brand identity."
-          }
-        },
-        {
-          category: "Architecture Portfolio",
-          description: "A minimalist, high-end portfolio for an architecture firm, showcasing projects with smooth scrolling and elegant typography.",
-          caseStudy: {
-            problem: "The firm needed a website that matched the precision and elegance of their physical architectural projects.",
-            solution: "Designed a clean, minimalist digital portfolio focusing on high-quality imagery and smooth page transitions.",
-            result: "Delivered an immersive web experience that effectively communicates the firm's premium design philosophy."
-          }
+          title: "Chatbot & otomatisasi AI",
+          desc: "Chatbot WhatsApp dan Instagram yang menjawab pelanggan 24/7 dari data produkmu, plus alur kerja yang berjalan otomatis.",
+          fit: "Cocok untuk bisnis yang kewalahan membalas chat.",
         },
       ],
     },
+    process: {
+      heading: "Cara kerjanya.",
+      intro: "Empat langkah sederhana, dari obrolan pertama sampai website-mu online.",
+      items: [
+        {
+          title: "Ngobrol dulu",
+          desc: "Kita bahas bisnismu, siapa pelangganmu, dan apa yang harus dicapai website-nya. Dari situ saya susun apa saja yang perlu dibuat.",
+        },
+        {
+          title: "Desain",
+          desc: "Kamu lihat dulu tampilannya di Figma, kasih masukan, dan minta perubahan sebelum satu baris kode ditulis.",
+        },
+        {
+          title: "Pembuatan",
+          desc: "Website dibangun supaya cepat dibuka, rapi di HP maupun laptop, dan mudah dikembangkan nanti.",
+        },
+        {
+          title: "Online",
+          desc: "Saya setup domain dan hosting, cek performanya, lalu website-mu online. Setelah itu saya tetap bantu.",
+        },
+      ],
+    },
+    about: {
+      heading: "Hai, saya Bryan.",
+      paragraphs: [
+        "Saya freelance web developer di Yogyakarta. Saya membangun website yang bukan cuma tampil keren, tapi juga cepat, rapi di HP, dan benar-benar bekerja untuk bisnismu, dari company profile dan toko online sampai integrasi AI.",
+        "Saya belajar IT lewat program D3 di Taiwan, lalu melanjutkan studi IT di Universitas Atma Jaya Yogyakarta. Belakangan saya juga membangun chatbot dan otomatisasi berbasis AI, supaya pekerjaan berulang di bisnismu bisa berjalan sendiri.",
+      ],
+      photoAlt: "Foto Bryan Jacquellino",
+      facts: [
+        { label: "Lokasi", value: "Yogyakarta, Indonesia (GMT+7)" },
+        { label: "Klien", value: "Indonesia, Taiwan, dan remote" },
+        { label: "Pendidikan", value: "D3 IT di Taiwan · IT di Universitas Atma Jaya Yogyakarta" },
+        { label: "Respons", value: "Dalam 24 jam" },
+      ],
+      techLabel: "Teknologi yang saya pakai",
+    },
+    faq: {
+      heading: "Pertanyaan umum.",
+      intro: "Belum ketemu jawabannya? Tanya langsung saja.",
+      cta: "Tanya via WhatsApp",
+      items: [
+        {
+          q: "Berapa lama sampai website-nya jadi?",
+          a: "Tergantung skala project. Setelah ngobrol di awal, saya kirim rincian pekerjaan beserta estimasi waktunya sebelum kamu memutuskan.",
+        },
+        {
+          q: "Apakah bisa revisi?",
+          a: "Bisa. Desain dibuat dulu di Figma, jadi kamu bisa melihat, memberi masukan, dan meminta perubahan sebelum coding dimulai.",
+        },
+        {
+          q: "Bagaimana sistem pembayarannya?",
+          a: "Bertahap. Pengerjaan dimulai H+1 setelah tanda jadi diterima, dan sisanya dibayar mengikuti tahapan project.",
+        },
+        {
+          q: "Domain dan hosting bagaimana?",
+          a: "Saya bantu pilih dan setup domain serta hosting. Biaya pihak ketiga seperti domain, hosting, atau kuota AI terpisah dari biaya pengerjaan.",
+        },
+        {
+          q: "Kalau setelah online ada masalah?",
+          a: "Saya tetap bantu setelah website online. Hubungi saja lewat WhatsApp, saya balas dalam 24 jam.",
+        },
+        {
+          q: "Saya di luar Yogyakarta, bisa?",
+          a: "Bisa. Saya bekerja dengan klien di Indonesia, Taiwan, dan secara remote. Semuanya bisa diurus lewat WhatsApp atau email.",
+        },
+      ],
+    },
+    contact: {
+      headingLine1: "Ayo bikin",
+      headingLine2: "website-mu.",
+      body: "Ceritakan bisnismu dan apa yang kamu butuhkan. Saya balas dalam 24 jam.",
+      primary: "Chat via WhatsApp",
+      secondary: "Kirim email",
+    },
     footer: {
-      available: "Available",
+      location: "Yogyakarta, Indonesia",
+    },
+    pitch: {
+      devTag: "Bryan Jacquellino · Dev",
+      title: "Pilihan Investasi",
+      subtitle: "Solusi Digital & Integrasi AI",
+      items: [
+        { name: "Landing Page Standar",        desc: "Satu halaman, responsif, Tailwind CSS" },
+        { name: "Website Multi-Halaman",       desc: "Hingga 5 halaman (Beranda, Tentang, dll.), SEO" },
+        { name: "Web App + CRUD Sederhana",    desc: "Login admin, manajemen data, database" },
+        { name: "Web App + CRUD Kompleks",     desc: "Relasi kompleks, dashboard, ekspor laporan" },
+        { name: "Integrasi AI Saja",           desc: "Integrasi chatbot atau analisis tanpa database berat" },
+        { name: "Web Cerdas (CRUD + AI)",      desc: "Manajemen data plus asisten AI cerdas" },
+        { name: "SISTEM PENUH (Enterprise)",   desc: "Otomatisasi total, AI Analyst, skala besar" },
+      ],
+      footerNote: "* Biaya yang tercantum adalah Development Fee. Belum termasuk biaya operasional pihak ketiga (domain, Supabase Pro, kuota AI API).",
+      shortcut: "ESC untuk menutup · Alt+P untuk membuka",
+      shortcutAUS: "ESC untuk menutup · Alt+Q untuk membuka",
+      estimateNote: "Hanya estimasi harga. Penawaran akhir tergantung lingkup dan kebutuhan proyek.",
+    },
+  },
+
+  en: {
+    meta: {
+      title: "Bryan Jacquellino — Freelance Web Developer in Yogyakarta",
+    },
+    nav: {
+      work: "Work",
+      services: "Services",
+      process: "Process",
+      about: "About",
+      faq: "FAQ",
+    },
+    header: {
+      home: "Bryan Jacquellino, back to top",
+      mainNav: "Main navigation",
+      contact: "Contact",
+      langLabel: "Choose language",
+      toggleTheme: "Toggle dark mode",
+      toggleMenu: "Open or close the menu",
+    },
+    whatsapp: {
+      label: "Chat on WhatsApp",
+      message: "Hi Bryan! I saw your portfolio and would like to discuss a website for my business.",
+    },
+    hero: {
+      available: "Taking on new projects",
+      headline: "Websites your customers trust.",
+      intro: "I'm Bryan, a freelance web developer in Yogyakarta, Indonesia. From design to launch, I handle everything.",
+      ctaPrimary: "Chat on WhatsApp",
+      ctaSecondary: "See my work",
+      showcaseLabel: "See the websites I've built",
+      stats: [
+        { n: "50+", label: "Projects" },
+        { n: "7 Years", label: "Experience" },
+        { n: "Taiwan", label: "IT diploma" },
+        { n: "< 24h", label: "Response time" },
+      ],
+    },
+    projects: {
+      heading: "What I've built.",
+      intro: "Real projects for businesses, communities and digital products.",
+      conceptHeading: "Concept explorations",
+      conceptIntro: "Concept designs where I sharpen new styles and techniques. Not client commissions.",
+      conceptBadge: "Concept",
+      visitSite: "Visit site",
+      viewDemo: "View demo",
+      story: "Project story",
+      problem: "Problem",
+      solution: "Solution",
+      result: "Result",
+      items: {
+        tumbuh: {
+          category: "AI automation platform",
+          description: "A platform for Indonesian SMEs that turns WhatsApp and Instagram chats into a self-running sales pipeline.",
+          problem: "SMEs were overwhelmed by repetitive customer inquiries on WhatsApp, leading to delayed responses and lost sales opportunities.",
+          solution: "Built a custom RAG-based AI chatbot integrated directly with the Meta API. The system reads product knowledge bases to answer complex questions automatically.",
+          result: "Automated 85% of repetitive chats and enabled 24/7 customer support, increasing lead conversion rates by 3x.",
+        },
+        plastik: {
+          category: "Company profile & catalogue",
+          description: "A company profile and product catalogue for a plastic packaging supplier, covering product lines, company story and contact.",
+          problem: "The client needed a professional digital presence to build strong product branding and move away from relying only on offline catalogues.",
+          solution: "Designed a modern, structured company profile and digital catalogue that showcases their product lines and builds brand credibility.",
+          result: "A stronger brand image and an easy-to-reach platform for B2B buyers that brought in more inquiries.",
+        },
+        ksp: {
+          category: "Campus community portal",
+          description: "The website of the Programming Study Group in Informatics at Atma Jaya Yogyakarta: class schedule, modules, weekly challenges, a hall of fame and member login.",
+          result: "Used by dozens of active members and tutors for classes and weekly challenges.",
+        },
+        link: {
+          category: "Programming contest platform",
+          description: "The event platform for LINK 2026, a competitive programming contest, with team login, contest info and timeline.",
+          problem: "Managing team registrations, announcements and timelines for a large contest was chaotic and error-prone.",
+          solution: "Built a central event platform with a secure team portal, automated timelines and clear instructions.",
+          result: "Onboarded 100+ teams with zero registration errors and a much smoother participant experience.",
+        },
+        meridian: {
+          category: "Architecture portfolio",
+          description: "An architecture studio portfolio concept with a 3D building model and elegant typography.",
+        },
+        lumiere: {
+          category: "Clinic landing page",
+          description: "A premium beauty clinic landing page concept with a service catalogue, gallery and consultation booking.",
+        },
+        neobrut: {
+          category: "Fashion store",
+          description: "A neo-brutalist fashion store concept with high contrast and bold interactions.",
+        },
+        bashion: {
+          category: "Online store",
+          description: "A streetwear store concept with editorial product pages and instant filtering.",
+        },
+        dentist: {
+          category: "Clinic dashboard",
+          description: "A dentist dashboard concept for appointments and patient records.",
+        },
+      },
+    },
+    services: {
+      heading: "What I can build for you.",
+      intro: "Pick the one closest to what you need. Not sure yet? Tell me about your business and I'll help you choose.",
+      includedLabel: "Always included",
+      included: [
+        "A Figma design before any code",
+        "A layout that works on phones",
+        "Domain & hosting setup",
+        "Support after launch",
+      ],
+      cta: "Talk about your project",
+      items: [
+        {
+          title: "Landing page",
+          desc: "One focused page for a promotion, a product launch or an ad campaign, with a WhatsApp button straight to you.",
+          fit: "Good for new products, events, and Instagram or Google ads.",
+        },
+        {
+          title: "Company profile website",
+          desc: "Up to 5 pages (home, about, products, contact and more) with basic SEO so customers can find you on Google.",
+          fit: "Good for businesses that want to look professional to customers and B2B partners.",
+        },
+        {
+          title: "Web app & dashboard",
+          desc: "A system with an admin login to manage everyday data: bookings, registrations, stock and exportable reports.",
+          fit: "Good for clinics, communities, events and data-heavy businesses.",
+        },
+        {
+          title: "AI chatbots & automation",
+          desc: "WhatsApp and Instagram chatbots that answer customers 24/7 from your product data, plus workflows that run themselves.",
+          fit: "Good for businesses buried in customer chats.",
+        },
+      ],
+    },
+    process: {
+      heading: "How it works.",
+      intro: "Four simple steps, from our first chat to your website going live.",
+      items: [
+        {
+          title: "We talk",
+          desc: "We go through your business, your customers and what the website needs to achieve. Then I map out exactly what to build.",
+        },
+        {
+          title: "Design",
+          desc: "You see the design in Figma first, give feedback and request changes before a single line of code is written.",
+        },
+        {
+          title: "Build",
+          desc: "Your site is built to load fast, look right on phones and laptops, and be easy to grow later.",
+        },
+        {
+          title: "Launch",
+          desc: "I set up the domain and hosting, check performance and put your site live. After that, I'm still here to help.",
+        },
+      ],
+    },
+    about: {
+      heading: "Hi, I'm Bryan.",
+      paragraphs: [
+        "I'm a freelance web developer in Yogyakarta, Indonesia. I build websites that don't just look sharp, but are fast, work well on phones and actually work for your business, from company profiles and online stores to AI integration.",
+        "I studied IT through a diploma programme in Taiwan and continued my IT studies at Universitas Atma Jaya Yogyakarta. Lately I also build AI chatbots and automations, so the repetitive work in your business can run on its own.",
+      ],
+      photoAlt: "Photo of Bryan Jacquellino",
+      facts: [
+        { label: "Location", value: "Yogyakarta, Indonesia (GMT+7)" },
+        { label: "Clients", value: "Indonesia, Taiwan and remote" },
+        { label: "Education", value: "IT diploma in Taiwan · IT at Universitas Atma Jaya Yogyakarta" },
+        { label: "Response", value: "Within 24 hours" },
+      ],
+      techLabel: "Tools I use",
+    },
+    faq: {
+      heading: "Common questions.",
+      intro: "Didn't find your answer? Just ask.",
+      cta: "Ask on WhatsApp",
+      items: [
+        {
+          q: "How long until my website is ready?",
+          a: "It depends on the size of the project. After our first chat, I send you a breakdown of the work with a time estimate before you decide.",
+        },
+        {
+          q: "Can I ask for revisions?",
+          a: "Yes. The design is made in Figma first, so you can see it, give feedback and ask for changes before any coding starts.",
+        },
+        {
+          q: "How does payment work?",
+          a: "In stages. Work starts the day after the booking deposit arrives, and the rest is paid as the project moves through its stages.",
+        },
+        {
+          q: "What about the domain and hosting?",
+          a: "I help you choose and set up the domain and hosting. Third-party costs such as the domain, hosting or AI usage are separate from my development fee.",
+        },
+        {
+          q: "What if something breaks after launch?",
+          a: "I still help after your site is live. Just message me on WhatsApp; I reply within 24 hours.",
+        },
+        {
+          q: "I'm not in Yogyakarta. Can we still work together?",
+          a: "Yes. I work with clients in Indonesia, Taiwan and remotely. Everything can be handled over WhatsApp or email.",
+        },
+      ],
+    },
+    contact: {
+      headingLine1: "Let's build",
+      headingLine2: "your website.",
+      body: "Tell me about your business and what you need. I reply within 24 hours.",
+      primary: "Chat on WhatsApp",
+      secondary: "Send an email",
+    },
+    footer: {
+      location: "Yogyakarta, Indonesia",
     },
     pitch: {
       devTag: "Bryan Jacquellino · Dev",
@@ -238,215 +469,214 @@ export const translations = {
   },
 
   zh: {
+    meta: {
+      title: "Bryan Jacquellino — 印尼日惹自由接案網頁開發者",
+    },
     nav: {
-      about: "關於",
+      work: "作品",
       services: "服務",
-      projects: "作品",
       process: "流程",
+      about: "關於",
+      faq: "常見問題",
     },
     header: {
-      getInTouch: "聯絡我 ↗",
-      switchLang: "切換語言",
+      home: "Bryan Jacquellino，回到頂端",
+      mainNav: "主要導覽",
+      contact: "聯絡",
+      langLabel: "選擇語言",
       toggleTheme: "切換深色模式",
-      toggleMenu: "切換選單",
+      toggleMenu: "開啟或關閉選單",
     },
-    sections: {
-      hero: "主視覺",
-      bio: "關於我",
-      services: "服務",
-      education: "我的歷程",
-      projects: "精選作品",
-      process: "合作流程",
-      cta: "行動呼籲",
+    whatsapp: {
+      label: "WhatsApp 聯絡我",
+      message: "Bryan 你好！我看了你的作品集，想和你討論我的事業網站。",
     },
     hero: {
-      eyebrow: "開放接案中",
-      tagline: "自由接案網頁開發者，從設計到上線，打造快速又精緻的網站。",
-      viewWork: "查看作品",
-      getInTouch: "與我聯絡",
-      scroll: "捲動",
+      available: "目前可接新案",
+      headline: "讓客戶信任你的網站。",
+      intro: "我是 Bryan，印尼日惹的自由接案網頁開發者。從設計到網站上線，全部由我負責。",
+      ctaPrimary: "WhatsApp 聯絡我",
+      ctaSecondary: "查看作品",
+      showcaseLabel: "查看我打造的網站",
       stats: [
-        { n: "50+",  label: "專案" },
+        { n: "50+", label: "專案" },
         { n: "7 年", label: "經驗" },
-        { n: "學歷", label: "資訊 · 台灣" },
-        { n: "開放", label: "接案中" },
-      ],
-    },
-    cta: {
-      eyebrow: "一起合作吧",
-      headingLine1: "有專案",
-      headingLine2: "構想了嗎？",
-      body: "從概念到上線，我都能幫上忙。說說你的需求，我們一起把它實現。",
-      start: "開始專案 →",
-      viewWork: "查看作品",
-    },
-    bio: {
-      eyebrow: "關於我",
-      headLead: "嗨，我是 Bryan，",
-      headAccent: "網頁開發者",
-      headRest: "兼 AI 整合師。",
-      para1: "我是一位以印尼日惹為據點的自由接案網頁開發者，專注於打造不只外觀出色，更<strong>快速、響應流暢</strong>、真正能為你的業務帶來成效的網站。從個人品牌、作品集，到線上商店與 <strong>AI 整合</strong>，我都能從零到上線一手包辦。",
-      para2: "我的核心技術組合是 <strong>React 與 Tailwind CSS</strong>，這個搭配能同時完整掌控效能與視覺細節。加上在<strong>台灣修讀資訊科技二專</strong>所打下的技術基礎與結構化思維，我經手的每個專案都有明確標準：<strong>乾淨、高效、切中要點</strong>。",
-      para3: "近來我也持續將 AI 整合進網頁產品中，從真正理解業務脈絡的 <strong>RAG 系統</strong>，到<strong>工作流程自動化</strong>，以及直接串接你營運的智慧管線。AI 不只是趨勢；只要佈署得當，它就能成為你業務成長的<strong>真實助力</strong>。",
-      techStack: "技術棧",
-      status: {
-        title: "狀態",
-        availability: "接案狀況",
-        available: "開放接案中",
-        timezone: "所在時區",
-        location: "GMT+7 (印尼)",
-        response: "回覆時間",
-        responseTime: "24小時內"
-      }
-    },
-    services: {
-      eyebrow: "服務",
-      heading: "我能提供什麼",
-      items: [
-        {
-          title: "UI / UX 設計",
-          desc: "乾淨、具美感且易於使用的介面，讓使用者願意停留，也讓你的品牌更顯專業。",
-        },
-        {
-          title: "網站開發",
-          desc: "以 React 與 Tailwind CSS 打造快速、可擴充且結構清晰的網站，在手機到桌機的每種裝置上都完美運作。",
-        },
-        {
-          title: "部署與維護",
-          desc: "從本機到上線，部署至 Vercel 或你選擇的主機，包含網域設定與上線後的支援。",
-        },
-        {
-          title: "AI 整合",
-          desc: "理解你業務脈絡的 RAG AI 系統、透過 API 的工作流程自動化，以及直接串接營運的智慧管線。",
-        },
-      ],
-    },
-    education: {
-      eyebrow: "背景",
-      heading: "我的歷程",
-      scrollHint: "捲動探索",
-      items: [
-        { status: "資訊科技與工程", desc: "在台灣修讀二專期間，打下了堅實的技術基礎與結構化的工程思維。", location: "台灣",  year: "2020" },
-        { status: "全端開發專注",   desc: "在 Atma Jaya 深化資訊科技知識，同時開始接案，為不同產業打造真實的網頁專案。", location: "日惹", year: "2023" },
-        { status: "複雜系統建置",   desc: "從一般網站轉向開發具擴充性的電商平台、診所預約系統與後台儀表板。", location: "遠端", year: "2024" },
-        { status: "網頁與 AI 整合", desc: "透過高效能網站與 AI 驅動的營運自動化，協助企業進行數位轉型。", location: "全球", year: "今天" },
-      ],
-    },
-    process: {
-      eyebrow: "我的工作方式",
-      heading: "合作流程",
-      stepLabel: "步驟",
-      items: [
-        {
-          title: "探索",
-          desc: "我們先聊聊你的業務、目標與受眾。接著我會規劃出真正需要的項目（包含潛在的 AI 自動化），為您打造最合適的解決方案。",
-          note: "需求 · 目標",
-        },
-        {
-          title: "設計",
-          desc: "在 Figma 中製作線框圖與 UI 設計稿。你可以在寫下任何一行程式碼之前先檢視、回饋並提出修改。",
-          note: "Figma · 設計稿",
-        },
-        {
-          title: "開發",
-          desc: "以 React 與 Tailwind 為基礎展開開發：乾淨、快速且可擴充。每個元件都依明確標準打造。",
-          note: "React · Tailwind",
-        },
-        {
-          title: "上線",
-          desc: "部署到你選擇的主機。網域設定、效能檢查，並在正式上線前確保一切運作完美。",
-          note: "Vercel · 網域",
-        },
+        { n: "台灣", label: "資訊二專" },
+        { n: "< 24 小時", label: "回覆時間" },
       ],
     },
     projects: {
-      eyebrow: "精選作品",
       heading: "我打造的作品。",
-      visitSite: "造訪官網",
-      inDevelopment: "開發中",
-      comingSoon: "即時預覽即將推出",
-      prev: "上一個專案",
-      next: "下一個專案",
-      view: "查看",
-      openNewTab: "在新分頁開啟",
-      regionLabel: "專案預覽",
+      intro: "為企業、社群與數位產品打造的真實專案。",
+      conceptHeading: "概念探索",
+      conceptIntro: "為磨練新風格與技術而做的概念設計，並非客戶委託。",
+      conceptBadge: "概念",
+      visitSite: "造訪網站",
+      viewDemo: "查看示範",
+      story: "專案故事",
+      problem: "問題",
+      solution: "解決方案",
+      result: "成果",
+      items: {
+        tumbuh: {
+          category: "AI 自動化平台",
+          description: "為印尼中小企業打造的平台，將 WhatsApp 與 Instagram 對話轉化為自動運轉的銷售流程。",
+          problem: "中小企業被 WhatsApp 上重複的顧客詢問淹沒，導致回覆延遲並錯失銷售機會。",
+          solution: "建立客製化的 RAG AI 聊天機器人，直接與 Meta API 整合。系統能讀取產品知識庫，自動回答複雜的問題。",
+          result: "自動化 85% 的重複訊息並實現 24/7 客服，將潛在客戶轉換率提升 3 倍。",
+        },
+        plastik: {
+          category: "公司形象與型錄",
+          description: "塑膠包裝供應商的公司形象與產品型錄網站，涵蓋產品線、公司故事與聯絡方式。",
+          problem: "客戶需要專業的數位形象來建立強大的產品品牌，並擺脫僅依賴線下型錄的現狀。",
+          solution: "設計現代化、結構清楚的公司簡介與數位型錄，展示產品線並建立品牌信譽。",
+          result: "品牌形象提升，B2B 買家有了容易使用的平台，詢問量也隨之增加。",
+        },
+        ksp: {
+          category: "校園社群入口網站",
+          description: "日惹 Atma Jaya 大學資訊系程式研究社的網站：課程時間表、教材、每週挑戰、名人堂與會員登入。",
+          result: "數十位活躍成員與助教用它上課與參加每週挑戰。",
+        },
+        link: {
+          category: "程式競賽平台",
+          description: "LINK 2026 競技程式設計大賽的活動平台，包含隊伍登入、賽事資訊與時程。",
+          problem: "大型賽事的隊伍註冊、公告與時程管理混亂且容易出錯。",
+          solution: "打造集中的活動平台，具備安全的隊伍入口、自動化時程與清楚的說明。",
+          result: "100 多支隊伍零錯誤完成註冊，參賽者體驗也順暢許多。",
+        },
+        meridian: {
+          category: "建築作品集",
+          description: "建築事務所作品集概念，搭配 3D 建築模型與優雅排版。",
+        },
+        lumiere: {
+          category: "診所登陸頁",
+          description: "高端醫美診所登陸頁概念，含療程介紹、作品藝廊與諮詢預約。",
+        },
+        neobrut: {
+          category: "時尚商店",
+          description: "新粗野主義時尚商店概念，高對比、互動大膽。",
+        },
+        bashion: {
+          category: "線上商店",
+          description: "潮流服飾電商概念，具編輯風格的商品頁與即時篩選。",
+        },
+        dentist: {
+          category: "診所後台",
+          description: "牙醫後台概念，管理看診預約與病患資料。",
+        },
+      },
+    },
+    services: {
+      heading: "我能為你打造的。",
+      intro: "選一個最接近你需求的方案。還不確定？告訴我你的事業，我幫你一起決定。",
+      includedLabel: "每個專案都包含",
+      included: [
+        "寫程式前先在 Figma 確認設計",
+        "手機上也好用的版面",
+        "網域與主機設定",
+        "上線後的支援",
+      ],
+      cta: "聊聊你的專案",
       items: [
         {
-          category: "電商平台",
-          description: "潮流服飾電商網站，具備編輯風格的商品頁、即時篩選，以及為轉換而打造的結帳流程。",
-          caseStudy: {
-            problem: "購物車放棄率高，且行動裝置上的瀏覽體驗不流暢。",
-            solution: "設計了行動裝置優先、高效能的店面，具備即時篩選與無縫結帳流程。",
-            result: "行動裝置轉換率提升 40%，並顯著降低了頁面載入時間。"
-          }
+          title: "形象登陸頁",
+          desc: "專為促銷、新品上市或廣告活動打造的單一頁面，附上直接聯絡你的 WhatsApp 按鈕。",
+          fit: "適合新產品、活動，以及 Instagram 或 Google 廣告。",
         },
         {
-          category: "診所預約系統",
-          description: "牙醫診所預約系統，包含看診排程、病患資料，以及在各種裝置上都流暢的醫師後台。",
-          caseStudy: {
-            problem: "人工預約常導致重複排程，並讓病患感到挫折。",
-            solution: "開發具備即時空檔查詢的客製化預約系統，以及直覺的診所人員儀表板。",
-            result: "消除了排程衝突，每週為行政人員減少 15 小時的工作量。"
-          }
+          title: "企業形象網站",
+          desc: "最多 5 頁（首頁、關於、產品、聯絡等），加上基本 SEO，讓客戶在 Google 上找到你。",
+          fit: "適合想在客戶與 B2B 夥伴面前展現專業的企業。",
         },
         {
-          category: "醫美診所網站",
-          description: "充滿編輯質感的高端醫美診所官網，涵蓋療程介紹、作品藝廊與諮詢預約。",
-          caseStudy: {
-            problem: "診所的高端品牌形象未能在網路上展現，導致線上諮詢預約率低落。",
-            solution: "建立具備編輯質感、視覺強烈的登陸頁，運用現代動畫傳遞奢華與信任感。",
-            result: "提升了品牌認知度，首月線上諮詢預約量即成長 60%。"
-          }
+          title: "網頁應用與後台",
+          desc: "具管理員登入的系統，用來管理日常資料：預約、報名、庫存，以及可匯出的報表。",
+          fit: "適合診所、社群、活動，以及資料量大的事業。",
         },
         {
-          category: "AI 自動化平台",
-          description: "為印尼中小企業打造的 AI 自動化平台，將 WhatsApp 與 Instagram 對話轉化為自動運轉的銷售管線。",
-          caseStudy: {
-            problem: "中小企業被 WhatsApp 上重複的顧客詢問淹沒，導致回覆延遲並錯失銷售機會。",
-            solution: "建立客製化的 RAG AI 聊天機器人，直接與 Meta API 整合。系統能智慧讀取產品知識庫，自動回答複雜的問題。",
-            result: "自動化 85% 的重複訊息並實現 24/7 客服，將潛在客戶轉換率提升 3 倍。"
-          }
-        },
-        {
-          category: "公司形象 / 型錄",
-          description: "塑膠包裝供應商的公司形象與產品型錄網站，涵蓋產品線、公司故事與聯絡方式。",
-          caseStudy: {
-            problem: "客戶需要一個專業的數位形象來建立強大的產品品牌，並擺脫僅依賴線下型錄的現狀。",
-            solution: "設計了現代化、結構化的公司簡介與數位型錄，精美展示其產品線並建立品牌信譽。",
-            result: "成功提升了品牌形象，為 B2B 買家提供了一個易於存取的平台，並直接增加了詢問量。"
-          }
-        },
-        {
-          category: "競技程式設計賽事",
-          description: "LINK 2026 競技程式設計大賽的活動平台，包含隊伍登入、賽事資訊與時程。",
-          caseStudy: {
-            problem: "大型賽事的隊伍註冊、公告與時程管理混亂且容易出錯。",
-            solution: "打造集中的活動平台，具備安全的隊伍入口、自動化時程與清晰的指示。",
-            result: "成功協助 100 多支隊伍零錯誤完成註冊，大幅提升參賽者體驗。"
-          }
-        },
-        {
-          category: "時尚品牌作品集",
-          description: "展現大膽設計的新粗野主義（Neo-Brutalism）時尚作品集與實驗性商店。",
-          caseStudy: {
-            problem: "客戶需要一個極具獨特性與大膽風格的數位形象，以在時尚產業中脫穎而出。",
-            solution: "設計了結合原始、高對比美學與現代網頁互動的新粗野主義網站。",
-            result: "創造了視覺強烈且引人入勝的體驗，完美契合其實驗性的品牌定位。"
-          }
-        },
-        {
-          category: "建築事務所作品集",
-          description: "為建築事務所打造的極簡高端作品集，透過流暢的捲動與優雅的排版展示建築專案。",
-          caseStudy: {
-            problem: "客戶需要一個能與其建築實體專案的精準度與優雅感相匹配的網站。",
-            solution: "設計了乾淨、極簡的數位作品集，專注於高品質的影像與流暢的頁面轉場。",
-            result: "提供沉浸式的網頁體驗，有效傳達該事務所的高端設計理念。"
-          }
+          title: "AI 聊天機器人與自動化",
+          desc: "根據你的產品資料 24 小時回覆客戶的 WhatsApp 與 Instagram 聊天機器人，以及自動運作的工作流程。",
+          fit: "適合被客戶訊息淹沒的商家。",
         },
       ],
     },
+    process: {
+      heading: "合作流程。",
+      intro: "從第一次聊天到網站上線，只要四個步驟。",
+      items: [
+        {
+          title: "先聊聊",
+          desc: "我們先了解你的事業、你的客戶，以及網站要達成的目標，再規劃需要打造的內容。",
+        },
+        {
+          title: "設計",
+          desc: "在寫任何程式碼之前，你會先在 Figma 看到設計，可以給意見、要求修改。",
+        },
+        {
+          title: "開發",
+          desc: "網站開發得載入快速、在手機與筆電上都好看，未來也容易擴充。",
+        },
+        {
+          title: "上線",
+          desc: "我會設定網域與主機、檢查效能，讓網站正式上線。上線後也會持續協助。",
+        },
+      ],
+    },
+    about: {
+      heading: "嗨，我是 Bryan。",
+      paragraphs: [
+        "我是印尼日惹的自由接案網頁開發者。我打造的網站不只好看，還要快速、在手機上好用，並真正為你的事業帶來效果，從公司形象網站、線上商店到 AI 整合。",
+        "我在台灣修讀資訊科技二專，之後在日惹 Atma Jaya 大學繼續攻讀資訊科技。最近我也在打造 AI 聊天機器人與自動化，讓你事業中重複的工作自動完成。",
+      ],
+      photoAlt: "Bryan Jacquellino 的照片",
+      facts: [
+        { label: "所在地", value: "印尼日惹（GMT+7）" },
+        { label: "客戶", value: "印尼、台灣與遠端" },
+        { label: "學歷", value: "台灣資訊科技二專 · 日惹 Atma Jaya 大學資訊科技" },
+        { label: "回覆", value: "24 小時內" },
+      ],
+      techLabel: "我使用的技術",
+    },
+    faq: {
+      heading: "常見問題。",
+      intro: "沒找到答案？直接問我吧。",
+      cta: "用 WhatsApp 詢問",
+      items: [
+        {
+          q: "網站多久可以完成？",
+          a: "視專案規模而定。初次討論後，我會先寄給你工作明細與時程估算，讓你再做決定。",
+        },
+        {
+          q: "可以修改嗎？",
+          a: "可以。設計會先在 Figma 完成，你可以在開始寫程式前檢視、給意見並要求修改。",
+        },
+        {
+          q: "付款方式是什麼？",
+          a: "分階段付款。收到訂金後隔天開始製作，其餘款項依專案進度支付。",
+        },
+        {
+          q: "網域和主機怎麼處理？",
+          a: "我會協助你挑選並設定網域與主機。網域、主機或 AI 用量等第三方費用與開發費分開計算。",
+        },
+        {
+          q: "上線後出問題怎麼辦？",
+          a: "網站上線後我仍會協助。直接用 WhatsApp 聯絡我，我會在 24 小時內回覆。",
+        },
+        {
+          q: "我不在日惹，也可以合作嗎？",
+          a: "可以。我與印尼、台灣以及遠端的客戶合作，所有事情都能透過 WhatsApp 或 Email 處理。",
+        },
+      ],
+    },
+    contact: {
+      headingLine1: "一起打造",
+      headingLine2: "你的網站。",
+      body: "告訴我你的事業與需求，我會在 24 小時內回覆。",
+      primary: "WhatsApp 聯絡我",
+      secondary: "寄送 Email",
+    },
     footer: {
-      available: "開放接案",
+      location: "印尼日惹",
     },
     pitch: {
       devTag: "Bryan Jacquellino · 開發者",
@@ -465,237 +695,6 @@ export const translations = {
       shortcut: "ESC 關閉 · Alt+P 開關",
       shortcutAUS: "ESC 關閉 · Alt+Q 開關",
       estimateNote: "僅為估算價格，最終報價視專案範圍與需求而定。",
-    },
-  },
-
-  id: {
-    nav: {
-      about: "Tentang",
-      services: "Layanan",
-      projects: "Proyek",
-      process: "Proses",
-    },
-    header: {
-      getInTouch: "Hubungi saya ↗",
-      switchLang: "Ganti bahasa",
-      toggleTheme: "Ganti mode gelap",
-      toggleMenu: "Buka/tutup menu",
-    },
-    sections: {
-      hero: "Hero",
-      bio: "Tentang Saya",
-      services: "Layanan",
-      education: "Perjalanan Karir",
-      projects: "Proyek Pilihan",
-      process: "Proses Kerja",
-      cta: "Ajakan Bertindak",
-    },
-    hero: {
-      eyebrow: "Tersedia untuk freelance",
-      tagline: "Web developer freelance yang membangun website cepat dan elok, dari desain hingga deployment.",
-      viewWork: "Lihat Karya",
-      getInTouch: "Hubungi Saya",
-      scroll: "gulir",
-      stats: [
-        { n: "50+", label: "Proyek" },
-        { n: "7 Tahun", label: "Pengalaman" },
-        { n: "Pendidikan", label: "IT · Taiwan" },
-        { n: "Terbuka", label: "Untuk freelance" },
-      ],
-    },
-    cta: {
-      eyebrow: "Ayo berkolaborasi",
-      headingLine1: "Punya proyek",
-      headingLine2: "yang ingin diwujudkan?",
-      body: "Siap membantu dari konsep hingga peluncuran. Ceritakan kebutuhanmu dan kita wujudkan bersama.",
-      start: "Mulai Proyek →",
-      viewWork: "Lihat Karya",
-    },
-    bio: {
-      eyebrow: "Tentang Saya",
-      headLead: "Hai, saya Bryan,",
-      headAccent: "web developer",
-      headRest: " & integrator AI.",
-      para1: "Saya web developer freelance yang berbasis di Yogyakarta, fokus membangun website yang tidak hanya tampil tajam, tapi juga <strong>cepat, responsif</strong>, dan benar-benar bekerja untuk bisnismu. Dari personal branding dan portofolio hingga toko online dan <strong>integrasi AI</strong>, semua saya tangani dari awal sampai peluncuran.",
-      para2: "Stack utama saya adalah <strong>React dan Tailwind CSS</strong>, kombinasi yang memberi kontrol penuh atas performa sekaligus detail visual. Didukung <strong>diploma D3 IT di Taiwan</strong> yang membangun fondasi teknis dan pola pikir terstruktur saya, setiap proyek yang saya kerjakan memegang standar yang jelas: <strong>bersih, efisien, dan tepat sasaran</strong>.",
-      para3: "Belakangan ini saya juga mengintegrasikan AI ke produk web, dari <strong>sistem berbasis RAG</strong> yang benar-benar memahami konteks bisnis, hingga <strong>otomatisasi alur kerja</strong> dan pipeline cerdas yang terhubung langsung ke operasionalmu. AI bukan sekadar tren; jika disiapkan dengan benar, ia menjadi <strong>daya ungkit nyata</strong> bagi pertumbuhan bisnismu.",
-      techStack: "Tech Stack",
-      status: {
-        title: "Status",
-        availability: "Ketersediaan",
-        available: "Menerima Proyek",
-        timezone: "Zona Waktu",
-        location: "GMT+7 (Indonesia)",
-        response: "Respon",
-        responseTime: "Dalam 24 jam"
-      }
-    },
-    services: {
-      eyebrow: "Layanan",
-      heading: "Yang Saya Tawarkan",
-      items: [
-        {
-          title: "Desain UI / UX",
-          desc: "Antarmuka yang bersih, estetis, dan ramah pengguna, dirancang agar pengguna merasa nyaman dan bisnismu terlihat profesional.",
-        },
-        {
-          title: "Pengembangan Web",
-          desc: "Website cepat, scalable, dan terstruktur rapi dengan React dan Tailwind CSS. Sempurna di setiap perangkat, dari ponsel hingga desktop.",
-        },
-        {
-          title: "Deploy & Maintenance",
-          desc: "Dari lokal hingga online, di-deploy ke Vercel atau hosting pilihanmu, termasuk setup domain dan dukungan pasca-peluncuran.",
-        },
-        {
-          title: "Integrasi AI",
-          desc: "Sistem AI berbasis RAG yang memahami konteks bisnismu, otomatisasi alur kerja via API, dan pipeline cerdas yang terhubung langsung ke operasionalmu.",
-        },
-      ],
-    },
-    education: {
-      eyebrow: "Latar Belakang",
-      heading: "Perjalanan Karir",
-      scrollHint: "gulir untuk menjelajah",
-      items: [
-        { status: "IT & Engineering", desc: "Membangun fondasi teknis dan pola pikir engineering yang terstruktur selama menempuh pendidikan diploma.", location: "Taiwan",  year: "2020" },
-        { status: "Fokus Full-Stack", desc: "Memperdalam ilmu IT di Atma Jaya sambil mulai mengerjakan proyek-proyek web freelance dari berbagai industri.", location: "Yogyakarta", year: "2023" },
-        { status: "Sistem Kompleks",  desc: "Beralih dari web biasa ke pembuatan platform e-commerce, sistem booking klinik, dan aplikasi berbasis dashboard.", location: "Remote", year: "2024" },
-        { status: "Web & AI Integrator", desc: "Membantu bisnis bertransformasi secara digital melalui website berkinerja tinggi dan otomatisasi operasional berbasis AI.", location: "Global", year: "Hari Ini" },
-      ],
-    },
-    process: {
-      eyebrow: "Cara Saya Bekerja",
-      heading: "Proses Kerja",
-      stepLabel: "Langkah",
-      items: [
-        {
-          title: "Discovery",
-          desc: "Kita bicara dulu tentang bisnis, tujuan, dan target audiensmu. Dari situ saya petakan apa yang benar-benar dibutuhkan—termasuk potensi otomatisasi AI—untuk merancang solusi yang tepat.",
-          note: "Brief · Tujuan",
-        },
-        {
-          title: "Desain",
-          desc: "Wireframe dan mockup UI dibuat di Figma. Kamu bisa meninjau, memberi masukan, dan meminta perubahan sebelum satu baris kode pun ditulis.",
-          note: "Figma · Mockup",
-        },
-        {
-          title: "Build",
-          desc: "Pengembangan dimulai dengan React dan Tailwind sebagai fondasi: bersih, cepat, dan scalable. Setiap komponen dibangun dengan standar yang jelas.",
-          note: "React · Tailwind",
-        },
-        {
-          title: "Peluncuran",
-          desc: "Di-deploy ke layanan hosting pilihanmu. Setup domain, pengecekan performa, dan memastikan semuanya berjalan sempurna sebelum go-live.",
-          note: "Vercel · Domain",
-        },
-      ],
-    },
-    projects: {
-      eyebrow: "Karya Pilihan",
-      heading: "Yang sudah saya bangun.",
-      visitSite: "Kunjungi situs",
-      inDevelopment: "Dalam pengembangan",
-      comingSoon: "Pratinjau langsung segera hadir",
-      prev: "Proyek sebelumnya",
-      next: "Proyek berikutnya",
-      view: "Lihat",
-      openNewTab: "Buka di tab baru",
-      regionLabel: "Pratinjau proyek",
-      items: [
-        {
-          category: "Platform E-Commerce",
-          description: "Toko streetwear dengan halaman produk bergaya editorial, filter instan, dan alur checkout yang dirancang agar pembeli terus bergerak.",
-          caseStudy: {
-            problem: "Tingkat keranjang belanja yang ditinggalkan sangat tinggi dan pengalaman menjelajah di HP kurang mulus.",
-            solution: "Mendesain toko berorientasi mobile dengan performa tinggi, filter instan, dan alur checkout tanpa hambatan.",
-            result: "Meningkatkan tingkat konversi mobile sebesar 40% dan mempercepat waktu muat halaman secara drastis."
-          }
-        },
-        {
-          category: "Sistem Booking Klinik",
-          description: "Sistem booking klinik dengan penjadwalan janji temu, rekam medis pasien, dan dashboard dokter yang tetap cepat di perangkat apa pun.",
-          caseStudy: {
-            problem: "Penjadwalan manual sering menyebabkan bentrok jadwal dan membuat pasien kecewa.",
-            solution: "Mengembangkan sistem booking kustom dengan ketersediaan real-time dan dashboard intuitif untuk staf klinik.",
-            result: "Menghilangkan konflik jadwal dan mengurangi beban kerja admin hingga 15 jam seminggu."
-          }
-        },
-        {
-          category: "Landing Klinik Kecantikan",
-          description: "Landing page klinik estetika premium dengan nuansa editorial, katalog layanan, galeri, dan booking konsultasi.",
-          caseStudy: {
-            problem: "Kualitas premium klinik tidak tercermin secara online, sehingga permintaan konsultasi digital sangat rendah.",
-            solution: "Membangun landing page bergaya editorial yang mencolok secara visual menggunakan animasi modern untuk menyampaikan kesan mewah.",
-            result: "Meningkatkan citra merek dan mendongkrak booking konsultasi online hingga 60% di bulan pertama."
-          }
-        },
-        {
-          category: "Platform Otomatisasi AI",
-          description: "Platform otomatisasi AI untuk UKM Indonesia yang mengubah chat WhatsApp dan Instagram menjadi pipeline penjualan yang berjalan sendiri.",
-          caseStudy: {
-            problem: "UKM kewalahan membalas pesan berulang dari pelanggan di WhatsApp, yang menyebabkan respons lambat dan hilangnya potensi penjualan.",
-            solution: "Membangun AI Chatbot kustom berbasis RAG yang terintegrasi langsung dengan Meta API. Sistem ini membaca basis pengetahuan produk untuk menjawab pertanyaan kompleks secara otomatis.",
-            result: "Berhasil mengotomatisasi 85% pesan berulang dan memberikan layanan pelanggan 24/7, meningkatkan konversi prospek hingga 3x lipat."
-          }
-        },
-        {
-          category: "Company Profile / Katalog",
-          description: "Company profile dan katalog produk untuk pemasok kemasan plastik, mencakup lini produk, kisah perusahaan, dan kontak.",
-          caseStudy: {
-            problem: "Klien membutuhkan kehadiran digital yang profesional untuk membangun branding produk yang kuat dan tidak lagi hanya mengandalkan katalog offline.",
-            solution: "Mendesain profil perusahaan dan katalog digital yang modern dan terstruktur untuk menampilkan lini produk dengan elegan dan membangun kredibilitas merek.",
-            result: "Berhasil meningkatkan citra merek klien, memberikan platform yang mudah diakses oleh pembeli B2B dan secara langsung meningkatkan prospek (inquiries)."
-          }
-        },
-        {
-          category: "Kontes Competitive Programming",
-          description: "Platform acara untuk LINK 2026, kontes competitive programming, dengan login tim, info kontes, dan lini masa.",
-          caseStudy: {
-            problem: "Manajemen pendaftaran tim, pengumuman, dan lini masa untuk kontes besar sangat kacau dan rawan kesalahan.",
-            solution: "Membangun platform acara terpusat dengan portal tim yang aman, lini masa otomatis, dan instruksi yang jelas.",
-            result: "Berhasil mendaftarkan 100+ tim tanpa kesalahan registrasi sama sekali dan secara dramatis meningkatkan pengalaman peserta."
-          }
-        },
-        {
-          category: "Portofolio Fashion",
-          description: "Portofolio fashion neo-brutalis dan toko eksperimental yang menampilkan desain berani.",
-          caseStudy: {
-            problem: "Klien membutuhkan kehadiran digital yang sangat unik dan berani untuk menonjol di industri fashion.",
-            solution: "Mendesain website neo-brutalis yang menggabungkan estetika kasar dan kontras tinggi dengan interaksi web modern.",
-            result: "Menciptakan pengalaman yang mencolok secara visual dan sangat menarik, sejalan dengan identitas merek yang eksperimental."
-          }
-        },
-        {
-          category: "Portofolio Arsitektur",
-          description: "Portofolio minimalis dan premium untuk firma arsitektur, menampilkan proyek dengan pengguliran mulus dan tipografi yang elegan.",
-          caseStudy: {
-            problem: "Firma membutuhkan website yang mencerminkan presisi dan keanggunan dari proyek arsitektur fisik mereka.",
-            solution: "Mendesain portofolio digital yang bersih dan minimalis, berfokus pada citra berkualitas tinggi dan transisi halaman yang mulus.",
-            result: "Menghasilkan pengalaman web yang imersif dan secara efektif mengkomunikasikan filosofi desain premium firma tersebut."
-          }
-        },
-      ],
-    },
-    footer: {
-      available: "Tersedia",
-    },
-    pitch: {
-      devTag: "Bryan Jacquellino · Dev",
-      title: "Pilihan Investasi",
-      subtitle: "Solusi Digital & Integrasi AI",
-      items: [
-        { name: "Landing Page Standar",        desc: "Satu halaman, responsif, Tailwind CSS" },
-        { name: "Website Multi-Halaman",       desc: "Hingga 5 halaman (Beranda, Tentang, dll.), SEO" },
-        { name: "Web App + CRUD Sederhana",    desc: "Login admin, manajemen data, database" },
-        { name: "Web App + CRUD Kompleks",     desc: "Relasi kompleks, dashboard, ekspor laporan" },
-        { name: "Integrasi AI Saja",           desc: "Integrasi chatbot atau analisis tanpa database berat" },
-        { name: "Web Cerdas (CRUD + AI)",      desc: "Manajemen data plus asisten AI cerdas" },
-        { name: "SISTEM PENUH (Enterprise)",   desc: "Otomatisasi total, AI Analyst, skala besar" },
-      ],
-      footerNote: "* Biaya yang tercantum adalah Development Fee. Belum termasuk biaya operasional pihak ketiga (domain, Supabase Pro, kuota AI API).",
-      shortcut: "ESC untuk menutup · Alt+P untuk membuka",
-      shortcutAUS: "ESC untuk menutup · Alt+Q untuk membuka",
-      estimateNote: "Hanya estimasi harga. Penawaran akhir tergantung lingkup dan kebutuhan proyek.",
     },
   },
 };

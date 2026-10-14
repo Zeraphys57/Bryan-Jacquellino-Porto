@@ -11,43 +11,49 @@ npm run dev       # Start dev server (Vite, http://localhost:5173)
 npm run build     # Production build → dist/
 npm run preview   # Serve the dist/ build locally
 npm run lint      # ESLint check
+node screenshot.js <url> <name>   # Capture a project screenshot into src/assets/projects/
 ```
 
 There are no tests.
 
 ## Architecture
 
-**Stack:** React 19 + Vite 6 + Tailwind CSS v4 + Framer Motion + GSAP + AOS + Three.js
+**Stack:** React 19 + Vite 6 + Tailwind CSS v4 (`@tailwindcss/vite`, no PostCSS config). No animation libraries: motion is CSS keyframes in `index.css` plus small IntersectionObserver / rAF helpers.
 
-**Tailwind v4 note:** Uses `@tailwindcss/vite` plugin (not PostCSS). Dark mode is configured via `@custom-variant dark` in `index.css`, not in `tailwind.config.js`. Class-based dark mode: `document.documentElement.classList.add("dark")`.
+Audience and goals live in `PRODUCT.md`: Indonesian small-business owners first (non-technical), Australian clients second. Copy is outcome-first, no jargon.
 
-### Dark mode — known duplication
+### Page structure (`App.jsx`)
 
-Dark mode state lives in **two places** that must stay in sync:
-1. `App.jsx` — local `isDarkMode` state, passed as props to `<Header>` and used for MetaBalls color.
-2. `ThemeContext.jsx` — a separate `isDarkMode` state exposed via context. Currently unused by any consumer (no component calls `useContext(ThemeContext)`).
+`Hero → Projects (#work) → Services → Process → About → FAQ → ContactCTA (#contact) → Footer`, plus fixed layers: `Cursor`, `ScrollProgress`, `AmbientBackground`, `FloatingWhatsApp`, and the hidden pricing modals `SecretPitch` (Alt+P, IDR) / `SecretPitchAUS` (Alt+Q, AUD).
 
-The `<ThemeProvider>` wrapper in `App.jsx` is effectively a no-op right now. If you add context consumers, they will have their own independent state.
+- Shared margins, widths and heading styles: `src/component/layout.js` (`PAGE_X`, `CONTAINER`, `SECTION_Y`, `H2`, `LEAD`).
+- Contact details (WhatsApp number, email, socials) and `waLink(message)`: `src/contact.js` only.
+- Project data (titles, links, tags, screenshots): `src/data/projects.js`. `CLIENT_PROJECTS` = real work (1600w + 800w images); `CONCEPT_PROJECTS` = self-initiated concepts, always labelled "Konsep" on the page. Never present a concept as client work or give it client results.
 
-### Component naming mismatch
+### i18n
 
-- `ImBryan.jsx` — personal bio section (photo + multi-paragraph text + Lanyard 3D card). Not "About".
-- `About.jsx` — education timeline with GSAP scroll-driven line animation. Not the bio.
+`src/i18n/translations.js` holds all copy for `id`, `en`, `zh` (Traditional Chinese). `LanguageContext` picks the language: saved choice → browser language → Indonesian time zone → `en`, and sets `<html lang>` and `document.title`. The WhatsApp pre-filled message is per language (`t.whatsapp.message`).
 
-### Animation layers
+### Dark mode
 
-| Library | Used in | Pattern |
-|---|---|---|
-| AOS | `App.jsx`, `ImBryan.jsx` | `data-aos="fade-up"` attributes; initialized once in `App.jsx` (authoritative) and again in `ImBryan.jsx` (redundant) |
-| GSAP + ScrollTrigger | `About.jsx` | Programmatic `gsap.fromTo()` with `scrollTrigger`; registered via `gsap.registerPlugin(ScrollTrigger)` |
-| Framer Motion | `Header.jsx` | Spring/easing on burger menu icon and dark mode toggle icon |
+Class-based (`@custom-variant dark` in `index.css`). `main.jsx` sets the `.dark` class before first render; `App.jsx` owns `isDarkMode` state and passes it to `Header`, `AmbientBackground`, `ContactCTA`.
 
-### 3D / WebGL components
+### Performance rules (keep them)
 
-**`Lanyard.jsx`** — Physics-simulated ID card on a rope. Uses `@react-three/fiber` canvas, `@react-three/rapier` for rope joints (`useRopeJoint`, `useSphericalJoint`), `@react-three/drei` for GLTF/texture loading. Assets: `assets/card.glb`, `assets/lanyard.png`. Rendered inside `ImBryan.jsx` at desktop widths only (`hidden md:block`).
+- Never put scroll or mousemove positions in React state. `ScrollProgress`, `Header`, `ContactCTA`, `AmbientBackground` write to the DOM / CSS variables directly, at most once per frame.
+- `InteractiveDots` only animates while dots move and never on touch devices.
+- Background glows are radial gradients, not `filter: blur()`.
+- Below-the-fold images are `loading="lazy"`; hero screenshots are eager.
+- `/invoice` (`src/invoice/InvoiceApp.jsx`, jsPDF + html2canvas) is lazy-loaded in `main.jsx` so portfolio visitors never download it.
 
-**`MetaBalls.jsx`** — Custom WebGL metaball shader via OGL (not Three.js). Renders to a full-bleed `absolute` canvas behind all content (`z-5 blur-3xl`). Color is driven by `isDarkMode` from `App.jsx` props.
+### Scroll reveal
 
-### Background
+Add `scroll-reveal` (fade-up) or `reveal-line-x` / `reveal-line-y` (line draw) to an element; optional `data-delay="120ms"`. The observer lives in `App.jsx` and runs once on mount, so these classes only work on elements present at first render. `prefers-reduced-motion` shows everything immediately.
 
-Aurora gradient is a pure CSS animation defined in `index.css` under `.aurora-bg` / `.dark .aurora-bg`. MetaBalls renders on top of it at `z-5` with `blur-3xl`, creating the layered fluid effect.
+### Invoice tool
+
+`/invoice` is gated by a SHA-256 hash in `VITE_INVOICE_PASS_HASH` (see `.env.example`). It hides the tool from casual visitors only; it is not access control. Never commit a plaintext password.
+
+### SEO
+
+Meta tags, Open Graph (`public/og-image.jpg`, 1200×630, keep under ~300 KB for WhatsApp) and JSON-LD are in `index.html`; `public/robots.txt` and `public/sitemap.xml` exist. All absolute URLs use `https://bryan-jacquellino.vercel.app/` — update them together when moving to a custom domain.

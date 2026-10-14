@@ -39,7 +39,7 @@ const Cursor = () => {
       const t = e.target;
       if (t.closest("[data-cursor-xl], h2, h3")) {
         if (mode !== "heading") { mode = "heading"; applySize(SIZE.heading, "heading"); }
-      } else if (t.closest("a, button, [role='button']")) {
+      } else if (t.closest("a, button, summary, [role='button']")) {
         if (mode !== "link") { mode = "link"; applySize(SIZE.link, "link"); }
       }
     };
@@ -48,7 +48,7 @@ const Cursor = () => {
       const t = e.target;
       if (t.closest("[data-cursor-xl], h2, h3") && mode === "heading") {
         mode = "default"; applySize(SIZE.default, "default");
-      } else if (t.closest("a, button, [role='button']") && mode === "link") {
+      } else if (t.closest("a, button, summary, [role='button']") && mode === "link") {
         mode = "default"; applySize(SIZE.default, "default");
       }
     };

@@ -4,21 +4,40 @@
 
 @theme {
   --font-sans: 'Plus Jakarta Sans', 'Noto Sans TC', system-ui, sans-serif;
-  --font-mono: 'DM Mono', 'Noto Sans TC', 'Courier New', monospace;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Noto Sans TC', monospace;
 }
 
 html { scroll-behavior: smooth; }
 
-@media (pointer: fine) {
-  * { cursor: none !important; }
-}
+/* Matches the app background so there is no grey flash before React paints */
+body { background: #fafafa; }
+.dark body { background: #09090b; }
 
 body, #root {
   margin: 0;
   padding: 0;
 }
 
-/* ─── Background orb drift ─── */
+/* Anchor jumps land below the fixed header */
+section[id] { scroll-margin-top: 4.5rem; }
+
+@media (pointer: fine) {
+  * { cursor: none !important; }
+}
+
+/* Visible keyboard focus everywhere (mouse clicks don't trigger it) */
+:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 3px;
+}
+
+::selection { background: rgb(139 92 246 / 0.28); }
+
+/* <details> disclosure triangle off — components draw their own icon */
+summary { list-style: none; }
+summary::-webkit-details-marker { display: none; }
+
+/* ─── Background orb drift (desktop only, see AmbientBackground) ─── */
 @keyframes orb-a {
   0%, 100% { transform: translate(0px, 0px) scale(1); }
   33%       { transform: translate(60px, -50px) scale(1.08); }
@@ -37,97 +56,68 @@ body, #root {
   0%, 100% { transform: translate(0px, 0px) scale(1); }
   50%       { transform: translate(-40px, 60px) scale(0.92); }
 }
-
-/* ─── Scroll cue bounce ─── */
-@keyframes bounce-y {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(8px); }
+@media (min-width: 768px) {
+  .orb-a { animation: orb-a 22s ease-in-out infinite; }
+  .orb-b { animation: orb-b 28s ease-in-out infinite; }
+  .orb-c { animation: orb-c 32s ease-in-out infinite; }
+  .orb-d { animation: orb-d 36s ease-in-out infinite; }
 }
 
-/* ─── Text entrance – hero uses this directly via style prop ─── */
+/* ─── Entrances ─── */
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ─── Icon swap (key-based remount trigger) ─── */
+/* Icon swap (key-based remount trigger) */
 @keyframes icon-in {
   from { opacity: 0; transform: scale(0.7) rotate(-20deg); }
   to   { opacity: 1; transform: scale(1) rotate(0deg); }
 }
 
-/* ─── Greeting rotation ─── */
-@keyframes greet-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* Hero headline — each word rises out of its own mask */
+@keyframes word-rise {
+  from { transform: translateY(105%); }
+  to   { transform: translateY(0); }
 }
+.hero-word { animation: word-rise 0.75s cubic-bezier(0.23, 1, 0.32, 1) both; }
 
-/* ─── Scroll reveal (IntersectionObserver adds .visible) ─── */
+/* Hero showcase — screenshots drift gently, out of phase */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+.float-a { animation: float-y 7s ease-in-out infinite; }
+.float-b { animation: float-y 8s ease-in-out -2.5s infinite; }
+.float-c { animation: float-y 9s ease-in-out -5s infinite; }
+
+/* ─── Scroll reveal (IntersectionObserver in App adds .visible) ─── */
 @keyframes reveal {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
 .scroll-reveal { opacity: 0; }
 .scroll-reveal.visible {
   animation: reveal 0.55s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
-/* ─── Projects — dynamic detail panel re-entrance ─── */
-@keyframes proj-rise {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.proj-rise { animation: proj-rise 0.62s cubic-bezier(0.16, 1, 0.3, 1) both; }
+/* Lines that draw themselves when they scroll into view */
+@keyframes grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes grow-y { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.reveal-line-x { transform: scaleX(0); transform-origin: left; }
+.reveal-line-y { transform: scaleY(0); transform-origin: top; }
+.reveal-line-x.visible { animation: grow-x 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.15s both; }
+.reveal-line-y.visible { animation: grow-y 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.15s both; }
 
+/* ─── Reduced motion: everything visible, nothing travels ─── */
 @media (prefers-reduced-motion: reduce) {
-  .proj-rise { animation-duration: 0.01ms; animation-delay: 0ms !important; }
-}
-
-/* ─── About — terminal line reveal ─── */
-@keyframes term-line {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* ─── Hero — masked line reveal ─── */
-@keyframes hero-rise {
-  from { transform: translateY(110%); }
-  to   { transform: translateY(0); }
-}
-.hero-line { animation: hero-rise 0.9s cubic-bezier(0.23, 1, 0.32, 1) both; }
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-line { animation: none; }
-}
-
-/* ─── Timeline dot ─── */
-@keyframes dot-pop {
-  0%   { transform: scale(0); opacity: 0; }
-  70%  { transform: scale(1.3); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
-}
-@keyframes dot-pulse {
-  from { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-  to   { transform: translate(-50%, -50%) scale(2.8); opacity: 0; }
-}
-
-.timeline-dot {
-  opacity: 0;
-  transform: scale(0);
-}
-.timeline-dot.visible {
-  animation: dot-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-.timeline-ring {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: #14b8a6;
-  opacity: 0;
-  pointer-events: none;
-}
-.timeline-ring.visible {
-  animation: dot-pulse 2s ease-out infinite;
+  html { scroll-behavior: auto; }
+  .scroll-reveal { opacity: 1; }
+  .reveal-line-x, .reveal-line-y { transform: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

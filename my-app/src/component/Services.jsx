@@ -1,158 +1,88 @@
 import React from "react";
 import { useLanguage } from "../i18n/LanguageContext";
+import { waLink } from "../contact";
+import { PAGE_X, CONTAINER, SECTION_Y, H2, LEAD } from "./layout";
 
-/* Non-translatable per-service data — copy lives in i18n/translations.js.
-   Each service owns an accent; soft/glow are pre-mixed so no runtime
-   colour-mixing is needed. */
-const SERVICE_META = [
-  {
-    num: "01",
-    accent: "#8b5cf6", accentSoft: "rgba(139,92,246,0.10)", accentGlow: "rgba(139,92,246,0.22)",
-    tags: ["Figma", "Responsive", "Branding"],
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-        <rect x="2" y="2" width="8" height="8" rx="2" stroke="currentColor" strokeWidth="1.5"/>
-        <rect x="12" y="2" width="8" height="8" rx="2" stroke="currentColor" strokeWidth="1.5"/>
-        <rect x="2" y="12" width="8" height="8" rx="2" stroke="currentColor" strokeWidth="1.5"/>
-        <circle cx="16" cy="16" r="4" stroke="currentColor" strokeWidth="1.5"/>
-      </svg>
-    ),
-  },
-  {
-    num: "02",
-    accent: "#14b8a6", accentSoft: "rgba(20,184,166,0.10)", accentGlow: "rgba(20,184,166,0.22)",
-    tags: ["React", "Tailwind", "Vite", "GSAP"],
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-        <polyline points="6,8 2,11 6,14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <polyline points="16,8 20,11 16,14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="13" y1="4" x2="9" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    ),
-  },
-  {
-    num: "03",
-    accent: "#f59e0b", accentSoft: "rgba(245,158,11,0.10)", accentGlow: "rgba(245,158,11,0.22)",
-    tags: ["Vercel", "GitHub", "Domain"],
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-        <path d="M11 2L20 20H2L11 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-      </svg>
-    ),
-  },
-  {
-    num: "04",
-    accent: "#3b82f6", accentSoft: "rgba(59,130,246,0.10)", accentGlow: "rgba(59,130,246,0.22)",
-    tags: ["OpenAI", "RAG", "Automation", "API"],
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-        <circle cx="11" cy="11" r="2.5" stroke="currentColor" strokeWidth="1.5"/>
-        <circle cx="4"  cy="4"  r="1.5" stroke="currentColor" strokeWidth="1.5"/>
-        <circle cx="18" cy="4"  r="1.5" stroke="currentColor" strokeWidth="1.5"/>
-        <circle cx="4"  cy="18" r="1.5" stroke="currentColor" strokeWidth="1.5"/>
-        <circle cx="18" cy="18" r="1.5" stroke="currentColor" strokeWidth="1.5"/>
-        <line x1="5.1"  y1="5.1"  x2="9.2"  y2="9.2"  stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-        <line x1="16.9" y1="5.1"  x2="12.8" y2="9.2"  stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-        <line x1="5.1"  y1="16.9" x2="9.2"  y2="12.8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-        <line x1="16.9" y1="16.9" x2="12.8" y2="12.8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-      </svg>
-    ),
-  },
-];
+/* One accent per service, in the order of t.services.items */
+const ACCENTS = ["#8b5cf6", "#14b8a6", "#f59e0b", "#3b82f6"];
+
+const Check = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="mt-1 shrink-0 text-teal-600 dark:text-teal-400">
+    <path d="M3 8.5l3.2 3L13 4.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 const Services = () => {
   const { t } = useLanguage();
+  const ts = t.services;
   return (
-    <div className="py-16 md:py-24 px-6 md:px-16 lg:px-24 xl:px-36 2xl:px-48">
-      <div className="max-w-[1500px] mx-auto">
+    <section id="services" aria-labelledby="services-title" className={`${PAGE_X} ${SECTION_Y}`}>
+      <div className={`${CONTAINER} grid lg:grid-cols-12 gap-14 lg:gap-16`}>
 
-        <p className="scroll-reveal text-xs font-mono text-violet-600 dark:text-violet-400 tracking-[0.2em] uppercase mb-4">
-          {t.services.eyebrow}
-        </p>
-        <h2 className="scroll-reveal text-3xl md:text-4xl xl:text-5xl font-light text-gray-900 dark:text-white mb-16" data-delay="60ms">
-          {t.services.heading}
-        </h2>
+        {/* Left: what you get on every project */}
+        <div className="lg:col-span-5">
+          <div className="lg:sticky lg:top-28">
+            <h2 id="services-title" className={`scroll-reveal ${H2}`}>{ts.heading}</h2>
+            <p className={`scroll-reveal mt-5 ${LEAD}`} data-delay="60ms">{ts.intro}</p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
-          {SERVICE_META.map((s, i) => {
-            const copy = t.services.items[i];
-            return (
-              <div
-                key={s.num}
-                className="scroll-reveal group relative isolate
-                  transition-transform duration-300 ease-out hover:-translate-y-1.5"
-                style={{
-                  "--accent": s.accent,
-                  "--accent-soft": s.accentSoft,
-                  "--accent-glow": s.accentGlow,
-                }}
-                data-delay={`${i * 80}ms`}
-              >
-                {/* Behind-card glow — radiates on hover */}
+            <div className="scroll-reveal mt-10" data-delay="120ms">
+              <p className="text-sm font-semibold text-gray-900 dark:text-white">{ts.includedLabel}</p>
+              <ul className="mt-4 space-y-3">
+                {ts.included.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-base text-gray-700 dark:text-gray-300">
+                    <Check />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <a
+              href={waLink(t.whatsapp.message)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="scroll-reveal group mt-10 inline-flex items-center gap-2 text-base font-semibold
+                text-violet-700 dark:text-violet-300 underline decoration-violet-300 dark:decoration-violet-500/50
+                underline-offset-[6px] hover:decoration-current"
+              data-delay="180ms"
+            >
+              {ts.cta}
+              <span aria-hidden="true" className="transition-transform duration-150 group-hover:translate-x-1">→</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Right: the four things I build */}
+        <ul className="lg:col-span-7 border-b border-gray-200 dark:border-white/10">
+          {ts.items.map((s, i) => (
+            <li
+              key={s.title}
+              className="scroll-reveal group border-t border-gray-200 dark:border-white/10 py-9 md:py-11"
+              data-delay={`${i * 80}ms`}
+            >
+              <div className="flex gap-5">
                 <span
                   aria-hidden="true"
-                  className="absolute -inset-3 -z-10 rounded-3xl blur-2xl
-                    opacity-0 group-hover:opacity-50 transition-opacity duration-300"
-                  style={{ background: "var(--accent)" }}
+                  className="mt-[0.7em] w-2.5 h-2.5 shrink-0 rounded-full transition-[scale] duration-300 ease-out group-hover:scale-150"
+                  style={{ backgroundColor: ACCENTS[i] }}
                 />
-
-                {/* Card */}
-                <div
-                  className="relative overflow-hidden flex flex-col gap-5 h-full
-                    p-7 xl:p-9 rounded-2xl border
-                    bg-white dark:bg-white/[0.03]
-                    border-gray-100 dark:border-white/[0.07]
-                    group-hover:border-[var(--accent)]/40 group-hover:shadow-xl
-                    transition-[box-shadow,border-color] duration-300 ease-out"
-                >
-                  {/* Accent background wash — fades in on hover */}
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-0 pointer-events-none opacity-0
-                      group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ background: "linear-gradient(150deg, var(--accent-glow), transparent 75%)" }}
-                  />
-
-                  {/* Icon */}
-                  <div
-                    className="relative z-10 w-12 h-12 rounded-xl flex items-center justify-center
-                      text-[var(--accent)] bg-[var(--accent-soft)]
-                      transition-[transform,background-color] duration-300 ease-out
-                      group-hover:scale-110 group-hover:rotate-3
-                      group-hover:bg-[var(--accent-glow)]"
-                  >
-                    {s.icon}
-                  </div>
-
-                  {/* Title + desc */}
-                  <div className="relative z-10 flex flex-col gap-2 flex-1">
-                    <h3 className="text-base xl:text-lg font-semibold text-gray-900 dark:text-white">
-                      {copy.title}
-                    </h3>
-                    <p className="text-sm xl:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
-                      {copy.desc}
-                    </p>
-                  </div>
-
-                  {/* Tags — accent dot + label */}
-                  <div className="relative z-10 flex flex-wrap gap-x-3 gap-y-1.5 pt-2 mt-auto">
-                    {s.tags.map(tag => (
-                      <span
-                        key={tag}
-                        className="flex items-center gap-1.5 text-[10px] font-mono text-gray-500 dark:text-gray-400"
-                      >
-                        <span className="w-1 h-1 rounded-full bg-[var(--accent)]" />
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-light tracking-tight text-gray-900 dark:text-white
+                    transition-[translate] duration-300 ease-out group-hover:translate-x-1">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-xl">
+                    {s.desc}
+                  </p>
+                  <p className="mt-3 text-sm text-gray-700 dark:text-gray-300">{s.fit}</p>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </li>
+          ))}
+        </ul>
+
       </div>
-    </div>
+    </section>
   );
 };
 
