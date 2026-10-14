@@ -28,7 +28,7 @@ Audience and goals live in `PRODUCT.md`: Indonesian small-business owners first 
 
 - Shared margins, widths and heading styles: `src/component/layout.js` (`PAGE_X`, `CONTAINER`, `SECTION_Y`, `H2`, `LEAD`).
 - Contact details (WhatsApp number, email, socials) and `waLink(message)`: `src/contact.js` only.
-- Portrait: `src/assets/bryan-portrait.webp` (4:5, About) and `bryan-avatar.webp` (square, hero) are crops of a white-background studio photo. They sit on a light panel with `mix-blend-multiply`, which turns the white backdrop into the panel colour in both themes. Keep that treatment (and `isolate` on the panel) if the photo changes.
+- Photos: the hero avatar uses `src/assets/bryan.jpeg` (casual photo). About uses `bryan-portrait.webp`, a 4:5 crop of a white-background studio photo that sits on a light panel with `mix-blend-multiply`, which turns the white backdrop into the panel colour in both themes. Keep that treatment (and `isolate` on the panel) if the studio photo changes.
 - Project data (titles, links, tags, screenshots): `src/data/projects.js`. `CLIENT_PROJECTS` = real work (1600w + 800w images); `CONCEPT_PROJECTS` = self-initiated concepts, always labelled "Konsep" on the page. Never present a concept as client work or give it client results.
 
 ### i18n

@@ -5,7 +5,7 @@ import { waLink } from "../contact";
 import { CLIENT_PROJECTS } from "../data/projects";
 import BrowserFrame from "./BrowserFrame";
 import { PAGE_X, CONTAINER } from "./layout";
-import avatar from "../assets/bryan-avatar.webp";
+import photo from "../assets/bryan.jpeg";
 
 const EASE = "cubic-bezier(0.23,1,0.32,1)";
 
@@ -134,17 +134,14 @@ const Hero = () => {
         <div className="mt-10 md:mt-14 grid lg:grid-cols-12 gap-x-12 xl:gap-x-16 gap-y-12 lg:gap-y-0">
           <div className="lg:col-span-6 xl:col-span-5 lg:row-start-1">
             <div className="flex items-start gap-4" style={{ animation: `fade-up 0.6s 0.38s ${EASE} both` }}>
-              {/* Studio headshot: multiply turns its white backdrop into the disc colour, in both themes */}
               <span className="relative shrink-0">
-                <span className="block w-16 h-16 rounded-full overflow-hidden isolate bg-violet-100 ring-2 ring-violet-500/40">
-                  <img
-                    src={avatar}
-                    alt={t.about.photoAlt}
-                    width="64"
-                    height="64"
-                    className="w-full h-full object-cover mix-blend-multiply"
-                  />
-                </span>
+                <img
+                  src={photo}
+                  alt={t.about.photoAlt}
+                  width="64"
+                  height="64"
+                  className="block w-16 h-16 rounded-full object-cover object-[50%_18%] ring-2 ring-violet-500/40"
+                />
                 <span
                   aria-hidden="true"
                   className="absolute bottom-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-[#fafafa] dark:ring-[#09090b]"
