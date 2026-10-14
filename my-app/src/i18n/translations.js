@@ -10,7 +10,7 @@
 export const translations = {
   id: {
     meta: {
-      title: "Jasa Pembuatan Website Yogyakarta — Bryan Jacquellino",
+      title: "Bryan Jacquellino",
     },
     nav: {
       work: "Karya",
@@ -241,7 +241,7 @@ export const translations = {
 
   en: {
     meta: {
-      title: "Bryan Jacquellino — Freelance Web Developer in Yogyakarta",
+      title: "Bryan Jacquellino",
     },
     nav: {
       work: "Work",
@@ -472,7 +472,7 @@ export const translations = {
 
   zh: {
     meta: {
-      title: "Bryan Jacquellino — 印尼日惹自由接案網頁開發者",
+      title: "Bryan Jacquellino",
     },
     nav: {
       work: "作品",
