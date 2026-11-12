@@ -62,4 +62,4 @@ Vercel Web Analytics, injected in `main.jsx` in production only and never on `/i
 
 ### SEO
 
-Meta tags, Open Graph (`public/og-cover.jpg`, 1200×630, under ~300 KB for WhatsApp; keep text out of the centre 630×630 square, which WhatsApp crops for thumbnails) and JSON-LD are in `index.html`; `public/robots.txt` and `public/sitemap.xml` exist. All absolute URLs use `https://bryan-jacquellino.vercel.app/` — update them together when moving to a custom domain.
+Meta tags, Open Graph (`public/og-cover.jpg`, 1200×630, under ~300 KB for WhatsApp; a thumbnail-style cover: the face and every word sit inside the centre 630×630 square, which WhatsApp crops for small previews; bump `?v=` on the image URL when it changes) and JSON-LD are in `index.html`; `public/robots.txt` and `public/sitemap.xml` exist. All absolute URLs use `https://bryan-jacquellino.vercel.app/` — update them together when moving to a custom domain.
