@@ -1,102 +1,76 @@
 import { useEffect, useRef } from "react";
 
-const SIZE = { default: 36, link: 64, heading: 110 };
+const SIZE = { default: 12, link: 48, heading: 110 };
+const RING = (1.5 * SIZE.heading) / SIZE.link; // a 1.5px ring once scaled down to link size
+const LINK = "a, button, summary, [role='button']";
+const HEADING = "[data-cursor-xl], h2";
 
+/* A dot that inverts whatever is under it: a ring around anything clickable, a lens over
+   big headings. Drawn at its largest size and scaled down, so it is sharp at every size.
+   Position goes straight to the DOM and the loop stops once the dot has caught up. */
 const Cursor = () => {
-  const cursorRef = useRef(null);
+  const ref = useRef(null);
 
   useEffect(() => {
     if (!window.matchMedia("(pointer: fine)").matches) return;
+    const el = ref.current;
+    let mx = 0, my = 0, x = 0, y = 0;
+    let hidden = true;
+    let raf = 0;
 
-    const el = cursorRef.current;
-    if (!el) return;
-
-    let mouseX = -200, mouseY = -200;
-    let lerpX  = -200, lerpY  = -200;
-    let prevLX = -200, prevLY = -200;
-    let mode   = "default";
-    let raf;
-
-    const applySize = (s, m) => {
-      el.style.width           = `${s}px`;
-      el.style.height          = `${s}px`;
-      el.style.marginLeft      = `${-s / 2}px`;
-      el.style.marginTop       = `${-s / 2}px`;
-      el.style.backgroundColor = m === "link" ? "transparent" : "white";
-      el.style.border          = m === "link" ? "1.5px solid white" : "none";
-      el.style.mixBlendMode    = m === "link" ? "normal" : "difference";
+    const tick = () => {
+      x += (mx - x) * 0.45;
+      y += (my - y) * 0.45;
+      el.style.translate = `${x}px ${y}px`;
+      raf = Math.abs(mx - x) + Math.abs(my - y) > 0.1 ? requestAnimationFrame(tick) : 0;
     };
 
     const onMove = (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      el.style.opacity = "1";
+      mx = e.clientX;
+      my = e.clientY;
+      if (hidden) { // appear where the pointer is instead of flying in
+        hidden = false;
+        x = mx;
+        y = my;
+        el.style.opacity = "1";
+      }
+      if (!raf) raf = requestAnimationFrame(tick);
     };
 
-    const onLeave = () => { el.style.opacity = "0"; };
+    const onLeave = () => { hidden = true; el.style.opacity = "0"; };
 
+    /* mouseover fires for every element the pointer enters, parents included,
+       so this one handler also covers leaving a link or a heading */
     const onOver = (e) => {
-      const t = e.target;
-      if (t.closest("[data-cursor-xl], h2, h3")) {
-        if (mode !== "heading") { mode = "heading"; applySize(SIZE.heading, "heading"); }
-      } else if (t.closest("a, button, summary, [role='button']")) {
-        if (mode !== "link") { mode = "link"; applySize(SIZE.link, "link"); }
-      }
+      const mode = e.target.closest(LINK) ? "link" : e.target.closest(HEADING) ? "heading" : "default";
+      el.style.scale = `${SIZE[mode] / SIZE.heading}`;
+      el.style.backgroundColor = mode === "link" ? "transparent" : "white";
     };
 
-    const onOut = (e) => {
-      const t = e.target;
-      if (t.closest("[data-cursor-xl], h2, h3") && mode === "heading") {
-        mode = "default"; applySize(SIZE.default, "default");
-      } else if (t.closest("a, button, summary, [role='button']") && mode === "link") {
-        mode = "default"; applySize(SIZE.default, "default");
-      }
-    };
-
-    const tick = () => {
-      prevLX = lerpX; prevLY = lerpY;
-      lerpX += (mouseX - lerpX) * 0.45;
-      lerpY += (mouseY - lerpY) * 0.45;
-
-      const vx    = lerpX - prevLX;
-      const vy    = lerpY - prevLY;
-      const speed = Math.sqrt(vx * vx + vy * vy);
-      const stretch = Math.min(1 + speed * 0.06, 2.2);
-      const angle   = speed > 0.3 ? Math.atan2(vy, vx) * (180 / Math.PI) : 0;
-
-      el.style.transform = `translate(${lerpX}px,${lerpY}px) rotate(${angle}deg) scaleX(${stretch.toFixed(3)}) scaleY(${(1 / stretch).toFixed(3)})`;
-
-      raf = requestAnimationFrame(tick);
-    };
-
-    applySize(SIZE.default, "default");
-    document.addEventListener("mousemove",  onMove,  { passive: true });
+    document.addEventListener("mousemove",  onMove, { passive: true });
+    document.addEventListener("mouseover",  onOver, { passive: true });
     document.addEventListener("mouseleave", onLeave);
-    document.addEventListener("mouseover",  onOver,  { passive: true });
-    document.addEventListener("mouseout",   onOut,   { passive: true });
-    raf = requestAnimationFrame(tick);
 
     return () => {
       document.removeEventListener("mousemove",  onMove);
-      document.removeEventListener("mouseleave", onLeave);
       document.removeEventListener("mouseover",  onOver);
-      document.removeEventListener("mouseout",   onOut);
+      document.removeEventListener("mouseleave", onLeave);
       cancelAnimationFrame(raf);
     };
   }, []);
 
   return (
     <div
-      ref={cursorRef}
-      className="fixed top-0 left-0 z-[9999] pointer-events-none will-change-transform rounded-full"
+      ref={ref}
+      aria-hidden="true"
+      className="fixed top-0 left-0 z-[10000] pointer-events-none rounded-full mix-blend-difference opacity-0 will-change-transform"
       style={{
-        width: SIZE.default, height: SIZE.default,
-        marginLeft: -SIZE.default / 2, marginTop: -SIZE.default / 2,
+        width: SIZE.heading, height: SIZE.heading,
+        marginLeft: -SIZE.heading / 2, marginTop: -SIZE.heading / 2,
+        border: `${RING}px solid white`,
         backgroundColor: "white",
-        mixBlendMode: "difference",
-        opacity: 0,
-        transition:
-          "width 0.45s cubic-bezier(0.23,1,0.32,1), height 0.45s cubic-bezier(0.23,1,0.32,1), margin 0.45s cubic-bezier(0.23,1,0.32,1), opacity 0.25s, background-color 0.2s, border 0.2s",
+        scale: `${SIZE.default / SIZE.heading}`,
+        transition: "scale 0.35s cubic-bezier(0.23,1,0.32,1), background-color 0.2s, opacity 0.25s",
       }}
     />
   );

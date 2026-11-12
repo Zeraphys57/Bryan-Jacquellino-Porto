@@ -18,6 +18,16 @@ if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color
 
 const isInvoice = window.location.pathname.startsWith('/invoice');
 
+/* Vercel Web Analytics: page views, sources, countries, devices. It has to be enabled
+   in the Vercel dashboard, and the script only exists on Vercel, so production only.
+   shortcut: page views only, add @vercel/analytics track() if button clicks are needed (Pro plan). */
+if (import.meta.env.PROD && !isInvoice) {
+  const s = document.createElement('script');
+  s.defer = true;
+  s.src = '/_vercel/insights/script.js';
+  document.head.appendChild(s);
+}
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {isInvoice ? (

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import InteractiveDots from "./InteractiveDots";
 
 /* Soft radial gradients instead of filter: blur() — same glow, a fraction of the GPU cost. */
@@ -12,34 +12,9 @@ const ORBS = [
   { cls: "orb-d", rgb: "6,182,212",   size: 420, pos: { bottom: "20%", right: -80 }, op: [0.09, 0.11] },
 ];
 
-/* Fixed layer behind the page: drifting orbs (desktop), a cursor-reactive dot grid,
-   a slow orb that follows the mouse, and a static grain texture. */
+/* Fixed layer behind the page: drifting orbs (desktop), a cursor-reactive dot grid
+   and a static grain texture. */
 const AmbientBackground = ({ isDarkMode }) => {
-  const cursorOrbRef = useRef(null);
-
-  /* Cursor-following orb — runs only while it is catching up to the pointer */
-  useEffect(() => {
-    const orb = cursorOrbRef.current;
-    if (!orb || !window.matchMedia("(pointer: fine)").matches) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-    let lx = mx, ly = my;
-    let raf = 0;
-    const tick = () => {
-      lx += (mx - lx) * 0.05;
-      ly += (my - ly) * 0.05;
-      orb.style.transform = `translate(${lx - 160}px,${ly - 160}px)`;
-      raf = Math.abs(mx - lx) + Math.abs(my - ly) > 0.5 ? requestAnimationFrame(tick) : 0;
-    };
-    const onMove = (e) => {
-      mx = e.clientX; my = e.clientY;
-      if (!raf) raf = requestAnimationFrame(tick);
-    };
-    orb.style.transform = `translate(${lx - 160}px,${ly - 160}px)`;
-    document.addEventListener("mousemove", onMove, { passive: true });
-    return () => { document.removeEventListener("mousemove", onMove); cancelAnimationFrame(raf); };
-  }, []);
-
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
       {ORBS.map((o) => (
@@ -51,16 +26,6 @@ const AmbientBackground = ({ isDarkMode }) => {
       ))}
 
       <InteractiveDots isDarkMode={isDarkMode} />
-
-      <div
-        ref={cursorOrbRef}
-        className="absolute top-0 left-0 rounded-full hidden [@media(pointer:fine)]:block"
-        style={{
-          width: 320, height: 320,
-          background: "radial-gradient(circle, rgba(124,58,237,0.8) 0%, rgba(13,148,136,0.45) 45%, rgba(13,148,136,0) 70%)",
-          opacity: isDarkMode ? 0.13 : 0.11,
-        }}
-      />
 
       {/* Noise grain — static texture */}
       <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">

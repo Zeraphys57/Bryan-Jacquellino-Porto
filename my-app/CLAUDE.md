@@ -41,7 +41,8 @@ Class-based (`@custom-variant dark` in `index.css`). `main.jsx` sets the `.dark`
 
 ### Performance rules (keep them)
 
-- Never put scroll or mousemove positions in React state. `ScrollProgress`, `Header`, `ContactCTA`, `AmbientBackground` write to the DOM / CSS variables directly, at most once per frame.
+- Never put scroll or mousemove positions in React state. `ScrollProgress`, `Header`, `ContactCTA`, `Cursor` write to the DOM / CSS variables directly, at most once per frame.
+- `Cursor` is one element drawn at its largest size and scaled down: a 12px dot, a ring over links and buttons, a lens over `h2` and `[data-cursor-xl]`. Nothing else follows the pointer except the dot grid.
 - `InteractiveDots` only animates while dots move and never on touch devices.
 - Background glows are radial gradients, not `filter: blur()`.
 - Below-the-fold images are `loading="lazy"`; hero screenshots are eager.
@@ -54,6 +55,10 @@ Add `scroll-reveal` (fade-up) or `reveal-line-x` / `reveal-line-y` (line draw) t
 ### Invoice tool
 
 `/invoice` is an open invoice/PDF generator, with no login by design. It is lazy-loaded, marked noindex and disallowed in `robots.txt`. Never put secrets in client code: everything in the bundle is public.
+
+### Analytics
+
+Vercel Web Analytics, injected in `main.jsx` in production only and never on `/invoice`. Page views only: custom events (button clicks) need the Pro plan.
 
 ### SEO
 
